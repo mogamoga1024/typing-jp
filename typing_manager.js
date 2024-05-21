@@ -1,3 +1,4 @@
+import { CharFactory } from "./char_factory.js";
 
 export const TypingManager = {};
 

@@ -1,12 +1,13 @@
+import { Char } from "./char.js";
 
-function ん() {
+export function CharHiraN() {
     Char.call(this, "ん", ["nn", "n'", "xn"]);
 }
 
-ん.prototype = Object.create(Char.prototype);
-ん.prototype.constructor = ん;
+CharHiraN.prototype = Object.create(Char.prototype);
+CharHiraN.prototype.constructor = CharHiraN;
 
-ん.prototype.expectRoman = function() {
+CharHiraN.prototype.expectRoman = function() {
     if (this.nextChar === null) {
         return Char.prototype.expectRoman.call(this);
     }
@@ -23,7 +24,7 @@ function ん() {
     return "n";
 };
 
-ん.prototype.inputRoman = function(roman) {
+CharHiraN.prototype.inputRoman = function(roman) {
     const result = Char.prototype.inputRoman.call(this, roman);
 
     if (result !== CHAR_NG || this.nextExpectRomanIndex === 0 || this.nextChar === null) {

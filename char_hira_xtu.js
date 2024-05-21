@@ -1,13 +1,14 @@
+import { Char } from "./char.js";
 
-function っ() {
+export function CharHiraXtu() {
     Char.call(this, "っ", ["xtu", "ltu", "ltsu"]);
     this.regex = /^(?=[a-z])(?!(a|i|u|e|o|n)).$/;
 }
 
-っ.prototype = Object.create(Char.prototype);
-っ.prototype.constructor = っ;
+CharHiraXtu.prototype = Object.create(Char.prototype);
+CharHiraXtu.prototype.constructor = CharHiraXtu;
 
-っ.prototype.expectRoman = function() {
+CharHiraXtu.prototype.expectRoman = function() {
     if (this.nextChar === null) {
         return Char.prototype.expectRoman.call(this);
     }
@@ -25,7 +26,7 @@ function っ() {
     return Char.prototype.expectRoman.call(this);
 };
 
-っ.prototype.inputRoman = function(roman) {
+CharHiraXtu.prototype.inputRoman = function(roman) {
     const result = Char.prototype.inputRoman.call(this, roman);
     if (this.nextExpectRomanIndex > 0) {
         return result;

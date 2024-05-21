@@ -1,5 +1,5 @@
 
-function Char(name, expectRomanArray) {
+export function Char(name, expectRomanArray) {
     this.name = name;
     this.nextChar = null;
     this.expectRomanArray = expectRomanArray;

@@ -1,5 +1,8 @@
+import { Char } from "./char.js";
+import { CharHiraXtu } from "./char_hira_xtu.js";
+import { CharHiraN } from "./char_hira_n.js";
 
-const CharFactory = {};
+export const CharFactory = {};
 
 CharFactory.create = function(name) {
     switch (name) {
@@ -155,7 +158,7 @@ CharFactory.create = function(name) {
         case "どぇ": case "ドェ": return new Char(name, ["dwe"]);
         case "どぉ": case "ドォ": return new Char(name, ["dwo"]);
 
-        case "っ": case "ッ": return new っ();
+        case "っ": case "ッ": return new CharHiraXtu();
 
         // な行 
         case "な": case "ナ": return new Char(name, ["na"]);
@@ -265,7 +268,7 @@ CharFactory.create = function(name) {
         // わ行 
         case "わ": case "ワ": return new Char(name, ["wa"]);
         case "を": case "ヲ": return new Char(name, ["wo"]);
-        case "ん": case "ン": return new ん();
+        case "ん": case "ン": return new CharHiraN();
 
         case "ゎ": case "ヮ": return new Char(name, ["xwa", "lwa"]);
 
