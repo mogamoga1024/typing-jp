@@ -33,18 +33,18 @@ CharHiraXtu.prototype.inputRoman = function(roman) {
     }
 
     if (this.nextChar == null) {
-        return CHAR_NG;
+        return "unmatch";
     }
     
     if (roman.match(this.regex) === null) {
-        return CHAR_NG;
+        return "unmatch";
     }
     if (this.nextChar.name.match(/^[a-zA-Z]$/) !== null) {
-        return CHAR_NG;
+        return "unmatch";
     }
 
-    if (this.nextChar.inputRoman(roman) === CHAR_NG) {
-        return CHAR_NG;
+    if (this.nextChar.inputRoman(roman) === "unmatch") {
+        return "unmatch";
     }
     this.nextChar.nextExpectRomanIndex = 0;
     if (this.nextChar.divisionCharChain !== null) {
@@ -52,5 +52,5 @@ CharHiraXtu.prototype.inputRoman = function(roman) {
         this.nextChar.divisionCharChain.nextExpectRomanIndex = 0;
     }
 
-    return CHAR_COMPLETE;
+    return "complete";
 };

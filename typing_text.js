@@ -29,7 +29,7 @@ export class TypingText {
         const result = this.char.inputRoman(key);
 
         switch (result) {
-            case "failure": return "failure";
+            case "unmatch": return "unmatch";
             case "incomplete":
                 this.updateExpectRoman(oldCharExpectRomanLength);
                 return "incomplete";

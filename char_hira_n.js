@@ -27,17 +27,17 @@ CharHiraN.prototype.expectRoman = function() {
 CharHiraN.prototype.inputRoman = function(roman) {
     const result = Char.prototype.inputRoman.call(this, roman);
 
-    if (result !== CHAR_NG || this.nextExpectRomanIndex === 0 || this.nextChar === null) {
+    if (result !== "unmatch" || this.nextExpectRomanIndex === 0 || this.nextChar === null) {
         return result;
     }
 
     if (this.nextChar.expectRoman()[0].match(/^(a|i|u|e|o|y)$/) !== null) {
-        return CHAR_NG;
+        return "unmatch";
     }
 
     switch (this.nextChar.inputRoman(roman)) {
-        case CHAR_NG: return CHAR_NG;
-        case CHAR_KEEP: return this.nextChar;
-        case CHAR_COMPLETE: return this.nextChar.nextChar === null ? CHAR_COMPLETE : this.nextChar.nextChar;
+        case "unmatch": return "unmatch";
+        case "incomplete": return this.nextChar;
+        case "complete": return this.nextChar.nextChar === null ? "complete" : this.nextChar.nextChar;
     }
 };

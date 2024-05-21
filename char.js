@@ -21,7 +21,7 @@ Char.prototype.expectRoman = function() {
 Char.prototype.inputRoman = function(roman) {
     const result = this.inputThisCharRoman(roman);
 
-    if (result === CHAR_NG && this.divisionCharChain !== null) {
+    if (result === "unmatch" && this.divisionCharChain !== null) {
         return this.inputDivisionCharRoman(roman);
     }
     else {
@@ -38,31 +38,31 @@ Char.prototype.inputThisCharRoman = function(roman) {
     );
 
     if (tmpExpectRomanArray.length === 0) {
-        return CHAR_NG;
+        return "unmatch";
     }
 
     this.expectRomanArray = tmpExpectRomanArray;
     this.nextExpectRomanIndex += 1;
     
     if (this.nextExpectRomanIndex < this.expectRomanArray[0].length) {
-        return CHAR_KEEP;
+        return "incomplete";
     }
     
-    return CHAR_COMPLETE;
+    return "complete";
 };
 
 Char.prototype.inputDivisionCharRoman = function(roman) {
     const char = this.divisionCharChain;
     for (let i = 0; i < this.nextExpectRomanIndex; i++) {
-        if (char.inputRoman(this.expectRomanArray[0][i]) === CHAR_NG) {
+        if (char.inputRoman(this.expectRomanArray[0][i]) === "unmatch") {
             char.nextExpectRomanIndex = 0;
-            return CHAR_NG;
+            return "unmatch";
         }
     }
 
     const result = char.inputRoman(roman);
-    if (result === CHAR_NG) {
-        return CHAR_NG;
+    if (result === "unmatch") {
+        return "unmatch";
     }
     
     let lastDivisionChar = char.nextChar; // char.nextChar is not null.
@@ -74,7 +74,7 @@ Char.prototype.inputDivisionCharRoman = function(roman) {
         lastDivisionChar = lastDivisionChar.nextChar;
     }
 
-    if (result === CHAR_KEEP) {
+    if (result === "incomplete") {
         return char;
     }
     
