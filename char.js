@@ -1,3 +1,4 @@
+import { createDivisionCharChain } from "./char_chain.js";
 
 export function Char(name, expectRomanArray) {
     this.name = name;
@@ -7,7 +8,7 @@ export function Char(name, expectRomanArray) {
     this.divisionCharChain = null;
 
     if (this.name.length > 1) {
-        this.divisionCharChain = TypingManager.createDivisionCharChain(this.name);
+        this.divisionCharChain = createDivisionCharChain(this.name);
     }
 }
 

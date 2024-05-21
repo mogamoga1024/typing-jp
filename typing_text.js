@@ -1,4 +1,4 @@
-import { TypingManager } from "./typing_manager.js";
+import { createCharChain } from "./char_chain.js";
 
 export class TypingText {
     #remainingRomanInput = "";
@@ -7,7 +7,7 @@ export class TypingText {
     }
 
     constructor(text) {
-        this.char = TypingManager.createCharChain(text);
+        this.char = createCharChain(text);
         this.#remainingRomanInput = "";
 
         let tmpChar = this.char;

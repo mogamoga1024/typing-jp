@@ -1,13 +1,7 @@
 import { CharFactory } from "./char_factory.js";
 
-export const TypingManager = {};
-
-TypingManager.validRoman = function(roman) {
-    return roman.match(/^([A-Za-z0-9]|-|!|\?|'|"|\.|,|\[|\])$/) !== null;
-};
-
 // サロゲートペア文字は考慮しない
-TypingManager.createCharChain = function(text) {
+export function createCharChain(text) {
     if (text.length === 1) {
         return CharFactory.create(text[0]);
     }
@@ -52,7 +46,7 @@ TypingManager.createCharChain = function(text) {
 };
 
 // サロゲートペア文字は考慮しない
-TypingManager.createDivisionCharChain = function(text) {
+export function createDivisionCharChain(text) {
     let firstChar = null;
     let preChar = null;
     for (let i = 0; i < text.length; i++) {
