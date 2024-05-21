@@ -1,7 +1,8 @@
+import { TypingManager } from "./typing_manager.js";
 
 export class TypingText {
 
-    constructor() {
+    constructor(text) {
         this.char = TypingManager.createCharChain(text);
         this.remainExpectRoman = "";
 
