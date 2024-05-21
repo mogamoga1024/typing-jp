@@ -1,22 +1,21 @@
 import { TypingManager } from "./typing_manager.js";
 
 export class TypingText {
+    #remainingRomanInput = "";
+    get remainingRomanInput() {
+        return this.#remainingRomanInput;
+    }
 
     constructor(text) {
         this.char = TypingManager.createCharChain(text);
-        this.remainExpectRoman = "";
+        this.#remainingRomanInput = "";
 
         let tmpChar = this.char;
         while (tmpChar !== null) {
-            this.remainExpectRoman += tmpChar.expectRoman();
+            this.#remainingRomanInput += tmpChar.expectRoman();
             tmpChar = tmpChar.nextChar;
         }
     }
-
-    // get remainingRomanInput() {
-    //     // todo
-    //     return "";
-    // }
 
     isValidInputKey(key) {
         return key.match(/^([A-Za-z0-9]|-|!|\?|'|"|\.|,|\[|\])$/) !== null;
