@@ -348,4 +348,4 @@ export function createChar(name) {
         case "」": return new Char(name, ["]"]);
         default: return null;
     }
-}
+};
