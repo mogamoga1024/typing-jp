@@ -1,5 +1,5 @@
 
-class TypingText {
+export class TypingText {
 
     get remainingRomanInput() {
         // todo
