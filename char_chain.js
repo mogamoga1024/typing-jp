@@ -1,9 +1,9 @@
-import { CharFactory } from "./char_factory.js";
+import { createChar } from "./char_factory.js";
 
 // サロゲートペア文字は考慮しない
 export function createCharChain(text) {
     if (text.length === 1) {
-        return CharFactory.create(text[0]);
+        return createChar(text[0]);
     }
 
     let firstChar = null;
@@ -21,15 +21,15 @@ export function createCharChain(text) {
         }
 
         if (tmpName === null) {
-            char = CharFactory.create(name);
+            char = createChar(name);
         }
         else {
-            char = CharFactory.create(tmpName);
+            char = createChar(tmpName);
             if (char !== null) {
                 i++;
             }
             else {
-                char = CharFactory.create(name);
+                char = createChar(name);
             }
         }
 
@@ -50,7 +50,7 @@ export function createDivisionCharChain(text) {
     let firstChar = null;
     let preChar = null;
     for (let i = 0; i < text.length; i++) {
-        const char = CharFactory.create(text[i]);
+        const char = createChar(text[i]);
         if (i === 0) {
             firstChar = char;
         }

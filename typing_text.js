@@ -1,4 +1,5 @@
 import { createCharChain } from "./char_chain.js";
+import { createChar } from "./char_factory.js";
 
 export class TypingText {
     #remainingRomanInput = "";
@@ -54,7 +55,7 @@ export class TypingText {
                 
                 if (oldCharExpectRomanLength === charExpectRoman.length) {
                     if (targetChar.name === "っ" && oldCharExpectRomanLength === 1) {
-                        const oldCharExpectRoman = CharFactory.create(this.char.name).expectRoman();
+                        const oldCharExpectRoman = createChar(this.char.name).expectRoman();
                         const charExpectRoman = this.char.expectRoman();
                         if (oldCharExpectRoman[0] !== charExpectRoman[0]) {
                             this.#remainingRomanInput = charExpectRoman + this.#remainingRomanInput.slice(oldCharExpectRoman.length + 1);
@@ -79,7 +80,7 @@ export class TypingText {
                         this.#remainingRomanInput = this.#remainingRomanInput.slice(1);
                     }
                     else {
-                        const char = CharFactory.create(this.char.name);
+                        const char = createChar(this.char.name);
                         const tmpRemainExpectRoman1 = this.char.expectRoman().slice(1);
                         const tmpRemainExpectRoman2 = this.#remainingRomanInput.slice(char.expectRoman().length);
                         this.#remainingRomanInput = tmpRemainExpectRoman1 + tmpRemainExpectRoman2;

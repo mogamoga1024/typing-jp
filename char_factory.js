@@ -2,9 +2,7 @@ import { Char } from "./char.js";
 import { CharHiraXtu } from "./char_hira_xtu.js";
 import { CharHiraN } from "./char_hira_n.js";
 
-export const CharFactory = {};
-
-CharFactory.create = function(name) {
+export function createChar(name) {
     switch (name) {
         // あ行 
         case "あ": case "ア": return new Char(name, ["a"]);
@@ -350,4 +348,4 @@ CharFactory.create = function(name) {
         case "」": return new Char(name, ["]"]);
         default: return null;
     }
-};
+}
