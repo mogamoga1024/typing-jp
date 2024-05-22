@@ -26,7 +26,7 @@ export class TypingText {
     }
 
     static isValidInputKey(key) {
-        return key.match(/^([A-Za-z0-9]|-|!|\?|'|"|\.|,|\[|\])$/) !== null;
+        return /^([A-Za-z0-9]|-|!|\?|'|"|\.|,|\[|\])$/.test(key);
     }
 
     inputKey(key) {

@@ -11,7 +11,7 @@ export class CharHiraN extends Char {
             return super.expectRoman();
         }
         const nextCharFirstRoman = this.nextChar.expectRoman()[0];
-        if (nextCharFirstRoman.match(/^(n|'|a|i|u|e|o|y)$/) !== null) {
+        if (/^(n|'|a|i|u|e|o|y)$/.test(nextCharFirstRoman)) {
             return super.expectRoman();
         }
         if (
@@ -30,7 +30,7 @@ export class CharHiraN extends Char {
             return result;
         }
     
-        if (this.nextChar.expectRoman()[0].match(/^(a|i|u|e|o|y)$/) !== null) {
+        if (/^(a|i|u|e|o|y)$/.test(this.nextChar.expectRoman()[0])) {
             return CHAR_UNMATCH;
         }
     

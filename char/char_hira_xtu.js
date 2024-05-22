@@ -14,11 +14,11 @@ export class CharHiraXtu extends Char {
         if (this.nextExpectRomanIndex > 0) {
             return this.expectRomanArray[0];
         }
-        if (this.nextChar.name.match(/^[a-zA-Z]$/) !== null) {
+        if (/^[a-zA-Z]$/.test(this.nextChar.name)) {
             return super.expectRoman();
         }
         const nextCharFirstRoman = this.nextChar.expectRoman()[0];
-        if (nextCharFirstRoman.match(this.regex) !== null) {
+        if (this.regex.test(nextCharFirstRoman)) {
             return nextCharFirstRoman;
         }
     
@@ -35,10 +35,10 @@ export class CharHiraXtu extends Char {
             return CHAR_UNMATCH;
         }
         
-        if (roman.match(this.regex) === null) {
+        if (!this.regex.test(roman)) {
             return CHAR_UNMATCH;
         }
-        if (this.nextChar.name.match(/^[a-zA-Z]$/) !== null) {
+        if (/^[a-zA-Z]$/.test(this.nextChar.name)) {
             return CHAR_UNMATCH;
         }
     
