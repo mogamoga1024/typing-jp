@@ -9,24 +9,24 @@ export class CharHiraXtu extends Char {
 
     expectRoman() {
         if (this.nextChar === null) {
-            return Char.prototype.expectRoman.call(this);
+            return super.expectRoman();
         }
         if (this.nextExpectRomanIndex > 0) {
             return this.expectRomanArray[0];
         }
         if (this.nextChar.name.match(/^[a-zA-Z]$/) !== null) {
-            return Char.prototype.expectRoman.call(this);
+            return super.expectRoman();
         }
         const nextCharFirstRoman = this.nextChar.expectRoman()[0];
         if (nextCharFirstRoman.match(this.regex) !== null) {
             return nextCharFirstRoman;
         }
     
-        return Char.prototype.expectRoman.call(this);
+        return super.expectRoman();
     }
     
     inputRoman(roman) {
-        const result = Char.prototype.inputRoman.call(this, roman);
+        const result = super.inputRoman(roman);
         if (this.nextExpectRomanIndex > 0) {
             return result;
         }

@@ -8,11 +8,11 @@ export class CharHiraN extends Char {
 
     expectRoman() {
         if (this.nextChar === null) {
-            return Char.prototype.expectRoman.call(this);
+            return super.expectRoman();
         }
         const nextCharFirstRoman = this.nextChar.expectRoman()[0];
         if (nextCharFirstRoman.match(/^(n|'|a|i|u|e|o|y)$/) !== null) {
-            return Char.prototype.expectRoman.call(this);
+            return super.expectRoman();
         }
         if (
             this.nextExpectRomanIndex > 1 ||
@@ -24,7 +24,7 @@ export class CharHiraN extends Char {
     }
 
     inputRoman(roman) {
-        const result = Char.prototype.inputRoman.call(this, roman);
+        const result = super.inputRoman(roman);
     
         if (result !== CHAR_UNMATCH || this.nextExpectRomanIndex === 0 || this.nextChar === null) {
             return result;
