@@ -1,5 +1,6 @@
 import { createCharChain } from "./char_chain.js";
 import { createChar } from "./char_factory.js";
+import { NoRemainingInputError } from "./no_remaining_input_error.js";
 
 export class TypingText {
     #remainingRomanInput = "";
@@ -23,7 +24,9 @@ export class TypingText {
     }
 
     inputKey(key) {
-        if (this.char === null) return "complete";
+        if (this.char === null) {
+            throw new NoRemainingInputError();
+        }
 
         const oldCharExpectRomanLength = this.char.expectRoman().length;
         const result = this.char.inputRoman(key);
