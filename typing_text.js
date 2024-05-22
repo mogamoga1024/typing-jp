@@ -1,5 +1,6 @@
 import { createCharChain } from "./char_chain.js";
 import { createChar } from "./char_factory.js";
+import { EmptyTextError } from "./empty_text_error.js";
 import { NoRemainingInputError } from "./no_remaining_input_error.js";
 
 export class TypingText {
@@ -9,6 +10,9 @@ export class TypingText {
     }
 
     constructor(text) {
+        if (text === "") {
+            throw new EmptyTextError();
+        }
         this.char = createCharChain(text);
         this.#remainingRoman = "";
 
