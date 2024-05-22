@@ -3,18 +3,18 @@ import { createChar } from "./char_factory.js";
 import { NoRemainingInputError } from "./no_remaining_input_error.js";
 
 export class TypingText {
-    #remainingRomanInput = "";
-    get remainingRomanInput() {
-        return this.#remainingRomanInput;
+    #remainingRoman = "";
+    get remainingRoman() {
+        return this.#remainingRoman;
     }
 
     constructor(text) {
         this.char = createCharChain(text);
-        this.#remainingRomanInput = "";
+        this.#remainingRoman = "";
 
         let tmpChar = this.char;
         while (tmpChar !== null) {
-            this.#remainingRomanInput += tmpChar.expectRoman();
+            this.#remainingRoman += tmpChar.expectRoman();
             tmpChar = tmpChar.nextChar;
         }
     }
@@ -40,7 +40,7 @@ export class TypingText {
                 const preChar = this.char;
                 this.char = this.char.nextChar;
                 this.#updateExpectRoman(oldCharExpectRomanLength, preChar);
-                return this.#remainingRomanInput === "" ? "complete" : "incomplete";
+                return this.#remainingRoman === "" ? "complete" : "incomplete";
             default:
                 const oldChar = this.char;
                 this.char = result;
@@ -61,18 +61,18 @@ export class TypingText {
                         const oldCharExpectRoman = createChar(this.char.name).expectRoman();
                         const charExpectRoman = this.char.expectRoman();
                         if (oldCharExpectRoman[0] !== charExpectRoman[0]) {
-                            this.#remainingRomanInput = charExpectRoman + this.#remainingRomanInput.slice(oldCharExpectRoman.length + 1);
+                            this.#remainingRoman = charExpectRoman + this.#remainingRoman.slice(oldCharExpectRoman.length + 1);
                             return;
                         }
                     }
-                    this.#remainingRomanInput = this.#remainingRomanInput.slice(1);
+                    this.#remainingRoman = this.#remainingRoman.slice(1);
                     return;
                 }
     
                 const removeRomanCount = oldCharExpectRomanLength - targetChar.nextExpectRomanIndex + 1;
                 const tmpRemainExpectRoman = preChar === undefined ? charExpectRoman.slice(this.char.nextExpectRomanIndex) : "";
     
-                this.#remainingRomanInput = tmpRemainExpectRoman + this.#remainingRomanInput.slice(removeRomanCount);
+                this.#remainingRoman = tmpRemainExpectRoman + this.#remainingRoman.slice(removeRomanCount);
                 return;
     
             case "object":
@@ -80,19 +80,19 @@ export class TypingText {
     
                 if (oldChar.name === "ん") {
                     if (oldChar.nextChar !== this.char) {
-                        this.#remainingRomanInput = this.#remainingRomanInput.slice(1);
+                        this.#remainingRoman = this.#remainingRoman.slice(1);
                     }
                     else {
                         const char = createChar(this.char.name);
                         const tmpRemainExpectRoman1 = this.char.expectRoman().slice(1);
-                        const tmpRemainExpectRoman2 = this.#remainingRomanInput.slice(char.expectRoman().length);
-                        this.#remainingRomanInput = tmpRemainExpectRoman1 + tmpRemainExpectRoman2;
+                        const tmpRemainExpectRoman2 = this.#remainingRoman.slice(char.expectRoman().length);
+                        this.#remainingRoman = tmpRemainExpectRoman1 + tmpRemainExpectRoman2;
                     }
                     return;
                 }
     
                 let tmpRemainExpectRoman1 = "";
-                const tmpRemainExpectRoman2 = this.#remainingRomanInput.slice(
+                const tmpRemainExpectRoman2 = this.#remainingRoman.slice(
                     oldChar.expectRoman().length - oldChar.nextExpectRomanIndex
                 );
                 let tmpChar = this.char;
@@ -102,7 +102,7 @@ export class TypingText {
                     tmpChar = tmpChar.nextChar;
                     if (tmpChar.nextChar === oldChar.nextChar) break;
                 }
-                this.#remainingRomanInput = tmpRemainExpectRoman1 + tmpRemainExpectRoman2;
+                this.#remainingRoman = tmpRemainExpectRoman1 + tmpRemainExpectRoman2;
                 return;
         }
     }
