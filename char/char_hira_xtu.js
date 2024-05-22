@@ -1,4 +1,5 @@
 import { Char } from "./char.js";
+import { CHAR_UNMATCH, CHAR_COMPLETE } from "../constants/char_status.js";
 
 export class CharHiraXtu extends Char {
     constructor() {
@@ -31,18 +32,18 @@ export class CharHiraXtu extends Char {
         }
     
         if (this.nextChar == null) {
-            return "unmatch";
+            return CHAR_UNMATCH;
         }
         
         if (roman.match(this.regex) === null) {
-            return "unmatch";
+            return CHAR_UNMATCH;
         }
         if (this.nextChar.name.match(/^[a-zA-Z]$/) !== null) {
-            return "unmatch";
+            return CHAR_UNMATCH;
         }
     
-        if (this.nextChar.inputRoman(roman) === "unmatch") {
-            return "unmatch";
+        if (this.nextChar.inputRoman(roman) === CHAR_UNMATCH) {
+            return CHAR_UNMATCH;
         }
         this.nextChar.nextExpectRomanIndex = 0;
         if (this.nextChar.divisionCharChain !== null) {
@@ -50,6 +51,6 @@ export class CharHiraXtu extends Char {
             this.nextChar.divisionCharChain.nextExpectRomanIndex = 0;
         }
     
-        return "complete";
+        return CHAR_COMPLETE;
     }
 }

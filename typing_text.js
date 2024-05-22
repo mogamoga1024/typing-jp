@@ -2,6 +2,8 @@ import { createCharChain } from "./char/char_chain.js";
 import { createChar } from "./char/char_factory.js";
 import { EmptyTextError } from "./error/empty_text_error.js";
 import { NoRemainingInputError } from "./error/no_remaining_input_error.js";
+import { CHAR_UNMATCH, CHAR_INCOMPLETE, CHAR_COMPLETE } from "./constants/char_status.js";
+import { TEXT_UNMATCH, TEXT_INCOMPLETE, TEXT_COMPLETE } from "./constants/text_status.js";
 
 export class TypingText {
     #remainingRoman = "";
@@ -36,20 +38,20 @@ export class TypingText {
         const result = this.char.inputRoman(key);
 
         switch (result) {
-            case "unmatch": return "unmatch";
-            case "incomplete":
+            case CHAR_UNMATCH: return TEXT_UNMATCH;
+            case CHAR_INCOMPLETE:
                 this.#updateExpectRoman(oldCharExpectRomanLength);
-                return "incomplete";
-            case "complete":
+                return TEXT_INCOMPLETE;
+            case CHAR_COMPLETE:
                 const preChar = this.char;
                 this.char = this.char.nextChar;
                 this.#updateExpectRoman(oldCharExpectRomanLength, preChar);
-                return this.#remainingRoman === "" ? "complete" : "incomplete";
+                return this.#remainingRoman === "" ? TEXT_COMPLETE : TEXT_INCOMPLETE;
             default:
                 const oldChar = this.char;
                 this.char = result;
                 this.#updateExpectRoman(oldChar);
-                return "incomplete";
+                return TEXT_INCOMPLETE;
         }
     }
 

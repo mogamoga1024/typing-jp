@@ -1,4 +1,5 @@
 import { createDivisionCharChain } from "./char_chain.js";
+import { CHAR_UNMATCH, CHAR_INCOMPLETE, CHAR_COMPLETE } from "../constants/char_status.js";
 
 export class Char {
     constructor(name, expectRomanArray) {
@@ -23,7 +24,7 @@ export class Char {
     inputRoman(roman) {
         const result = this.inputThisCharRoman(roman);
     
-        if (result === "unmatch" && this.divisionCharChain !== null) {
+        if (result === CHAR_UNMATCH && this.divisionCharChain !== null) {
             return this.inputDivisionCharRoman(roman);
         }
         else {
@@ -37,31 +38,31 @@ export class Char {
         );
     
         if (tmpExpectRomanArray.length === 0) {
-            return "unmatch";
+            return CHAR_UNMATCH;
         }
     
         this.expectRomanArray = tmpExpectRomanArray;
         this.nextExpectRomanIndex += 1;
         
         if (this.nextExpectRomanIndex < this.expectRomanArray[0].length) {
-            return "incomplete";
+            return CHAR_INCOMPLETE;
         }
         
-        return "complete";
+        return CHAR_COMPLETE;
     }
 
     inputDivisionCharRoman(roman) {
         const char = this.divisionCharChain;
         for (let i = 0; i < this.nextExpectRomanIndex; i++) {
-            if (char.inputRoman(this.expectRomanArray[0][i]) === "unmatch") {
+            if (char.inputRoman(this.expectRomanArray[0][i]) === CHAR_UNMATCH) {
                 char.nextExpectRomanIndex = 0;
-                return "unmatch";
+                return CHAR_UNMATCH;
             }
         }
     
         const result = char.inputRoman(roman);
-        if (result === "unmatch") {
-            return "unmatch";
+        if (result === CHAR_UNMATCH) {
+            return CHAR_UNMATCH;
         }
         
         let lastDivisionChar = char.nextChar; // char.nextChar is not null.
@@ -73,7 +74,7 @@ export class Char {
             lastDivisionChar = lastDivisionChar.nextChar;
         }
     
-        if (result === "incomplete") {
+        if (result === CHAR_INCOMPLETE) {
             return char;
         }
         
