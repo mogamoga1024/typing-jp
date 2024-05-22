@@ -1,7 +1,7 @@
 import { Char } from "./char.js";
 import { CharHiraXtu } from "./char_hira_xtu.js";
 import { CharHiraN } from "./char_hira_n.js";
-import { CharCreationError } from "./char_creation_error.js";
+import { CharCreationError } from "../error/char_creation_error.js";
 
 export function createChar(name) {
     switch (name) {
