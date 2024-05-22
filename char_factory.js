@@ -1,6 +1,7 @@
 import { Char } from "./char.js";
 import { CharHiraXtu } from "./char_hira_xtu.js";
 import { CharHiraN } from "./char_hira_n.js";
+import { CharCreationError } from "./char_creation_error.js";
 
 export function createChar(name) {
     switch (name) {
@@ -346,6 +347,7 @@ export function createChar(name) {
         case "。": return new Char(name, ["."]);
         case "「": return new Char(name, ["["]);
         case "」": return new Char(name, ["]"]);
-        default: return null;
+
+        default: throw new CharCreationError(`Charの生成に失敗しました：name = ${name}`);
     }
 };
