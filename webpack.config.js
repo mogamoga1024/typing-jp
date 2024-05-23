@@ -5,7 +5,7 @@ module.exports = {
   entry: './cdn.js',
   output: {
     publicPath: '/dist/',
-    filename: 'typing-jp.js'
+    filename: 'cdn/typing-jp.js'
   },
   module: {
     rules: [
