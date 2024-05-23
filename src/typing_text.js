@@ -1,3 +1,4 @@
+import moji from "moji";
 import { createCharChain } from "./char/char_chain.js";
 import { createChar } from "./char/char_factory.js";
 import { EmptyTextError } from "./error/empty_text_error.js";
@@ -12,10 +13,14 @@ export class TypingText {
     }
 
     constructor(_text, ignoreSpace = true) {
-        const text = ignoreSpace ? _text.replace(/\s|　/g, "") : _text.replace(/\t\f\r\n/g, "");
-        if (text === "") {
+        const tmpText = ignoreSpace ? _text.replace(/\s|　/g, "") : _text.replace(/\t\f\r\n/g, "");
+        if (tmpText === "") {
             throw new EmptyTextError();
         }
+        
+        // カタカタをひらがなに変換する
+        const text = moji(tmpText).convert("HK", "ZK").convert("KK", "HG").toString();
+        
         this.char = createCharChain(text);
         this.#remainingRoman = "";
 
