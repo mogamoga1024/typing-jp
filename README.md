@@ -71,3 +71,7 @@ if (TypingText.isValidInputKey(keyboardEvent.key) === false) {
 ## license
 
 MIT or WTFPL or くいなちゃんライセンス
+
+## 前世
+
+https://github.com/mogamoga1024/Typing
