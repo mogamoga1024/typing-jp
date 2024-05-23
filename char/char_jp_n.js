@@ -1,7 +1,7 @@
 import { Char } from "./char.js";
 import { CHAR_UNMATCH, CHAR_INCOMPLETE, CHAR_COMPLETE } from "../constants/char_status.js";
 
-export class CharHiraN extends Char {
+export class CharJpN extends Char {
     constructor() {
         super("ん", ["nn", "n'", "xn"]);
     }

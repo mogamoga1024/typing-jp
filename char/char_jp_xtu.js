@@ -1,7 +1,7 @@
 import { Char } from "./char.js";
 import { CHAR_UNMATCH, CHAR_COMPLETE } from "../constants/char_status.js";
 
-export class CharHiraXtu extends Char {
+export class CharJpXtu extends Char {
     constructor() {
         super("っ", ["xtu", "ltu", "ltsu"]);
         this.regex = /^(?=[a-z])(?!(a|i|u|e|o|n)).$/;

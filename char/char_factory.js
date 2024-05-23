@@ -1,6 +1,6 @@
 import { Char } from "./char.js";
-import { CharHiraXtu } from "./char_hira_xtu.js";
-import { CharHiraN } from "./char_hira_n.js";
+import { CharJpXtu } from "./char_jp_xtu.js";
+import { CharJpN } from "./char_jp_n.js";
 import { CharCreationError } from "../error/char_creation_error.js";
 
 export function createChar(name) {
@@ -157,7 +157,7 @@ export function createChar(name) {
         case "どぇ": case "ドェ": return new Char(name, ["dwe"]);
         case "どぉ": case "ドォ": return new Char(name, ["dwo"]);
 
-        case "っ": case "ッ": return new CharHiraXtu();
+        case "っ": case "ッ": return new CharJpXtu();
 
         // な行 
         case "な": case "ナ": return new Char(name, ["na"]);
@@ -267,7 +267,7 @@ export function createChar(name) {
         // わ行 
         case "わ": case "ワ": return new Char(name, ["wa"]);
         case "を": case "ヲ": return new Char(name, ["wo"]);
-        case "ん": case "ン": return new CharHiraN();
+        case "ん": case "ン": return new CharJpN();
 
         case "ゎ": case "ヮ": return new Char(name, ["xwa", "lwa"]);
 
