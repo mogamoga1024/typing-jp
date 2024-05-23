@@ -1,7 +1,7 @@
-import { Char } from "./char.js";
+import { CharJp } from "./char_jp.js";
 import { CHAR_UNMATCH, CHAR_INCOMPLETE, CHAR_COMPLETE } from "../constants/char_status.js";
 
-export class CharJpN extends Char {
+export class CharJpN extends CharJp {
     constructor() {
         super("ん", ["nn", "n'", "xn"]);
     }
@@ -23,7 +23,8 @@ export class CharJpN extends Char {
         return "n";
     }
 
-    inputRoman(roman) {
+    inputRoman(_roman, isCapsLock = false) {
+        const roman = isCapsLock && this.ignoreCapsLock ? _roman.toLowerCase() : _roman;
         const result = super.inputRoman(roman);
     
         if (result !== CHAR_UNMATCH || this.nextExpectRomanIndex === 0 || this.nextChar === null) {

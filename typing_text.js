@@ -29,7 +29,7 @@ export class TypingText {
         return /^([A-Za-z0-9]|-|!|\?|'|"|\.|,|\[|\])$/.test(key);
     }
 
-    inputKey(key, isCapsLock) {
+    inputKey(key, isCapsLock = false) {
         if (this.char === null) {
             throw new NoRemainingInputError();
         }

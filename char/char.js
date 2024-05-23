@@ -2,12 +2,13 @@ import { createDivisionCharChain } from "./char_chain.js";
 import { CHAR_UNMATCH, CHAR_INCOMPLETE, CHAR_COMPLETE } from "../constants/char_status.js";
 
 export class Char {
-    constructor(name, expectRomanArray) {
+    constructor(name, expectRomanArray, ignoreCapsLock = false) {
         this.name = name;
         this.nextChar = null;
         this.expectRomanArray = expectRomanArray;
         this.nextExpectRomanIndex = 0;
         this.divisionCharChain = null;
+        this.ignoreCapsLock = ignoreCapsLock;
     
         if (this.name.length > 1) {
             this.divisionCharChain = createDivisionCharChain(this.name);
@@ -21,7 +22,8 @@ export class Char {
         return "";
     }
 
-    inputRoman(roman) {
+    inputRoman(_roman, isCapsLock = false) {
+        const roman = isCapsLock && this.ignoreCapsLock ? _roman.toLowerCase() : _roman;
         const result = this.inputThisCharRoman(roman);
     
         if (result === CHAR_UNMATCH && this.divisionCharChain !== null) {

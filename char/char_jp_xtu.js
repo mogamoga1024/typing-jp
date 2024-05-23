@@ -1,7 +1,7 @@
-import { Char } from "./char.js";
+import { CharJp } from "./char_jp.js";
 import { CHAR_UNMATCH, CHAR_COMPLETE } from "../constants/char_status.js";
 
-export class CharJpXtu extends Char {
+export class CharJpXtu extends CharJp {
     constructor() {
         super("っ", ["xtu", "ltu", "ltsu"]);
         this.regex = /^(?=[a-z])(?!(a|i|u|e|o|n)).$/;
@@ -25,7 +25,8 @@ export class CharJpXtu extends Char {
         return super.expectRoman();
     }
     
-    inputRoman(roman) {
+    inputRoman(_roman, isCapsLock = false) {
+        const roman = isCapsLock && this.ignoreCapsLock ? _roman.toLowerCase() : _roman;
         const result = super.inputRoman(roman);
         if (this.nextExpectRomanIndex > 0) {
             return result;
