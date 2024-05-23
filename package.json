@@ -1,4 +1,24 @@
 {
+  "name": "@mogamoga1024/typing-jp",
+  "version": "1.0.0",
+  "description": "タイピングゲームのローマ字入力を判定するライブラリ",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mogamoga1024/typing-jp"
+  },
+  "bugs": {
+    "url": "https://github.com/mogamoga1024/typing-jp/issues"
+  },
+  "homepage": "https://github.com/mogamoga1024/typing-jp",
+  "keywords": [
+    "typing",
+    "game",
+    "japanese"
+  ],
+  "author": "mogamoga1024",
+  "license": "(MIT OR WTFPL)",
+
   "dependencies": {
     "moji": "^0.5.1"
   },
@@ -10,6 +30,7 @@
     "webpack-cli": "^5.1.4"
   },
   "scripts": {
-    "build": "npx webpack"
+    "build": "npx webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
