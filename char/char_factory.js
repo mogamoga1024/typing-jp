@@ -338,16 +338,40 @@ export function createChar(name) {
         case "8": case "８": return new Char(name, ["8"]);
         case "9": case "９": return new Char(name, ["9"]);
 
-        // 記号
-        case "ー": return new Char(name, ["-"]);
+        // 記号 ASCII順
+        case " ": case "　": return new Char(name, [" "]);
         case "!": case "！": return new Char(name, ["!"]);
+        case '"': case "”": return new Char(name, ['"']);
+        case "#": case "＃": return new Char(name, ["#"]);
+        case "$": case "＄": return new Char(name, ["$"]);
+        case "%": case "％": return new Char(name, ["%"]);
+        case "&": case "＆": return new Char(name, ["&"]);
+        case "'": case "’": return new Char(name, ["'"]);
+        case "(": case "（": return new Char(name, ["("]);
+        case ")": case "）": return new Char(name, [")"]);
+        case "*": case "＊": return new Char(name, ["*"]);
+        case "+": case "＋": return new Char(name, ["+"]);
+        case ",": case "、": return new Char(name, [","]);
+        case "-": case "ー": return new Char(name, ["-"]);
+        case ".": case "。": return new Char(name, ["."]);
+        case "/": case "・": return new Char(name, ["/"]);
+        case ":": case "：": return new Char(name, [":"]);
+        case ";": case "；": return new Char(name, [";"]);
+        case "<": case "＜": return new Char(name, ["<"]);
+        case "=": case "＝": return new Char(name, ["="]);
+        case ">": case "＞": return new Char(name, [">"]);
         case "?": case "？": return new Char(name, ["?"]);
-        case "'": return new Char(name, ["'"]);
-        case "\"": return new Char(name, ["\""]);
-        case "、": return new Char(name, [","]);
-        case "。": return new Char(name, ["."]);
-        case "「": return new Char(name, ["["]);
-        case "」": return new Char(name, ["]"]);
+        case "@": case "＠": return new Char(name, ["@"]);
+        case "[": case "「": return new Char(name, ["["]);
+        case "\\": case "￥": return new Char(name, ["\\"]);
+        case "]": case "」": return new Char(name, ["]"]);
+        case "^": case "＾": return new Char(name, ["^"]);
+        case "_": case "＿": return new Char(name, ["_"]);
+        case "`": case "‘": return new Char(name, ["`"]);
+        case "{": case "｛": return new Char(name, ["{"]);
+        case "|": case "｜": return new Char(name, ["|"]);
+        case "}": case "｝": return new Char(name, ["}"]);
+        case "~": case "～": return new Char(name, ["~"]);
 
         default: throw new CharCreationError(`Charの生成に失敗しました：name = ${name}`);
     }
