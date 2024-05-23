@@ -26,7 +26,9 @@ export class TypingText {
     }
 
     static isValidInputKey(key) {
-        return /^([A-Za-z0-9]|-|!|\?|'|"|\.|,|\[|\])$/.test(key);
+        // ASCIIで目で見れる文字かどうか
+        // 要するにキーボードの文字を入力するキーかどうか
+        return /^[ -~]$/.test(key);
     }
 
     inputKey(key, isCapsLock = false) {
