@@ -7,9 +7,8 @@
 
 ## サンプル
 
-【TODO】サンプル作る
-
-https://mogamoga1024.github.io/typing-jp/sample/sample.html
+[タイピングゲーム](https://mogamoga1024.github.io/typing-jp/sample/sample.html)  
+[プログラム](https://github.com/mogamoga1024/typing-jp/blob/main/sample/sample.js)
 
 ## ダウンロード方法
 
@@ -27,7 +26,7 @@ https://mogamoga1024.github.io/typing-jp/sample/sample.html
 
 ## ざっくりと説明
 
-サンプルのプログラムを読んだ方が深く理解できると思いますが、ざっくりと説明します。
+[サンプルのプログラム](https://github.com/mogamoga1024/typing-jp/blob/main/sample/sample.js)を読んだ方が深く理解できると思いますが、ざっくりと説明します。
 
 ### 1. まずはTypingTextオブジェクトを作る
 
