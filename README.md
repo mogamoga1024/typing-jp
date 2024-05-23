@@ -9,7 +9,7 @@
 
 【TODO】サンプル作る
 
-https://mogamoga1024.github.io/typing-jp/
+https://mogamoga1024.github.io/typing-jp/sample/sample.html
 
 ## ダウンロード方法
 
