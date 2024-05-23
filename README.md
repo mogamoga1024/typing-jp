@@ -14,7 +14,7 @@
 
 ### ファイルが欲しい場合
 
-【TODO】
+[これ](https://github.com/mogamoga1024/typing-jp/blob/main/dist/cdn/typing-jp.js)を使ってください。
 
 ### CDNで使いたい場合
 
