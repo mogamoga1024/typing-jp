@@ -3,7 +3,7 @@ import { CHAR_UNMATCH, CHAR_COMPLETE } from "../constants/char_status.js";
 
 export class CharJpXtu extends CharJp {
     constructor() {
-        super("っ", ["xtu", "ltu", "ltsu"]);
+        super("っ", ["xtu", "xtsu", "ltu", "ltsu"]);
         this.regex = /^(?=[a-z])(?!(a|i|u|e|o|n)).$/;
     }
 
