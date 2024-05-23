@@ -29,13 +29,13 @@ export class TypingText {
         return /^([A-Za-z0-9]|-|!|\?|'|"|\.|,|\[|\])$/.test(key);
     }
 
-    inputKey(key) {
+    inputKey(key, isCapsLock) {
         if (this.char === null) {
             throw new NoRemainingInputError();
         }
 
         const oldCharExpectRomanLength = this.char.expectRoman().length;
-        const result = this.char.inputRoman(key);
+        const result = this.char.inputRoman(key, isCapsLock);
 
         switch (result) {
             case CHAR_UNMATCH: return TEXT_UNMATCH;
