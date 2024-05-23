@@ -1,6 +1,5 @@
 import { createChar } from "./char_factory.js";
 
-// サロゲートペア文字は考慮しない
 export function createCharChain(text) {
     if (text.length === 1) {
         return createChar(text[0]);
@@ -45,7 +44,6 @@ export function createCharChain(text) {
     return firstChar;
 };
 
-// サロゲートペア文字は考慮しない
 export function createDivisionCharChain(text) {
     let firstChar = null;
     let preChar = null;
