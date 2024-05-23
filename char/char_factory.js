@@ -1,4 +1,5 @@
 import { Char } from "./char.js";
+import { CharJp } from "./char_jp.js";
 import { CharJpXtu } from "./char_jp_xtu.js";
 import { CharJpN } from "./char_jp_n.js";
 import { CharCreationError } from "../error/char_creation_error.js";
@@ -6,270 +7,270 @@ import { CharCreationError } from "../error/char_creation_error.js";
 export function createChar(name) {
     switch (name) {
         // あ行 
-        case "あ": case "ア": return new Char(name, ["a"]);
-        case "い": case "イ": return new Char(name, ["i", "yi"]);
-        case "う": case "ウ": return new Char(name, ["u", "wu", "whu"]);
-        case "え": case "エ": return new Char(name, ["e"]);
-        case "お": case "オ": return new Char(name, ["o"]);
+        case "あ": case "ア": return new CharJp(name, ["a"]);
+        case "い": case "イ": return new CharJp(name, ["i", "yi"]);
+        case "う": case "ウ": return new CharJp(name, ["u", "wu", "whu"]);
+        case "え": case "エ": return new CharJp(name, ["e"]);
+        case "お": case "オ": return new CharJp(name, ["o"]);
 
-        case "いぇ": case "イェ": return new Char(name, ["ye"]);
+        case "いぇ": case "イェ": return new CharJp(name, ["ye"]);
 
-        case "うぁ": case "ウァ": return new Char(name, ["wha"]);
-        case "うぃ": case "ウィ": return new Char(name, ["wi", "whi"]);
-        case "うぇ": case "ウェ": return new Char(name, ["we", "whe"]);
-        case "うぉ": case "ウォ": return new Char(name, ["who"]);
+        case "うぁ": case "ウァ": return new CharJp(name, ["wha"]);
+        case "うぃ": case "ウィ": return new CharJp(name, ["wi", "whi"]);
+        case "うぇ": case "ウェ": return new CharJp(name, ["we", "whe"]);
+        case "うぉ": case "ウォ": return new CharJp(name, ["who"]);
 
-        case "ゐ": case "ヰ": return new Char(name, ["wi"]);
-        case "ゑ": case "ヱ": return new Char(name, ["we"]);
+        case "ゐ": case "ヰ": return new CharJp(name, ["wi"]);
+        case "ゑ": case "ヱ": return new CharJp(name, ["we"]);
 
-        case "ぁ": case "ァ": return new Char(name, ["xa", "la"]);
-        case "ぃ": case "ィ": return new Char(name, ["xi", "li", "xyi", "lyi"]);
-        case "ぅ": case "ゥ": return new Char(name, ["xu", "lu"]);
-        case "ぇ": case "ェ": return new Char(name, ["xe", "le", "xye", "lye"]);
-        case "ぉ": case "ォ": return new Char(name, ["xo", "lo"]);
+        case "ぁ": case "ァ": return new CharJp(name, ["xa", "la"]);
+        case "ぃ": case "ィ": return new CharJp(name, ["xi", "li", "xyi", "lyi"]);
+        case "ぅ": case "ゥ": return new CharJp(name, ["xu", "lu"]);
+        case "ぇ": case "ェ": return new CharJp(name, ["xe", "le", "xye", "lye"]);
+        case "ぉ": case "ォ": return new CharJp(name, ["xo", "lo"]);
 
         // か行 
-        case "か": case "カ": return new Char(name, ["ka", "ca"]);
-        case "き": case "キ": return new Char(name, ["ki"]);
-        case "く": case "ク": return new Char(name, ["ku", "cu", "qu"]);
-        case "け": case "ケ": return new Char(name, ["ke"]);
-        case "こ": case "コ": return new Char(name, ["ko", "co"]);
+        case "か": case "カ": return new CharJp(name, ["ka", "ca"]);
+        case "き": case "キ": return new CharJp(name, ["ki"]);
+        case "く": case "ク": return new CharJp(name, ["ku", "cu", "qu"]);
+        case "け": case "ケ": return new CharJp(name, ["ke"]);
+        case "こ": case "コ": return new CharJp(name, ["ko", "co"]);
 
-        case "きゃ": case "キャ": return new Char(name, ["kya"]);
-        case "きぃ": case "キィ": return new Char(name, ["kyi"]);
-        case "きゅ": case "キュ": return new Char(name, ["kyu"]);
-        case "きぇ": case "キェ": return new Char(name, ["kye"]);
-        case "きょ": case "キョ": return new Char(name, ["kyo"]);
+        case "きゃ": case "キャ": return new CharJp(name, ["kya"]);
+        case "きぃ": case "キィ": return new CharJp(name, ["kyi"]);
+        case "きゅ": case "キュ": return new CharJp(name, ["kyu"]);
+        case "きぇ": case "キェ": return new CharJp(name, ["kye"]);
+        case "きょ": case "キョ": return new CharJp(name, ["kyo"]);
 
-        case "くゃ": case "クャ": return new Char(name, ["qya"]);
-        case "くゅ": case "クュ": return new Char(name, ["qyu"]);
-        case "くょ": case "クョ": return new Char(name, ["qyo"]);
+        case "くゃ": case "クャ": return new CharJp(name, ["qya"]);
+        case "くゅ": case "クュ": return new CharJp(name, ["qyu"]);
+        case "くょ": case "クョ": return new CharJp(name, ["qyo"]);
 
-        case "くぁ": case "クァ": return new Char(name, ["qa", "qwa", "kwa"]);
-        case "くぃ": case "クィ": return new Char(name, ["qi", "qwi", "qyi"]);
-        case "くぅ": case "クゥ": return new Char(name, ["qwu"]);
-        case "くぇ": case "クェ": return new Char(name, ["qe", "qwe", "qye"]);
-        case "くぉ": case "クォ": return new Char(name, ["qo", "qwo"]);
+        case "くぁ": case "クァ": return new CharJp(name, ["qa", "qwa", "kwa"]);
+        case "くぃ": case "クィ": return new CharJp(name, ["qi", "qwi", "qyi"]);
+        case "くぅ": case "クゥ": return new CharJp(name, ["qwu"]);
+        case "くぇ": case "クェ": return new CharJp(name, ["qe", "qwe", "qye"]);
+        case "くぉ": case "クォ": return new CharJp(name, ["qo", "qwo"]);
 
-        case "が": case "ガ": return new Char(name, ["ga"]);
-        case "ぎ": case "ギ": return new Char(name, ["gi"]);
-        case "ぐ": case "グ": return new Char(name, ["gu"]);
-        case "げ": case "ゲ": return new Char(name, ["ge"]);
-        case "ご": case "ゴ": return new Char(name, ["go"]);
+        case "が": case "ガ": return new CharJp(name, ["ga"]);
+        case "ぎ": case "ギ": return new CharJp(name, ["gi"]);
+        case "ぐ": case "グ": return new CharJp(name, ["gu"]);
+        case "げ": case "ゲ": return new CharJp(name, ["ge"]);
+        case "ご": case "ゴ": return new CharJp(name, ["go"]);
 
-        case "ぎゃ": case "ギャ": return new Char(name, ["gya"]);
-        case "ぎぃ": case "ギィ": return new Char(name, ["gyi"]);
-        case "ぎゅ": case "ギュ": return new Char(name, ["gyu"]);
-        case "ぎぇ": case "ギェ": return new Char(name, ["gye"]);
-        case "ぎょ": case "ギョ": return new Char(name, ["gyo"]);
+        case "ぎゃ": case "ギャ": return new CharJp(name, ["gya"]);
+        case "ぎぃ": case "ギィ": return new CharJp(name, ["gyi"]);
+        case "ぎゅ": case "ギュ": return new CharJp(name, ["gyu"]);
+        case "ぎぇ": case "ギェ": return new CharJp(name, ["gye"]);
+        case "ぎょ": case "ギョ": return new CharJp(name, ["gyo"]);
 
-        case "ぐぁ": case "グァ": return new Char(name, ["gwa"]);
-        case "ぐぃ": case "グィ": return new Char(name, ["gwi"]);
-        case "ぐぅ": case "グゥ": return new Char(name, ["gwu"]);
-        case "ぐぇ": case "グェ": return new Char(name, ["gwe"]);
-        case "ぐぉ": case "グォ": return new Char(name, ["gwo"]);
+        case "ぐぁ": case "グァ": return new CharJp(name, ["gwa"]);
+        case "ぐぃ": case "グィ": return new CharJp(name, ["gwi"]);
+        case "ぐぅ": case "グゥ": return new CharJp(name, ["gwu"]);
+        case "ぐぇ": case "グェ": return new CharJp(name, ["gwe"]);
+        case "ぐぉ": case "グォ": return new CharJp(name, ["gwo"]);
 
-        case "ヵ": case "ヵ": return new Char(name, ["xka", "lka"]);
-        case "ヶ": case "ヶ": return new Char(name, ["xke", "lke"]);
+        case "ヵ": case "ヵ": return new CharJp(name, ["xka", "lka"]);
+        case "ヶ": case "ヶ": return new CharJp(name, ["xke", "lke"]);
 
         // さ行 
-        case "さ": case "サ": return new Char(name, ["sa"]);
-        case "し": case "シ": return new Char(name, ["si", "ci", "shi"]);
-        case "す": case "ス": return new Char(name, ["su"]);
-        case "せ": case "セ": return new Char(name, ["se", "ce"]);
-        case "そ": case "ソ": return new Char(name, ["so"]);
+        case "さ": case "サ": return new CharJp(name, ["sa"]);
+        case "し": case "シ": return new CharJp(name, ["si", "ci", "shi"]);
+        case "す": case "ス": return new CharJp(name, ["su"]);
+        case "せ": case "セ": return new CharJp(name, ["se", "ce"]);
+        case "そ": case "ソ": return new CharJp(name, ["so"]);
 
-        case "しゃ": case "シャ": return new Char(name, ["sya", "sha"]);
-        case "しぃ": case "シィ": return new Char(name, ["syi"]);
-        case "しゅ": case "シュ": return new Char(name, ["syu", "shu"]);
-        case "しぇ": case "シェ": return new Char(name, ["sye", "she"]);
-        case "しょ": case "ショ": return new Char(name, ["syo", "sho"]);
+        case "しゃ": case "シャ": return new CharJp(name, ["sya", "sha"]);
+        case "しぃ": case "シィ": return new CharJp(name, ["syi"]);
+        case "しゅ": case "シュ": return new CharJp(name, ["syu", "shu"]);
+        case "しぇ": case "シェ": return new CharJp(name, ["sye", "she"]);
+        case "しょ": case "ショ": return new CharJp(name, ["syo", "sho"]);
 
-        case "すぁ": case "スァ": return new Char(name, ["swa"]);
-        case "すぃ": case "スィ": return new Char(name, ["swi"]);
-        case "すぅ": case "スゥ": return new Char(name, ["swu"]);
-        case "すぇ": case "スェ": return new Char(name, ["swe"]);
-        case "すぉ": case "スォ": return new Char(name, ["swo"]);
+        case "すぁ": case "スァ": return new CharJp(name, ["swa"]);
+        case "すぃ": case "スィ": return new CharJp(name, ["swi"]);
+        case "すぅ": case "スゥ": return new CharJp(name, ["swu"]);
+        case "すぇ": case "スェ": return new CharJp(name, ["swe"]);
+        case "すぉ": case "スォ": return new CharJp(name, ["swo"]);
 
-        case "ざ": case "ザ": return new Char(name, ["za"]);
-        case "じ": case "ジ": return new Char(name, ["zi", "ji"]);
-        case "ず": case "ズ": return new Char(name, ["zu"]);
-        case "ぜ": case "ゼ": return new Char(name, ["ze"]);
-        case "ぞ": case "ゾ": return new Char(name, ["zo"]);
+        case "ざ": case "ザ": return new CharJp(name, ["za"]);
+        case "じ": case "ジ": return new CharJp(name, ["zi", "ji"]);
+        case "ず": case "ズ": return new CharJp(name, ["zu"]);
+        case "ぜ": case "ゼ": return new CharJp(name, ["ze"]);
+        case "ぞ": case "ゾ": return new CharJp(name, ["zo"]);
 
-        case "じゃ": case "ジャ": return new Char(name, ["zya", "ja", "jya"]);
-        case "じぃ": case "ジィ": return new Char(name, ["zyi", "jyi"]);
-        case "じゅ": case "ジュ": return new Char(name, ["zyu", "ju", "jyu"]);
-        case "じぇ": case "ジェ": return new Char(name, ["zye", "je", "jye"]);
-        case "じょ": case "ジョ": return new Char(name, ["zyo", "jo", "jyo"]);
+        case "じゃ": case "ジャ": return new CharJp(name, ["zya", "ja", "jya"]);
+        case "じぃ": case "ジィ": return new CharJp(name, ["zyi", "jyi"]);
+        case "じゅ": case "ジュ": return new CharJp(name, ["zyu", "ju", "jyu"]);
+        case "じぇ": case "ジェ": return new CharJp(name, ["zye", "je", "jye"]);
+        case "じょ": case "ジョ": return new CharJp(name, ["zyo", "jo", "jyo"]);
 
         // た行 
-        case "た": case "タ": return new Char(name, ["ta"]);
-        case "ち": case "チ": return new Char(name, ["ti", "chi"]);
-        case "つ": case "ツ": return new Char(name, ["tu", "tsu"]);
-        case "て": case "テ": return new Char(name, ["te"]);
-        case "と": case "ト": return new Char(name, ["to"]);
+        case "た": case "タ": return new CharJp(name, ["ta"]);
+        case "ち": case "チ": return new CharJp(name, ["ti", "chi"]);
+        case "つ": case "ツ": return new CharJp(name, ["tu", "tsu"]);
+        case "て": case "テ": return new CharJp(name, ["te"]);
+        case "と": case "ト": return new CharJp(name, ["to"]);
 
-        case "ちゃ": case "チャ": return new Char(name, ["tya", "cha", "cya"]);
-        case "ちぃ": case "チィ": return new Char(name, ["tyi", "cyi"]);
-        case "ちゅ": case "チュ": return new Char(name, ["tyu", "chu", "cyu"]);
-        case "ちぇ": case "チェ": return new Char(name, ["tye", "che", "cye"]);
-        case "ちょ": case "チョ": return new Char(name, ["tyo", "cho", "cyo"]);
+        case "ちゃ": case "チャ": return new CharJp(name, ["tya", "cha", "cya"]);
+        case "ちぃ": case "チィ": return new CharJp(name, ["tyi", "cyi"]);
+        case "ちゅ": case "チュ": return new CharJp(name, ["tyu", "chu", "cyu"]);
+        case "ちぇ": case "チェ": return new CharJp(name, ["tye", "che", "cye"]);
+        case "ちょ": case "チョ": return new CharJp(name, ["tyo", "cho", "cyo"]);
 
-        case "つぁ": case "ツァ": return new Char(name, ["tsa"]);
-        case "つぃ": case "ツィ": return new Char(name, ["tsi"]);
-        case "つぇ": case "ツェ": return new Char(name, ["tse"]);
-        case "つぉ": case "ツォ": return new Char(name, ["tso"]);
+        case "つぁ": case "ツァ": return new CharJp(name, ["tsa"]);
+        case "つぃ": case "ツィ": return new CharJp(name, ["tsi"]);
+        case "つぇ": case "ツェ": return new CharJp(name, ["tse"]);
+        case "つぉ": case "ツォ": return new CharJp(name, ["tso"]);
 
-        case "てゃ": case "テャ": return new Char(name, ["tha"]);
-        case "てぃ": case "ティ": return new Char(name, ["thi"]);
-        case "てゅ": case "テュ": return new Char(name, ["thu"]);
-        case "てぇ": case "テェ": return new Char(name, ["the"]);
-        case "てょ": case "テョ": return new Char(name, ["tho"]);
+        case "てゃ": case "テャ": return new CharJp(name, ["tha"]);
+        case "てぃ": case "ティ": return new CharJp(name, ["thi"]);
+        case "てゅ": case "テュ": return new CharJp(name, ["thu"]);
+        case "てぇ": case "テェ": return new CharJp(name, ["the"]);
+        case "てょ": case "テョ": return new CharJp(name, ["tho"]);
 
-        case "とぁ": case "トァ": return new Char(name, ["twa"]);
-        case "とぃ": case "トィ": return new Char(name, ["twi"]);
-        case "とぅ": case "トゥ": return new Char(name, ["twu"]);
-        case "とぇ": case "トェ": return new Char(name, ["twe"]);
-        case "とぉ": case "トォ": return new Char(name, ["two"]);
+        case "とぁ": case "トァ": return new CharJp(name, ["twa"]);
+        case "とぃ": case "トィ": return new CharJp(name, ["twi"]);
+        case "とぅ": case "トゥ": return new CharJp(name, ["twu"]);
+        case "とぇ": case "トェ": return new CharJp(name, ["twe"]);
+        case "とぉ": case "トォ": return new CharJp(name, ["two"]);
 
-        case "だ": case "ダ": return new Char(name, ["da"]);
-        case "ぢ": case "ヂ": return new Char(name, ["di"]);
-        case "づ": case "ヅ": return new Char(name, ["du"]);
-        case "で": case "デ": return new Char(name, ["de"]);
-        case "ど": case "ド": return new Char(name, ["do"]);
+        case "だ": case "ダ": return new CharJp(name, ["da"]);
+        case "ぢ": case "ヂ": return new CharJp(name, ["di"]);
+        case "づ": case "ヅ": return new CharJp(name, ["du"]);
+        case "で": case "デ": return new CharJp(name, ["de"]);
+        case "ど": case "ド": return new CharJp(name, ["do"]);
 
-        case "ぢゃ": case "ヂャ": return new Char(name, ["dya"]);
-        case "ぢぃ": case "ヂィ": return new Char(name, ["dyi"]);
-        case "ぢゅ": case "ヂュ": return new Char(name, ["dyu"]);
-        case "ぢぇ": case "ヂェ": return new Char(name, ["dye"]);
-        case "ぢょ": case "ヂョ": return new Char(name, ["dyo"]);
+        case "ぢゃ": case "ヂャ": return new CharJp(name, ["dya"]);
+        case "ぢぃ": case "ヂィ": return new CharJp(name, ["dyi"]);
+        case "ぢゅ": case "ヂュ": return new CharJp(name, ["dyu"]);
+        case "ぢぇ": case "ヂェ": return new CharJp(name, ["dye"]);
+        case "ぢょ": case "ヂョ": return new CharJp(name, ["dyo"]);
 
-        case "でゃ": case "デャ": return new Char(name, ["dha"]);
-        case "でぃ": case "ディ": return new Char(name, ["dhi"]);
-        case "でゅ": case "デュ": return new Char(name, ["dhu"]);
-        case "でぇ": case "デェ": return new Char(name, ["dhe"]);
-        case "でょ": case "デョ": return new Char(name, ["dho"]);
+        case "でゃ": case "デャ": return new CharJp(name, ["dha"]);
+        case "でぃ": case "ディ": return new CharJp(name, ["dhi"]);
+        case "でゅ": case "デュ": return new CharJp(name, ["dhu"]);
+        case "でぇ": case "デェ": return new CharJp(name, ["dhe"]);
+        case "でょ": case "デョ": return new CharJp(name, ["dho"]);
 
-        case "どぁ": case "ドァ": return new Char(name, ["dwa"]);
-        case "どぃ": case "ドィ": return new Char(name, ["dwi"]);
-        case "どぅ": case "ドゥ": return new Char(name, ["dwu"]);
-        case "どぇ": case "ドェ": return new Char(name, ["dwe"]);
-        case "どぉ": case "ドォ": return new Char(name, ["dwo"]);
+        case "どぁ": case "ドァ": return new CharJp(name, ["dwa"]);
+        case "どぃ": case "ドィ": return new CharJp(name, ["dwi"]);
+        case "どぅ": case "ドゥ": return new CharJp(name, ["dwu"]);
+        case "どぇ": case "ドェ": return new CharJp(name, ["dwe"]);
+        case "どぉ": case "ドォ": return new CharJp(name, ["dwo"]);
 
         case "っ": case "ッ": return new CharJpXtu();
 
         // な行 
-        case "な": case "ナ": return new Char(name, ["na"]);
-        case "に": case "ニ": return new Char(name, ["ni"]);
-        case "ぬ": case "ヌ": return new Char(name, ["nu"]);
-        case "ね": case "ネ": return new Char(name, ["ne"]);
-        case "の": case "ノ": return new Char(name, ["no"]);
+        case "な": case "ナ": return new CharJp(name, ["na"]);
+        case "に": case "ニ": return new CharJp(name, ["ni"]);
+        case "ぬ": case "ヌ": return new CharJp(name, ["nu"]);
+        case "ね": case "ネ": return new CharJp(name, ["ne"]);
+        case "の": case "ノ": return new CharJp(name, ["no"]);
 
-        case "にゃ": case "ニャ": return new Char(name, ["nya"]);
-        case "にぃ": case "ニィ": return new Char(name, ["nyi"]);
-        case "にゅ": case "ニュ": return new Char(name, ["nyu"]);
-        case "にぇ": case "ニェ": return new Char(name, ["nye"]);
-        case "にょ": case "ニョ": return new Char(name, ["nyo"]);
+        case "にゃ": case "ニャ": return new CharJp(name, ["nya"]);
+        case "にぃ": case "ニィ": return new CharJp(name, ["nyi"]);
+        case "にゅ": case "ニュ": return new CharJp(name, ["nyu"]);
+        case "にぇ": case "ニェ": return new CharJp(name, ["nye"]);
+        case "にょ": case "ニョ": return new CharJp(name, ["nyo"]);
 
         // は行 
-        case "は": case "ハ": return new Char(name, ["ha"]);
-        case "ひ": case "ヒ": return new Char(name, ["hi"]);
-        case "ふ": case "フ": return new Char(name, ["hu", "fu"]);
-        case "へ": case "ヘ": return new Char(name, ["he"]);
-        case "ほ": case "ホ": return new Char(name, ["ho"]);
+        case "は": case "ハ": return new CharJp(name, ["ha"]);
+        case "ひ": case "ヒ": return new CharJp(name, ["hi"]);
+        case "ふ": case "フ": return new CharJp(name, ["hu", "fu"]);
+        case "へ": case "ヘ": return new CharJp(name, ["he"]);
+        case "ほ": case "ホ": return new CharJp(name, ["ho"]);
 
-        case "ひゃ": case "ヒャ": return new Char(name, ["hya"]);
-        case "ひぃ": case "ヒィ": return new Char(name, ["hyi"]);
-        case "ひゅ": case "ヒュ": return new Char(name, ["hyu"]);
-        case "ひぇ": case "ヒェ": return new Char(name, ["hye"]);
-        case "ひょ": case "ヒョ": return new Char(name, ["hyo"]);
+        case "ひゃ": case "ヒャ": return new CharJp(name, ["hya"]);
+        case "ひぃ": case "ヒィ": return new CharJp(name, ["hyi"]);
+        case "ひゅ": case "ヒュ": return new CharJp(name, ["hyu"]);
+        case "ひぇ": case "ヒェ": return new CharJp(name, ["hye"]);
+        case "ひょ": case "ヒョ": return new CharJp(name, ["hyo"]);
 
-        case "ふぁ": case "ファ": return new Char(name, ["fa", "fwa"]);
-        case "ふぃ": case "フィ": return new Char(name, ["fi", "fwi", "fyi"]);
-        case "ふぅ": case "フゥ": return new Char(name, ["fwu"]);
-        case "ふぇ": case "フェ": return new Char(name, ["fe", "fwe", "fye"]);
-        case "ふぉ": case "フォ": return new Char(name, ["fo", "fwo"]);
+        case "ふぁ": case "ファ": return new CharJp(name, ["fa", "fwa"]);
+        case "ふぃ": case "フィ": return new CharJp(name, ["fi", "fwi", "fyi"]);
+        case "ふぅ": case "フゥ": return new CharJp(name, ["fwu"]);
+        case "ふぇ": case "フェ": return new CharJp(name, ["fe", "fwe", "fye"]);
+        case "ふぉ": case "フォ": return new CharJp(name, ["fo", "fwo"]);
 
-        case "ふゃ": case "フャ": return new Char(name, ["fya"]);
-        case "ふゅ": case "フュ": return new Char(name, ["fyu"]);
-        case "ふょ": case "フョ": return new Char(name, ["fyo"]);
+        case "ふゃ": case "フャ": return new CharJp(name, ["fya"]);
+        case "ふゅ": case "フュ": return new CharJp(name, ["fyu"]);
+        case "ふょ": case "フョ": return new CharJp(name, ["fyo"]);
 
-        case "ば": case "バ": return new Char(name, ["ba"]);
-        case "び": case "ビ": return new Char(name, ["bi"]);
-        case "ぶ": case "ブ": return new Char(name, ["bu"]);
-        case "べ": case "ベ": return new Char(name, ["be"]);
-        case "ぼ": case "ボ": return new Char(name, ["bo"]);
+        case "ば": case "バ": return new CharJp(name, ["ba"]);
+        case "び": case "ビ": return new CharJp(name, ["bi"]);
+        case "ぶ": case "ブ": return new CharJp(name, ["bu"]);
+        case "べ": case "ベ": return new CharJp(name, ["be"]);
+        case "ぼ": case "ボ": return new CharJp(name, ["bo"]);
 
-        case "びゃ": case "ビャ": return new Char(name, ["bya"]);
-        case "びぃ": case "ビィ": return new Char(name, ["byi"]);
-        case "びゅ": case "ビュ": return new Char(name, ["byu"]);
-        case "びぇ": case "ビェ": return new Char(name, ["bye"]);
-        case "びょ": case "ビョ": return new Char(name, ["byo"]);
+        case "びゃ": case "ビャ": return new CharJp(name, ["bya"]);
+        case "びぃ": case "ビィ": return new CharJp(name, ["byi"]);
+        case "びゅ": case "ビュ": return new CharJp(name, ["byu"]);
+        case "びぇ": case "ビェ": return new CharJp(name, ["bye"]);
+        case "びょ": case "ビョ": return new CharJp(name, ["byo"]);
 
-        case "ヴぁ": case "ヴァ": return new Char(name, ["va"]);
-        case "ヴぃ": case "ヴィ": return new Char(name, ["vi", "vyi"]);
-        case "ヴ": case "ヴ": return new Char(name, ["vu"]);
-        case "ヴぇ": case "ヴェ": return new Char(name, ["ve", "vye"]);
-        case "ヴぉ": case "ヴォ": return new Char(name, ["vo"]);
+        case "ヴぁ": case "ヴァ": return new CharJp(name, ["va"]);
+        case "ヴぃ": case "ヴィ": return new CharJp(name, ["vi", "vyi"]);
+        case "ヴ": case "ヴ": return new CharJp(name, ["vu"]);
+        case "ヴぇ": case "ヴェ": return new CharJp(name, ["ve", "vye"]);
+        case "ヴぉ": case "ヴォ": return new CharJp(name, ["vo"]);
 
-        case "ヴゃ": case "ヴャ": return new Char(name, ["vya"]);
-        case "ヴゅ": case "ヴュ": return new Char(name, ["vyu"]);
-        case "ヴょ": case "ヴョ": return new Char(name, ["vyo"]);
+        case "ヴゃ": case "ヴャ": return new CharJp(name, ["vya"]);
+        case "ヴゅ": case "ヴュ": return new CharJp(name, ["vyu"]);
+        case "ヴょ": case "ヴョ": return new CharJp(name, ["vyo"]);
 
-        case "ぱ": case "パ": return new Char(name, ["pa"]);
-        case "ぴ": case "ピ": return new Char(name, ["pi"]);
-        case "ぷ": case "プ": return new Char(name, ["pu"]);
-        case "ぺ": case "ペ": return new Char(name, ["pe"]);
-        case "ぽ": case "ポ": return new Char(name, ["po"]);
+        case "ぱ": case "パ": return new CharJp(name, ["pa"]);
+        case "ぴ": case "ピ": return new CharJp(name, ["pi"]);
+        case "ぷ": case "プ": return new CharJp(name, ["pu"]);
+        case "ぺ": case "ペ": return new CharJp(name, ["pe"]);
+        case "ぽ": case "ポ": return new CharJp(name, ["po"]);
 
-        case "ぴゃ": case "ピャ": return new Char(name, ["pya"]);
-        case "ぴぃ": case "ピィ": return new Char(name, ["pyi"]);
-        case "ぴゅ": case "ピュ": return new Char(name, ["pyu"]);
-        case "ぴぇ": case "ピェ": return new Char(name, ["pye"]);
-        case "ぴょ": case "ピョ": return new Char(name, ["pyo"]);
+        case "ぴゃ": case "ピャ": return new CharJp(name, ["pya"]);
+        case "ぴぃ": case "ピィ": return new CharJp(name, ["pyi"]);
+        case "ぴゅ": case "ピュ": return new CharJp(name, ["pyu"]);
+        case "ぴぇ": case "ピェ": return new CharJp(name, ["pye"]);
+        case "ぴょ": case "ピョ": return new CharJp(name, ["pyo"]);
 
         // ま行 
-        case "ま": case "マ": return new Char(name, ["ma"]);
-        case "み": case "ミ": return new Char(name, ["mi"]);
-        case "む": case "ム": return new Char(name, ["mu"]);
-        case "め": case "メ": return new Char(name, ["me"]);
-        case "も": case "モ": return new Char(name, ["mo"]);
+        case "ま": case "マ": return new CharJp(name, ["ma"]);
+        case "み": case "ミ": return new CharJp(name, ["mi"]);
+        case "む": case "ム": return new CharJp(name, ["mu"]);
+        case "め": case "メ": return new CharJp(name, ["me"]);
+        case "も": case "モ": return new CharJp(name, ["mo"]);
 
-        case "みゃ": case "ミャ": return new Char(name, ["mya"]);
-        case "みぃ": case "ミィ": return new Char(name, ["myi"]);
-        case "みゅ": case "ミュ": return new Char(name, ["myu"]);
-        case "みぇ": case "ミェ": return new Char(name, ["mye"]);
-        case "みょ": case "ミョ": return new Char(name, ["myo"]);
+        case "みゃ": case "ミャ": return new CharJp(name, ["mya"]);
+        case "みぃ": case "ミィ": return new CharJp(name, ["myi"]);
+        case "みゅ": case "ミュ": return new CharJp(name, ["myu"]);
+        case "みぇ": case "ミェ": return new CharJp(name, ["mye"]);
+        case "みょ": case "ミョ": return new CharJp(name, ["myo"]);
 
         // や行 
-        case "や": case "ヤ": return new Char(name, ["ya"]);
-        case "ゆ": case "ユ": return new Char(name, ["yu"]);
-        case "よ": case "ヨ": return new Char(name, ["yo"]);
+        case "や": case "ヤ": return new CharJp(name, ["ya"]);
+        case "ゆ": case "ユ": return new CharJp(name, ["yu"]);
+        case "よ": case "ヨ": return new CharJp(name, ["yo"]);
 
-        case "ゃ": case "ャ": return new Char(name, ["xya", "lya"]);
-        case "ゅ": case "ュ": return new Char(name, ["xyu", "lyu"]);
-        case "ょ": case "ョ": return new Char(name, ["xyo", "lyo"]);
+        case "ゃ": case "ャ": return new CharJp(name, ["xya", "lya"]);
+        case "ゅ": case "ュ": return new CharJp(name, ["xyu", "lyu"]);
+        case "ょ": case "ョ": return new CharJp(name, ["xyo", "lyo"]);
 
         // ら行 
-        case "ら": case "ラ": return new Char(name, ["ra"]);
-        case "り": case "リ": return new Char(name, ["ri"]);
-        case "る": case "ル": return new Char(name, ["ru"]);
-        case "れ": case "レ": return new Char(name, ["re"]);
-        case "ろ": case "ロ": return new Char(name, ["ro"]);
+        case "ら": case "ラ": return new CharJp(name, ["ra"]);
+        case "り": case "リ": return new CharJp(name, ["ri"]);
+        case "る": case "ル": return new CharJp(name, ["ru"]);
+        case "れ": case "レ": return new CharJp(name, ["re"]);
+        case "ろ": case "ロ": return new CharJp(name, ["ro"]);
 
-        case "りゃ": case "リャ": return new Char(name, ["rya"]);
-        case "りぃ": case "リィ": return new Char(name, ["ryi"]);
-        case "りゅ": case "リュ": return new Char(name, ["ryu"]);
-        case "りぇ": case "リェ": return new Char(name, ["rye"]);
-        case "りょ": case "リョ": return new Char(name, ["ryo"]);
+        case "りゃ": case "リャ": return new CharJp(name, ["rya"]);
+        case "りぃ": case "リィ": return new CharJp(name, ["ryi"]);
+        case "りゅ": case "リュ": return new CharJp(name, ["ryu"]);
+        case "りぇ": case "リェ": return new CharJp(name, ["rye"]);
+        case "りょ": case "リョ": return new CharJp(name, ["ryo"]);
 
         // わ行 
-        case "わ": case "ワ": return new Char(name, ["wa"]);
-        case "を": case "ヲ": return new Char(name, ["wo"]);
+        case "わ": case "ワ": return new CharJp(name, ["wa"]);
+        case "を": case "ヲ": return new CharJp(name, ["wo"]);
         case "ん": case "ン": return new CharJpN();
 
-        case "ゎ": case "ヮ": return new Char(name, ["xwa", "lwa"]);
+        case "ゎ": case "ヮ": return new CharJp(name, ["xwa", "lwa"]);
 
         // アルファベット・数字
         case "a": return new Char(name, ["a"]);
