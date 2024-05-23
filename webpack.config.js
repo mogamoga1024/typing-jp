@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'production',
-  entry: './main.js',
+  entry: './cdn.js',
   output: {
     publicPath: '/dist/',
     filename: 'typing-jp.js'
