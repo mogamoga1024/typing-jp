@@ -11,7 +11,8 @@ export class TypingText {
         return this.#remainingRoman;
     }
 
-    constructor(text) {
+    constructor(_text, ignoreSpace = true) {
+        const text = ignoreSpace ? _text.replace(/\s|　/g, "") : _text.replace(/\t\f\r\n/g, "");
         if (text === "") {
             throw new EmptyTextError();
         }
