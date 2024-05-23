@@ -49,7 +49,7 @@ window.onkeydown = function(e) {
             domRoman2.innerText = typingText.remainingRoman;
             return;
 
-        // 文章が完成の場合
+        // 文章が完成した場合
         case "complete":
             // クリアしたか
             if (++index >= originalTextList.length) {
