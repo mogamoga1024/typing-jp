@@ -18,11 +18,19 @@
 
 ### CDNで使いたい場合
 
-【TODO】
+```html
+<script src="https://cdn.jsdelivr.net/npm/@mogamoga1024/typing-jp@latest/dist/cdn/typing-jp.js"></script>
+```
 
 ### npmで使いたい場合
 
-【TODO】
+```
+npm i @mogamoga1024/typing-jp
+```
+
+```js
+import { TypingText } from "@mogamoga1024/typing-jp";
+```
 
 ## ざっくりと説明
 
@@ -64,6 +72,8 @@ if (TypingText.isValidInputKey(keyboardEvent.key) === false) {
 ```
 
 ## リファレンス：TypingTextクラス
+
+この眠くなるようなリファレンスを読むよりも[サンプルのプログラム](https://github.com/mogamoga1024/typing-jp/blob/main/sample/sample.js)を読んだ方が速く理解できると思います。
 
 ### TypingText(text[, ignoreSpace])
 
