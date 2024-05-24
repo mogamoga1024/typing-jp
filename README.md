@@ -88,29 +88,64 @@ if (TypingText.isValidInputKey(keyboardEvent.key) === false) {
 
 具体例をあげると「Shift」「Ctrl」などの入力はfalse、「a」「7」などの入力はtrueを返します。
 
+##### 引数
+
 |名称|型|説明|
 |-|-|-|
 |key|string|入力されたkey<br>[KeyboardEvent:key](https://developer.mozilla.org/ja/docs/Web/API/KeyboardEvent/key)を想定|
 
-#### HOGEHOGE
+##### 戻り値
 
-hogehoge
+ローマ字として有効な入力の場合はtrue、それ以外はfalse
+
+#### inputKey(key, isCapsLock)
+
+タイピング対象のテキストにkeyを反映させた後、その結果を返します。
+
+##### 引数
 
 |名称|型|説明|
 |-|-|-|
-||||
-||||
+|key|string|入力されたkey<br>[KeyboardEvent:key](https://developer.mozilla.org/ja/docs/Web/API/KeyboardEvent/key)を想定|
+|isCapsLock|boolean(省略可)|trueの場合、CapsLockがONであると判断します。falseの場合、CapsLockがOFFであると判断します。詳しくは備考を見てください。デフォルトはfalseです。|
+
+##### 戻り値
+
+以下のいずれかの文字列
+
+|値|説明|
+|-|-|
+|"unmatch"|入力ミス|
+|"incomplete"|入力OKだが文章は未完成|
+|"complete"|入力OKで文章も完成した|
 
 ##### 備考
 
+"complete"が返された状態で更にinputKeyメソッドを呼び出すとNoRemainingInputErrorが投げられます。
+
+###### isCapsLockってなんやねん
+
+大雑把に説明すると、
+
+isCapsLockがtrueの場合  
+「あいうえお(aiueo)」というテキストに「AIUEO」と入力されても問題ないと見なします。  
+isCapsLockがfalseの場合  
+「あいうえお(aiueo)」というテキストに「AIUEO」と入力された場合、ローマ字として不適と見なします。(実際のキーボードの挙動に合わせている。)
+
+意味わかんねーよ。的な方はfalse(デフォルト値)にしておけば何ら問題ありません。
+
 #### HOGEHOGE
 
 hogehoge
+
+##### 引数
 
 |名称|型|説明|
 |-|-|-|
 ||||
 ||||
+
+##### 戻り値
 
 ##### 備考
 
