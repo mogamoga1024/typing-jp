@@ -65,7 +65,7 @@ if (TypingText.isValidInputKey(keyboardEvent.key) === false) {
 
 ## リファレンス：TypingTextクラス
 
-### TypingText(text, ignoreSpace)
+### TypingText(text[, ignoreSpace])
 
 コンストラクタ
 
@@ -96,7 +96,7 @@ if (TypingText.isValidInputKey(keyboardEvent.key) === false) {
 
 ローマ字として有効な入力の場合はtrue、それ以外はfalse
 
-### inputKey(key, isCapsLock)
+### inputKey(key[, isCapsLock])
 
 タイピング対象のテキストにkeyを反映させた後、その結果を返します。
 
