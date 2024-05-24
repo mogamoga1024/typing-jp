@@ -63,11 +63,9 @@ if (TypingText.isValidInputKey(keyboardEvent.key) === false) {
 }
 ```
 
-## リファレンス
+## リファレンス：TypingTextクラス
 
-### TypingTextクラス
-
-#### TypingText(text, ignoreSpace)
+### TypingText(text, ignoreSpace)
 
 コンストラクタ
 
@@ -76,40 +74,40 @@ if (TypingText.isValidInputKey(keyboardEvent.key) === false) {
 |text|string|タイピング対象のテキスト<br>「ひらがな、カタカナ、数字、英語、ASCIIで使われている記号」のみが使われている必要があります。(半角・全角は区別しない)|
 |ignoreSpace|boolean(省略可)|falseの場合、textから半角スペース、全角スペースが排除されます。trueの場合は何もしません。デフォルトはtrueです。|
 
-##### 備考
+#### 備考
 
 * textが空と見なされた場合、EmptyTextErrorが投げられます。
 * textがローマ字で表現できない場合、CharCreationErrorが投げられます。
 
-#### static isValidInputKey(key)
+### static isValidInputKey(key)
 
 ローマ字として有効な入力かどうかを判定します。  
 静的メソッドであることに注意してください。
 
 具体例をあげると「Shift」「Ctrl」などの入力はfalse、「a」「7」などの入力はtrueを返します。
 
-##### 引数
+#### 引数
 
 |名称|型|説明|
 |-|-|-|
 |key|string|入力されたkey<br>[KeyboardEvent:key](https://developer.mozilla.org/ja/docs/Web/API/KeyboardEvent/key)を想定|
 
-##### 戻り値
+#### 戻り値
 
 ローマ字として有効な入力の場合はtrue、それ以外はfalse
 
-#### inputKey(key, isCapsLock)
+### inputKey(key, isCapsLock)
 
 タイピング対象のテキストにkeyを反映させた後、その結果を返します。
 
-##### 引数
+#### 引数
 
 |名称|型|説明|
 |-|-|-|
 |key|string|入力されたkey<br>[KeyboardEvent:key](https://developer.mozilla.org/ja/docs/Web/API/KeyboardEvent/key)を想定|
 |isCapsLock|boolean(省略可)|trueの場合、CapsLockがONであると判断します。falseの場合、CapsLockがOFFであると判断します。詳しくは備考を見てください。デフォルトはfalseです。|
 
-##### 戻り値
+#### 戻り値
 
 以下のいずれかの文字列
 
@@ -119,11 +117,11 @@ if (TypingText.isValidInputKey(keyboardEvent.key) === false) {
 |"incomplete"|入力OKだが文章は未完成|
 |"complete"|入力OKで文章も完成した|
 
-##### 備考
+#### 備考
 
 "complete"が返された状態で更にinputKeyメソッドを呼び出すとNoRemainingInputErrorが投げられます。
 
-###### isCapsLockってなんやねん
+##### isCapsLockってなんやねん
 
 大雑把に説明すると、
 
@@ -134,20 +132,20 @@ isCapsLockがfalseの場合
 
 意味わかんねーよ。的な方はfalse(デフォルト値)にしておけば何ら問題ありません。
 
-#### HOGEHOGE
+### HOGEHOGE
 
 hogehoge
 
-##### 引数
+#### 引数
 
 |名称|型|説明|
 |-|-|-|
 ||||
 ||||
 
-##### 戻り値
+#### 戻り値
 
-##### 備考
+#### 備考
 
 ## license
 
