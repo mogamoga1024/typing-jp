@@ -117,11 +117,11 @@ if (TypingText.isValidInputKey(keyboardEvent.key) === false) {
 |"incomplete"|入力OKだが文章は未完成|
 |"complete"|入力OKで文章も完成した|
 
-#### 備考
+#### 備考1
 
 "complete"が返された状態で更にinputKeyメソッドを呼び出すとNoRemainingInputErrorが投げられます。
 
-##### isCapsLockってなんやねん
+#### 備考2：isCapsLockってなんやねん
 
 大雑把に説明すると、
 
