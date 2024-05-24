@@ -81,7 +81,38 @@ if (TypingText.isValidInputKey(keyboardEvent.key) === false) {
 * textが空と見なされた場合、EmptyTextErrorが投げられます。
 * textがローマ字で表現できない場合、CharCreationErrorが投げられます。
 
+#### static isValidInputKey(key)
 
+ローマ字として有効な入力かどうかを判定します。  
+静的メソッドであることに注意してください。
+
+具体例をあげると「Shift」「Ctrl」などの入力はfalse、「a」「7」などの入力はtrueを返します。
+
+|名称|型|説明|
+|-|-|-|
+|key|string|入力されたkey<br>[KeyboardEvent:key](https://developer.mozilla.org/ja/docs/Web/API/KeyboardEvent/key)を想定|
+
+#### HOGEHOGE
+
+hogehoge
+
+|名称|型|説明|
+|-|-|-|
+||||
+||||
+
+##### 備考
+
+#### HOGEHOGE
+
+hogehoge
+
+|名称|型|説明|
+|-|-|-|
+||||
+||||
+
+##### 備考
 
 ## license
 
