@@ -63,9 +63,25 @@ if (TypingText.isValidInputKey(keyboardEvent.key) === false) {
 }
 ```
 
-## 関数リファレンス
+## リファレンス
 
-【TODO】
+### TypingTextクラス
+
+#### TypingText(text, ignoreSpace)
+
+コンストラクタ
+
+|名称|型|説明|
+|-|-|-|
+|text|string|タイピング対象のテキスト<br>「ひらがな、カタカナ、数字、英語、ASCIIで使われている記号」のみが使われている必要があります。(半角・全角は区別しない)|
+|ignoreSpace|boolean(省略可)|falseの場合、textから半角スペース、全角スペースが排除されます。trueの場合は何もしません。デフォルトはtrueです。|
+
+##### 備考
+
+* textが空と見なされた場合、EmptyTextErrorが投げられます。
+* textがローマ字で表現できない場合、CharCreationErrorが投げられます。
+
+
 
 ## license
 
