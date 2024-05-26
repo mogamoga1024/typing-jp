@@ -4,7 +4,7 @@ import { NoRemainingInputError } from "../src/error/no_remaining_input_error.js"
 import { CharCreationError } from "../src/error/char_creation_error.js";
 import { TEXT_UNMATCH, TEXT_INCOMPLETE, TEXT_COMPLETE } from "../src/constants/text_status.js";
 
-test("てすとですよん", function() {
+test("てすとですよん", () => {
     const typingText = new TypingText("てすとですよん");
 
     strictEqual(typingText.roman, "tesutodesuyonn");
@@ -16,7 +16,7 @@ test("てすとですよん", function() {
     strictEqual(typingText.remainingText, "てすとですよん");
 });
 
-test("てすとですよん tesutodesuyonn", function() {
+test("てすとですよん tesutodesuyonn", () => {
     const typingText = new TypingText("てすとですよん");
 
     strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
@@ -32,7 +32,7 @@ test("てすとですよん tesutodesuyonn", function() {
     strictEqual(typingText.remainingText, "すとですよん");
 });
 
-test("てすとですよん tesa", function() {
+test("てすとですよん tesa", () => {
     const typingText = new TypingText("てすとですよん");
 
     strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
@@ -49,7 +49,7 @@ test("てすとですよん tesa", function() {
     strictEqual(typingText.remainingText, "すとですよん");
 });
 
-test("てすとですよん tesutodesuyon", function() {
+test("てすとですよん tesutodesuyon", () => {
     const typingText = new TypingText("てすとですよん");
 
     for (const key of "tesutodesuyon") {
@@ -66,7 +66,7 @@ test("てすとですよん tesutodesuyon", function() {
     strictEqual(typingText.remainingText, "");
 });
 
-test("テストデスヨン", function() {
+test("テストデスヨン", () => {
     const typingText = new TypingText("テストデスヨン");
 
     strictEqual(typingText.roman, "tesutodesuyonn");
@@ -78,7 +78,7 @@ test("テストデスヨン", function() {
     strictEqual(typingText.remainingText, "てすとですよん");
 });
 
-test("ﾃｽﾄﾃﾞｽﾖﾝ", function() {
+test("ﾃｽﾄﾃﾞｽﾖﾝ", () => {
     const typingText = new TypingText("ﾃｽﾄﾃﾞｽﾖﾝ");
 
     strictEqual(typingText.roman, "tesutodesuyonn");
@@ -88,4 +88,25 @@ test("ﾃｽﾄﾃﾞｽﾖﾝ", function() {
     strictEqual(typingText.text, "てすとですよん");
     strictEqual(typingText.completedText, "");
     strictEqual(typingText.remainingText, "てすとですよん");
+});
+
+test("EmptyTextError ignoreSpace=false", () => {
+    throws(() => {
+            new TypingText("");
+        },
+        EmptyTextError
+    );
+    throws(() => {
+            new TypingText("", false);
+        },
+        EmptyTextError
+    );
+});
+
+test("EmptyTextError ignoreSpace=true", () => {
+    throws(() => {
+            new TypingText(" 　", true);
+        },
+        EmptyTextError
+    );
 });
