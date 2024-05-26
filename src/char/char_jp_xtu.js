@@ -1,5 +1,5 @@
 import { CharJp } from "./char_jp.js";
-import { CHAR_UNMATCH, CHAR_COMPLETE } from "../constants/char_status.js";
+import { CHAR_UNMATCH, CHAR_COMPLETE, CHAR_PARTIALLY_COMPLETE } from "../constants/char_status.js";
 
 export class CharJpXtu extends CharJp {
     constructor() {
@@ -31,6 +31,8 @@ export class CharJpXtu extends CharJp {
         if (this.nextExpectRomanIndex > 0) {
             return result;
         }
+
+        // 連続系 「ssu」みたいなやつ
     
         if (this.nextChar == null) {
             return CHAR_UNMATCH;
@@ -51,7 +53,7 @@ export class CharJpXtu extends CharJp {
             this.nextChar.divisionCharChain.inputRoman(roman);
             this.nextChar.divisionCharChain.nextExpectRomanIndex = 0;
         }
-    
-        return CHAR_COMPLETE;
+
+        return CHAR_PARTIALLY_COMPLETE;
     }
 }

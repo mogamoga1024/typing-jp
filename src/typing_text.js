@@ -3,7 +3,7 @@ import { createCharChain } from "./char/char_chain.js";
 import { createChar } from "./char/char_factory.js";
 import { EmptyTextError } from "./error/empty_text_error.js";
 import { NoRemainingInputError } from "./error/no_remaining_input_error.js";
-import { CHAR_UNMATCH, CHAR_INCOMPLETE, CHAR_COMPLETE } from "./constants/char_status.js";
+import { CHAR_UNMATCH, CHAR_INCOMPLETE, CHAR_COMPLETE, CHAR_PARTIALLY_COMPLETE } from "./constants/char_status.js";
 import { TEXT_UNMATCH, TEXT_INCOMPLETE, TEXT_COMPLETE } from "./constants/text_status.js";
 
 export class TypingText {
@@ -35,6 +35,8 @@ export class TypingText {
     get remainingRoman() {
         return this.#remainingRoman;
     }
+
+    #wasCharPartiallyComplete = false;
 
     constructor(_text, ignoreSpace = true) {
         const tmpText = ignoreSpace ? _text.replace(/\s|　/g, "") : _text.replace(/\t\f\r\n/g, "");
@@ -76,13 +78,26 @@ export class TypingText {
                 this.#completedRoman += key;
                 this.#updateExpectRoman(oldCharExpectRomanLength);
                 return TEXT_INCOMPLETE;
-            case CHAR_COMPLETE:
+            case CHAR_PARTIALLY_COMPLETE: {
+                this.#wasCharPartiallyComplete = true;
+                this.#completedRoman += key;
+                const preChar = this.char;
+                this.char = this.char.nextChar;
+                this.#updateExpectRoman(oldCharExpectRomanLength, preChar);
+                return TEXT_INCOMPLETE;
+            }
+            case CHAR_COMPLETE: {
+                if (this.#wasCharPartiallyComplete) {
+                    this.#completedText += "っ";
+                    this.#wasCharPartiallyComplete = false;
+                }
                 this.#completedText += this.char.name;
                 this.#completedRoman += key;
                 const preChar = this.char;
                 this.char = this.char.nextChar;
                 this.#updateExpectRoman(oldCharExpectRomanLength, preChar);
                 return this.#remainingRoman === "" ? TEXT_COMPLETE : TEXT_INCOMPLETE;
+            }
             default:
                 this.#completedRoman += key;
                 const oldChar = this.char;
