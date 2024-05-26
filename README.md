@@ -146,6 +146,16 @@ isCapsLockがfalseの場合
 
 現在の入力状況に対する残りのローマ字を返すプロパティです。
 
+## TODO
+
+* 入力済みのローマ字
+* 未完成の残りのテキスト
+* ローマ字予測変換の優先順位 カスタム
+
+## 元ネタ(前世)
+
+https://github.com/mogamoga1024/Typing
+
 ## license
 
 MIT or WTFPL or くいなちゃんライセンス
