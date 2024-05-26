@@ -62,6 +62,28 @@ typingText.inputKey(keyboardEvent.key);
 console.log(typingText.remainingRoman); // watasiha[konnnitiha]toitta.
 ```
 
+プロパティ一覧
+
+```js
+// テキスト（ひらがな）
+console.log(typingText.text); // わたしは「こんにちは」といった。
+
+// 完成したテキスト（ひらがな）
+console.log(typingText.completedText); // わたし
+
+// 残りのテキスト（ひらがな）
+console.log(typingText.remainingText); // は「こんにちは」といった。
+
+// ローマ字
+console.log(typingText.roman); // watasiha[konnnitiha]toitta.
+
+// 完成したローマ字
+console.log(typingText.completedRoman); // watasih
+
+// 残りのローマ字
+console.log(typingText.remainingRoman); // a[konnnitiha]toitta.
+```
+
 ShiftやF11のようなキーとして判定したくない入力はTypingText.isValidInputKeyメソッドで弾けます。  
 静的メソッドであることに注意してください。
 
@@ -146,13 +168,7 @@ isCapsLockがfalseの場合
 
 現在の入力状況に対する残りのローマ字を返すプロパティです。
 
-## TODO
-
-* 入力済みのローマ字
-* 未完成の残りのテキスト
-* ローマ字予測変換の優先順位 カスタム
-
-## 元ネタ(前世)
+## 前世
 
 https://github.com/mogamoga1024/Typing
 
