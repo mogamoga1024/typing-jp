@@ -14,7 +14,7 @@ export function createCharChain(text) {
         let char = null;
         if (i !== text.length - 1) {
             const nextName = text[i + 1];
-            if (/^(ぁ|ぃ|ぅ|ぇ|ぉ|ゃ|ゅ|ょ|ァ|ィ|ゥ|ェ|ォ|ャ|ュ|ョ)$/.test(nextName)) {
+            if (/^(ぁ|ぃ|ぅ|ぇ|ぉ|ゃ|ゅ|ょ)$/.test(nextName)) {
                 tmpName = name + nextName;
             }
         }
