@@ -19,13 +19,9 @@ test("てすとですよん", function() {
 test("てすとですよん tes", function() {
     const typingText = new TypingText("てすとですよん");
 
-    const result1 = typingText.inputKey("t");
-    const result2 = typingText.inputKey("e");
-    const result3 = typingText.inputKey("s");
-
-    strictEqual(result1, TEXT_INCOMPLETE);
-    strictEqual(result2, TEXT_INCOMPLETE);
-    strictEqual(result3, TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("e"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("s"), TEXT_INCOMPLETE);
 
     strictEqual(typingText.roman, "tesutodesuyonn");
     strictEqual(typingText.completedRoman, "tes");
@@ -34,4 +30,38 @@ test("てすとですよん tes", function() {
     strictEqual(typingText.text, "てすとですよん");
     strictEqual(typingText.completedText, "て");
     strictEqual(typingText.remainingText, "すとですよん");
+});
+
+test("てすとですよん tesa", function() {
+    const typingText = new TypingText("てすとですよん");
+
+    strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("e"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("s"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("a"), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "tesutodesuyonn");
+    strictEqual(typingText.completedRoman, "tes");
+    strictEqual(typingText.remainingRoman, "utodesuyonn");
+
+    strictEqual(typingText.text, "てすとですよん");
+    strictEqual(typingText.completedText, "て");
+    strictEqual(typingText.remainingText, "すとですよん");
+});
+
+test("てすとですよん tesa", function() {
+    const typingText = new TypingText("てすとですよん");
+
+    for (const key of "tesutodesuyon") {
+        strictEqual(typingText.inputKey(key), TEXT_INCOMPLETE);
+    }
+    strictEqual(typingText.inputKey("n"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "tesutodesuyonn");
+    strictEqual(typingText.completedRoman, "tesutodesuyonn");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "てすとですよん");
+    strictEqual(typingText.completedText, "てすとですよん");
+    strictEqual(typingText.remainingText, "");
 });
