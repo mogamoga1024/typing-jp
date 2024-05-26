@@ -7,6 +7,16 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'cdn/typing-jp.js'
   },
+  devServer: {
+    static: {
+      directory: path.resolve(__dirname),
+      watch: {
+        ignored: ['**/.git'],
+      },
+    },
+    hot: true,
+    open: true,
+  },
   module: {
     rules: [
       {
@@ -17,5 +27,9 @@ module.exports = {
         }
       }
     ]
+  },
+  performance: {
+    maxEntrypointSize: 600_000,
+    maxAssetSize: 600_000,
   },
 };
