@@ -7,6 +7,16 @@ import { CHAR_UNMATCH, CHAR_INCOMPLETE, CHAR_COMPLETE } from "./constants/char_s
 import { TEXT_UNMATCH, TEXT_INCOMPLETE, TEXT_COMPLETE } from "./constants/text_status.js";
 
 export class TypingText {
+    #text = "";
+    get text() {
+        return this.#text;
+    }
+
+    #roman = "";
+    get roman() {
+        return this.#roman;
+    }
+
     #remainingRoman = "";
     get remainingRoman() {
         return this.#remainingRoman;
@@ -17,11 +27,11 @@ export class TypingText {
         if (tmpText === "") {
             throw new EmptyTextError();
         }
-        
+
         // カタカタをひらがなに変換する
-        const text = moji(tmpText).convert("HK", "ZK").convert("KK", "HG").toString();
+        this.#text = moji(tmpText).convert("HK", "ZK").convert("KK", "HG").toString();
         
-        this.char = createCharChain(text);
+        this.char = createCharChain(this.#text);
         this.#remainingRoman = "";
 
         let tmpChar = this.char;
@@ -29,6 +39,7 @@ export class TypingText {
             this.#remainingRoman += tmpChar.expectRoman();
             tmpChar = tmpChar.nextChar;
         }
+        this.#roman = this.#remainingRoman;
     }
 
     static isValidInputKey(key) {
