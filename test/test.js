@@ -49,7 +49,7 @@ test("てすとですよん tesa", function() {
     strictEqual(typingText.remainingText, "すとですよん");
 });
 
-test("てすとですよん tesa", function() {
+test("てすとですよん tesutodesuyon", function() {
     const typingText = new TypingText("てすとですよん");
 
     for (const key of "tesutodesuyon") {
@@ -64,4 +64,28 @@ test("てすとですよん tesa", function() {
     strictEqual(typingText.text, "てすとですよん");
     strictEqual(typingText.completedText, "てすとですよん");
     strictEqual(typingText.remainingText, "");
+});
+
+test("テストデスヨン", function() {
+    const typingText = new TypingText("テストデスヨン");
+
+    strictEqual(typingText.roman, "tesutodesuyonn");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "tesutodesuyonn");
+
+    strictEqual(typingText.text, "てすとですよん");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "てすとですよん");
+});
+
+test("ﾃｽﾄﾃﾞｽﾖﾝ", function() {
+    const typingText = new TypingText("ﾃｽﾄﾃﾞｽﾖﾝ");
+
+    strictEqual(typingText.roman, "tesutodesuyonn");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "tesutodesuyonn");
+
+    strictEqual(typingText.text, "てすとですよん");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "てすとですよん");
 });
