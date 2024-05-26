@@ -164,6 +164,26 @@ isCapsLockがfalseの場合
 
 意味わかんねーよ。的な方はfalse(デフォルト値)にしておけば何ら問題ありません。
 
+### text
+
+todo
+
+### completedText
+
+todo
+
+### remainingText
+
+todo
+
+### roman
+
+todo
+
+### completedRoman
+
+todo
+
 ### remainingRoman
 
 現在の入力状況に対する残りのローマ字を返すプロパティです。
