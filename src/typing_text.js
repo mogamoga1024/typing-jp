@@ -12,6 +12,15 @@ export class TypingText {
         return this.#text;
     }
 
+    #completedText = "";
+    get completedText() {
+        return this.#completedText;
+    }
+
+    get remainingText() {
+        return this.text.substring(this.#completedText.length);
+    }
+
     #roman = "";
     get roman() {
         return this.#roman;
@@ -68,6 +77,7 @@ export class TypingText {
                 this.#updateExpectRoman(oldCharExpectRomanLength);
                 return TEXT_INCOMPLETE;
             case CHAR_COMPLETE:
+                this.#completedText += this.char.name;
                 this.#completedRoman += key;
                 const preChar = this.char;
                 this.char = this.char.nextChar;
