@@ -16,7 +16,7 @@ test("てすとですよん", function() {
     strictEqual(typingText.remainingText, "てすとですよん");
 });
 
-test("てすとですよん tes", function() {
+test("てすとですよん tesutodesuyonn", function() {
     const typingText = new TypingText("てすとですよん");
 
     strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
