@@ -8,7 +8,7 @@ export class CharJpXtu extends CharJp {
     }
 
     expectRoman() {
-        if (this.nextChar === null) {
+        if (this.nextChar === null || this.nextChar.name === "っ") {
             return super.expectRoman();
         }
         if (this.nextExpectRomanIndex > 0) {
