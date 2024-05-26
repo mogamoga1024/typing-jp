@@ -19,15 +19,18 @@ export function createCharChain(text) {
             }
         }
 
+        console.log(name);
+        console.log(tmpName);
+
         if (tmpName === null) {
             char = createChar(name);
         }
         else {
-            char = createChar(tmpName);
-            if (char !== null) {
+            try {
+                char = createChar(tmpName);
                 i++;
             }
-            else {
+            catch (e) {
                 char = createChar(name);
             }
         }
