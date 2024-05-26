@@ -17,6 +17,11 @@ export class TypingText {
         return this.#roman;
     }
 
+    #completedRoman = "";
+    get completedRoman() {
+        return this.#completedRoman;
+    }
+
     #remainingRoman = "";
     get remainingRoman() {
         return this.#remainingRoman;
@@ -59,14 +64,17 @@ export class TypingText {
         switch (result) {
             case CHAR_UNMATCH: return TEXT_UNMATCH;
             case CHAR_INCOMPLETE:
+                this.#completedRoman += key;
                 this.#updateExpectRoman(oldCharExpectRomanLength);
                 return TEXT_INCOMPLETE;
             case CHAR_COMPLETE:
+                this.#completedRoman += key;
                 const preChar = this.char;
                 this.char = this.char.nextChar;
                 this.#updateExpectRoman(oldCharExpectRomanLength, preChar);
                 return this.#remainingRoman === "" ? TEXT_COMPLETE : TEXT_INCOMPLETE;
             default:
+                this.#completedRoman += key;
                 const oldChar = this.char;
                 this.char = result;
                 this.#updateExpectRoman(oldChar);
