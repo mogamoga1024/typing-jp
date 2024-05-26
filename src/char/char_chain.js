@@ -19,9 +19,6 @@ export function createCharChain(text) {
             }
         }
 
-        console.log(name);
-        console.log(tmpName);
-
         if (tmpName === null) {
             char = createChar(name);
         }
