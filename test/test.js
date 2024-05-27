@@ -213,6 +213,21 @@ test("しゃ sixya", () => {
     strictEqual(typingText.remainingText, "");
 });
 
+test("んｘ nx", () => {
+    const typingText = new TypingText("んｘ");
+
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("x"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "nx");
+    strictEqual(typingText.completedRoman, "nx");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "んｘ");
+    strictEqual(typingText.completedText, "んｘ");
+    strictEqual(typingText.remainingText, "");
+});
+
 test("しゃシゃシャｼｬしャ syashasixyashixyacixya", () => {
     const typingText = new TypingText("しゃシゃシャｼｬしャ");
 

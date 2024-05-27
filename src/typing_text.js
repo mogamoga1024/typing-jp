@@ -72,13 +72,17 @@ export class TypingText {
         const oldCharExpectRomanLength = this.char.expectRoman().length;
         const result = this.char.inputRoman(key, isCapsLock);
 
+        console.log(key);
+
         switch (result) {
             case CHAR_UNMATCH: return TEXT_UNMATCH;
             case CHAR_INCOMPLETE:
+                console.log("CHAR_INCOMPLETE");
                 this.#completedRoman += key;
                 this.#updateExpectRoman(oldCharExpectRomanLength);
                 return TEXT_INCOMPLETE;
             case CHAR_PARTIALLY_COMPLETE: {
+                console.log("CHAR_PARTIALLY_COMPLETE");
                 this.#wasCharPartiallyComplete = true;
                 this.#completedRoman += key;
                 const preChar = this.char;
@@ -87,6 +91,7 @@ export class TypingText {
                 return TEXT_INCOMPLETE;
             }
             case CHAR_COMPLETE: {
+                console.log("CHAR_COMPLETE");
                 if (this.#wasCharPartiallyComplete) {
                     this.#completedText += "っ";
                     this.#wasCharPartiallyComplete = false;
@@ -99,6 +104,9 @@ export class TypingText {
                 return this.#remainingRoman === "" ? TEXT_COMPLETE : TEXT_INCOMPLETE;
             }
             default:
+                console.log("default");
+                console.log(this.char);
+                console.log(result);
                 this.#completedRoman += key;
                 const oldChar = this.char;
                 this.char = result;
