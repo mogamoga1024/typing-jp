@@ -174,3 +174,15 @@ test("EmptyTextError ignoreSpace=true", () => {
         EmptyTextError
     );
 });
+
+test("CharCreationError", () => {
+    throws(() => {
+            new TypingText("あい竹輪うえお");
+        },
+        CharCreationError
+    );
+});
+
+
+
+
