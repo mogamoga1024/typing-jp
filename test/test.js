@@ -183,6 +183,20 @@ test("CharCreationError", () => {
     );
 });
 
+test("NoRemainingInputError", () => {
+    const typingText = new TypingText("てすとですよん");
+    for (const key of "tesutodesuyonn") {
+        typingText.inputKey(key);
+    }
+
+    throws(() => {
+            typingText.inputKey("n")
+        },
+        NoRemainingInputError
+    );
+});
+
+
 
 
 
