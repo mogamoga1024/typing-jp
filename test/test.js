@@ -90,6 +90,70 @@ test("ﾃｽﾄﾃﾞｽﾖﾝ", () => {
     strictEqual(typingText.remainingText, "てすとですよん");
 });
 
+test("て すとですよん 'tes' 半スペ", () => {
+    const typingText = new TypingText("て すとですよん", false);
+
+    strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("e"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("s"), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "te sutodesuyonn");
+    strictEqual(typingText.completedRoman, "te");
+    strictEqual(typingText.remainingRoman, " sutodesuyonn");
+
+    strictEqual(typingText.text, "て すとですよん");
+    strictEqual(typingText.completedText, "て");
+    strictEqual(typingText.remainingText, " すとですよん");
+});
+
+test("て すとですよん 'te ' 半スペ", () => {
+    const typingText = new TypingText("て すとですよん", false);
+
+    strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("e"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey(" "), TEXT_INCOMPLETE);
+
+    strictEqual(typingText.roman, "te sutodesuyonn");
+    strictEqual(typingText.completedRoman, "te ");
+    strictEqual(typingText.remainingRoman, "sutodesuyonn");
+
+    strictEqual(typingText.text, "て すとですよん");
+    strictEqual(typingText.completedText, "て ");
+    strictEqual(typingText.remainingText, "すとですよん");
+});
+
+test("て　すとですよん 'tes' 全スペ", () => {
+    const typingText = new TypingText("て　すとですよん", false);
+
+    strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("e"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("s"), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "te sutodesuyonn");
+    strictEqual(typingText.completedRoman, "te");
+    strictEqual(typingText.remainingRoman, " sutodesuyonn");
+
+    strictEqual(typingText.text, "て　すとですよん");
+    strictEqual(typingText.completedText, "て");
+    strictEqual(typingText.remainingText, "　すとですよん");
+});
+
+test("て　すとですよん 'te ' 全スペ", () => {
+    const typingText = new TypingText("て　すとですよん", false);
+
+    strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("e"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey(" "), TEXT_INCOMPLETE);
+
+    strictEqual(typingText.roman, "te sutodesuyonn");
+    strictEqual(typingText.completedRoman, "te ");
+    strictEqual(typingText.remainingRoman, "sutodesuyonn");
+
+    strictEqual(typingText.text, "て　すとですよん");
+    strictEqual(typingText.completedText, "て　");
+    strictEqual(typingText.remainingText, "すとですよん");
+});
+
 test("EmptyTextError ignoreSpace=false", () => {
     throws(() => {
             new TypingText("");
