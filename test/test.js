@@ -196,6 +196,23 @@ test("NoRemainingInputError", () => {
     );
 });
 
+test("しゃシゃシャｼｬしャ syashasixyashixyacixya", () => {
+    const typingText = new TypingText("しゃシゃシャｼｬしャ");
+
+    for (const key of "syashasixyashixyacixy") {
+        strictEqual(typingText.inputKey(key), TEXT_INCOMPLETE);
+    }
+    strictEqual(typingText.inputKey("a"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "syasyasyasyasya");
+    strictEqual(typingText.completedRoman, "syashasixyashixyacixya");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "しゃしゃしゃしゃしゃ");
+    strictEqual(typingText.completedText, "しゃしゃしゃしゃしゃ");
+    strictEqual(typingText.remainingText, "");
+});
+
 
 
 
