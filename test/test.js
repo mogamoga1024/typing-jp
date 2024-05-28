@@ -295,6 +295,40 @@ test("あん ann", () => {
     strictEqual(typingText.remainingText, "");
 });
 
+test("はっ haxtu", () => {
+    const typingText = new TypingText("はっ");
+
+    strictEqual(typingText.inputKey("h"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("a"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("x"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("u"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "haxtu");
+    strictEqual(typingText.completedRoman, "haxtu");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "はっ");
+    strictEqual(typingText.completedText, "はっ");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("はっ hah", () => {
+    const typingText = new TypingText("はっ");
+
+    strictEqual(typingText.inputKey("h"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("a"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("h"), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "haxtu");
+    strictEqual(typingText.completedRoman, "ha");
+    strictEqual(typingText.remainingRoman, "xtu");
+
+    strictEqual(typingText.text, "はっ");
+    strictEqual(typingText.completedText, "は");
+    strictEqual(typingText.remainingText, "っ");
+});
+
 test("っちゃ ttya", () => {
     const typingText = new TypingText("っちゃ");
 
