@@ -96,9 +96,9 @@ export class TypingText {
                 // console.log(this.char);
 
                 if (this.char.name === "ん") {
+                    this.#completedText += "ん";
                     for (const expectRoman of this.char.expectRomanArray) {
                         if (key !== expectRoman.at(-1)) {
-                            this.#completedText += "ん";
                             this.#completedText += this.char.nextChar.name;
                             break;
                         }
