@@ -105,8 +105,9 @@ export class TypingText {
                     }
                 }
                 else if (this.#wasCharPartiallyComplete) {
-                    this.#completedText += "っ";
                     this.#wasCharPartiallyComplete = false;
+                    this.#completedText += "っ";
+                    this.#completedText += this.char.name;
                 }
                 else {
                     this.#completedText += this.char.name;
