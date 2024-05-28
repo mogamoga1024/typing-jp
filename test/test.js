@@ -154,6 +154,23 @@ test("て　すとですよん 'te ' 全スペ", () => {
     strictEqual(typingText.remainingText, "すとですよん");
 });
 
+test("わんだほーい wandaho-i", () => {
+    const typingText = new TypingText("わんだほーい");
+
+    for (const key of "wandaho-") {
+        strictEqual(typingText.inputKey(key), TEXT_INCOMPLETE);
+    }
+    strictEqual(typingText.inputKey("i"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "wandaho-i");
+    strictEqual(typingText.completedRoman, "wandaho-i");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "わんだほーい");
+    strictEqual(typingText.completedText, "わんだほーい");
+    strictEqual(typingText.remainingText, "");
+});
+
 test("EmptyTextError ignoreSpace=false", () => {
     throws(() => {
             new TypingText("");
