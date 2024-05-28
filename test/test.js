@@ -329,6 +329,22 @@ test("はっ hah", () => {
     strictEqual(typingText.remainingText, "っ");
 });
 
+test("っちゃ tty", () => {
+    const typingText = new TypingText("っちゃ");
+
+    strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("y"), TEXT_INCOMPLETE);
+
+    strictEqual(typingText.roman, "ttya");
+    strictEqual(typingText.completedRoman, "tty");
+    strictEqual(typingText.remainingRoman, "a");
+
+    strictEqual(typingText.text, "っちゃ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "っちゃ");
+});
+
 test("っちゃ ttya", () => {
     const typingText = new TypingText("っちゃ");
 
