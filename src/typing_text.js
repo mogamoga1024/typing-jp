@@ -105,7 +105,13 @@ export class TypingText {
             }
             default:
                 console.log("default");
-                this.#completedText += this.char.name.slice(0, -result.name.length);
+                console.log(this.char.name);
+                console.log(result.name);
+
+                if (this.char.name.endsWith(result.name)) {
+                    this.#completedText += this.char.name.slice(0, -result.name.length);
+                }
+                
                 this.#completedRoman += key;
                 const oldChar = this.char;
                 this.char = result;
