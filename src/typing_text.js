@@ -108,7 +108,7 @@ export class TypingText {
                 console.log(this.char.name);
                 console.log(result.name);
 
-                if (this.char.name.endsWith(result.name)) {
+                if (result !== this.char.divisionCharChain) {
                     this.#completedText += this.char.name.slice(0, -result.name.length);
                 }
                 
