@@ -427,7 +427,36 @@ test("しゃシゃシャｼｬしャ syashasixyashixyacixya", () => {
     strictEqual(typingText.remainingText, "");
 });
 
+test("っん xtuxn", () => {
+    const typingText = new TypingText("っん");
 
+    strictEqual(typingText.inputKey("x"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("u"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("x"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("n"), TEXT_COMPLETE);
 
+    strictEqual(typingText.roman, "xtunn");
+    strictEqual(typingText.completedRoman, "xtuxn");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "っん");
+    strictEqual(typingText.completedText, "っん");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("っん n", () => {
+    const typingText = new TypingText("っん");
+
+    strictEqual(typingText.inputKey("n"), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "xtunn");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "xtunn");
+
+    strictEqual(typingText.text, "っん");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "っん");
+});
 
 
