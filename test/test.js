@@ -171,6 +171,37 @@ test("わんだほーい！ wandaho-i!", () => {
     strictEqual(typingText.remainingText, "");
 });
 
+test("わんだほーい！ W", () => {
+    const typingText = new TypingText("わんだほーい！");
+
+    strictEqual(typingText.inputKey("W", false), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "wandaho-i!");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "wandaho-i!");
+
+    strictEqual(typingText.text, "わんだほーい！");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "わんだほーい！");
+});
+
+test("わんだほーい！ WANDAHO-I! CapsLock", () => {
+    const typingText = new TypingText("わんだほーい！");
+
+    for (const key of "WANDAHO-I") {
+        strictEqual(typingText.inputKey(key, true), TEXT_INCOMPLETE);
+    }
+    strictEqual(typingText.inputKey("!", true), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "wandaho-i!");
+    strictEqual(typingText.completedRoman, "WANDAHO-I!");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "わんだほーい！");
+    strictEqual(typingText.completedText, "わんだほーい！");
+    strictEqual(typingText.remainingText, "");
+});
+
 test("EmptyTextError ignoreSpace=false", () => {
     throws(() => {
             new TypingText("");
