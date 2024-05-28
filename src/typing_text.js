@@ -93,7 +93,7 @@ export class TypingText {
             case CHAR_COMPLETE: {
                 console.log("CHAR_COMPLETE");
 
-                console.log(this.char);
+                // console.log(this.char);
 
                 if (this.char.name === "ん") {
                     for (const expectRoman of this.char.expectRomanArray) {
@@ -122,6 +122,14 @@ export class TypingText {
                 console.log(this.char.name);
                 console.log(result.name);
 
+                if (this.char.name === "ん") {
+                    for (const expectRoman of this.char.expectRomanArray) {
+                        if (key !== expectRoman.at(-1)) {
+                            this.#completedText += "ん";
+                            break;
+                        }
+                    }
+                }
                 if (result !== this.char.divisionCharChain) {
                     this.#completedText += this.char.name.slice(0, -result.name.length);
                 }
