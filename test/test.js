@@ -345,6 +345,23 @@ test("っちゃ tty", () => {
     strictEqual(typingText.remainingText, "っちゃ");
 });
 
+test("しゅっちょう syuttyou", () => {
+    const typingText = new TypingText("しゅっちょう");
+
+    for (const key of "syuxtutixyo") {
+        strictEqual(typingText.inputKey(key), TEXT_INCOMPLETE);
+    }
+    strictEqual(typingText.inputKey("u"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "syuttyou");
+    strictEqual(typingText.completedRoman, "syuxtutixyou");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "しゅっちょう");
+    strictEqual(typingText.completedText, "しゅっちょう");
+    strictEqual(typingText.remainingText, "");
+});
+
 test("っちゃ ttya", () => {
     const typingText = new TypingText("っちゃ");
 
