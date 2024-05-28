@@ -92,11 +92,25 @@ export class TypingText {
             }
             case CHAR_COMPLETE: {
                 console.log("CHAR_COMPLETE");
-                if (this.#wasCharPartiallyComplete) {
+
+                console.log(this.char);
+
+                if (this.char.name === "ん") {
+                    for (const expectRoman of this.char.expectRomanArray) {
+                        if (key !== expectRoman.at(-1)) {
+                            this.#completedText += "ん";
+                            this.#completedText += this.char.nextChar.name;
+                            break;
+                        }
+                    }
+                }
+                else if (this.#wasCharPartiallyComplete) {
                     this.#completedText += "っ";
                     this.#wasCharPartiallyComplete = false;
                 }
-                this.#completedText += this.char.name;
+                else {
+                    this.#completedText += this.char.name;
+                }
                 this.#completedRoman += key;
                 const preChar = this.char;
                 this.char = this.char.nextChar;
