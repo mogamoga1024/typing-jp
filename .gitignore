@@ -1,6 +1,5 @@
 /develop
 /*.txt
 /node_modules
-/*.bat
 /dist/develop
 /webpack.config.dev.js
