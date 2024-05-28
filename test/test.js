@@ -279,6 +279,22 @@ test("あんこ anko", () => {
     strictEqual(typingText.remainingText, "");
 });
 
+test("あん ann", () => {
+    const typingText = new TypingText("あん");
+
+    strictEqual(typingText.inputKey("a"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("n"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "ann");
+    strictEqual(typingText.completedRoman, "ann");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "あん");
+    strictEqual(typingText.completedText, "あん");
+    strictEqual(typingText.remainingText, "");
+});
+
 test("っちゃ ttya", () => {
     const typingText = new TypingText("っちゃ");
 
