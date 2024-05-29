@@ -459,4 +459,39 @@ test("っん n", () => {
     strictEqual(typingText.remainingText, "っん");
 });
 
+test("っあ xtua", () => {
+    const typingText = new TypingText("っあ");
+
+    strictEqual(typingText.inputKey("x"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("u"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("a"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "xtua");
+    strictEqual(typingText.completedRoman, "xtua");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "っあ");
+    strictEqual(typingText.completedText, "っあ");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("っあ a", () => {
+    const typingText = new TypingText("っあ");
+
+    strictEqual(typingText.inputKey("a"), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "xtua");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "xtua");
+
+    strictEqual(typingText.text, "っあ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "っあ");
+});
+
+
+
+
+
 
