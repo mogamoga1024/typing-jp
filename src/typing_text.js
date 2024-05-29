@@ -47,6 +47,8 @@ export class TypingText {
         // カタカタをひらがなに変換する
         this.#text = moji(tmpText).convert("HK", "ZK").convert("KK", "HG").toString();
         
+        // console.log(this.#text);
+
         this.char = createCharChain(this.#text);
         this.#remainingRoman = "";
 
@@ -74,18 +76,23 @@ export class TypingText {
 
         switch (result) {
             case CHAR_UNMATCH: return TEXT_UNMATCH;
+
             case CHAR_INCOMPLETE:
                 this.#completedRoman += key;
                 this.#updateExpectRoman(oldCharExpectRomanLength);
+                // console.log("CHAR_INCOMPLETE", key, this.#remainingRoman);
                 return TEXT_INCOMPLETE;
+            
             case CHAR_PARTIALLY_COMPLETE: {
                 this.#wasCharPartiallyComplete = true;
                 this.#completedRoman += key;
                 const preChar = this.char;
                 this.char = this.char.nextChar;
                 this.#updateExpectRoman(oldCharExpectRomanLength, preChar);
+                // console.log("CHAR_PARTIALLY_COMPLETE", key, this.#remainingRoman);
                 return TEXT_INCOMPLETE;
             }
+
             case CHAR_COMPLETE: {
                 if (this.char.name === "ん") {
                     this.#completedText += "ん";
@@ -108,8 +115,10 @@ export class TypingText {
                 const preChar = this.char;
                 this.char = this.char.nextChar;
                 this.#updateExpectRoman(oldCharExpectRomanLength, preChar);
+                // console.log("CHAR_COMPLETE", key, this.#remainingRoman);
                 return this.#remainingRoman === "" ? TEXT_COMPLETE : TEXT_INCOMPLETE;
             }
+
             default:
                 if (this.char.name === "ん") {
                     for (const expectRoman of this.char.expectRomanArray) {

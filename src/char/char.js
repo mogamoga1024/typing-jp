@@ -35,6 +35,9 @@ export class Char {
     }
 
     inputThisCharRoman(roman) {
+        // if (this.name !== "っ") {
+        //     console.log(this.expectRomanArray, this.nextExpectRomanIndex);
+        // }
         const tmpExpectRomanArray = this.expectRomanArray.filter(
             expectRoman => roman === expectRoman[this.nextExpectRomanIndex]
         );
