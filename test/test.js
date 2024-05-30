@@ -389,7 +389,7 @@ test("っちゃ ttixya", () => {
     strictEqual(typingText.remainingRoman, "");
 
     strictEqual(typingText.text, "っちゃ");
-    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.completedText, "っちゃ");
     strictEqual(typingText.remainingText, "");
 });
 
