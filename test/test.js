@@ -606,6 +606,23 @@ test("っな xtuna", () => {
     strictEqual(typingText.remainingText, "");
 });
 
+test("っゃ xxya", () => {
+    const typingText = new TypingText("っゃ");
+
+    strictEqual(typingText.inputKey("x"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("x"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("y"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("a"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "xxya");
+    strictEqual(typingText.completedRoman, "xxya");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "っゃ");
+    strictEqual(typingText.completedText, "っゃ");
+    strictEqual(typingText.remainingText, "");
+});
+
 test("っゃ llya", () => {
     const typingText = new TypingText("っゃ");
 
