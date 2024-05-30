@@ -11,17 +11,28 @@ export class CharJpXtu extends CharJp {
         if (this.nextChar === null || this.nextChar.name === "っ") {
             return super.expectRoman();
         }
-        if (this.nextExpectRomanIndex > 0) {
-            return this.expectRomanArray[0];
-        }
         if (/^[a-zA-Z]$/.test(this.nextChar.name)) {
             return super.expectRoman();
         }
         const nextCharFirstRoman = this.nextChar.expectRoman()[0];
-        if (this.regex.test(nextCharFirstRoman)) {
-            return nextCharFirstRoman;
+        // MEMO：何故これで正常に動くのか分からん…
+        if (nextCharFirstRoman === "x" || nextCharFirstRoman === "l") {
+            if (this.regex.test(nextCharFirstRoman)) {
+                return nextCharFirstRoman;
+            }
+            if (this.nextExpectRomanIndex > 0) {
+                return this.expectRomanArray[0];
+            }
         }
-    
+        else {
+            if (this.nextExpectRomanIndex > 0) {
+                return this.expectRomanArray[0];
+            }
+            if (this.regex.test(nextCharFirstRoman)) {
+                return nextCharFirstRoman;
+            }
+        }
+        
         return super.expectRoman();
     }
     

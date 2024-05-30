@@ -81,7 +81,7 @@ export class TypingText {
                 this.#completedRoman += key;
                 this.#updateExpectRoman(oldCharExpectRomanLength);
                 // console.log("CHAR_INCOMPLETE", key, this.#completedText);
-                // console.log("CHAR_INCOMPLETE", key, this.#remainingRoman);
+                console.log("CHAR_INCOMPLETE", key, this.#remainingRoman);
                 return TEXT_INCOMPLETE;
             
             case CHAR_PARTIALLY_COMPLETE: {
@@ -91,7 +91,7 @@ export class TypingText {
                 this.char = this.char.nextChar;
                 this.#updateExpectRoman(oldCharExpectRomanLength, preChar);
                 // console.log("CHAR_PARTIALLY_COMPLETE", key, this.#completedText);
-                // console.log("CHAR_PARTIALLY_COMPLETE", key, this.#remainingRoman);
+                console.log("CHAR_PARTIALLY_COMPLETE", key, this.#remainingRoman);
                 return TEXT_INCOMPLETE;
             }
 
@@ -118,7 +118,7 @@ export class TypingText {
                 this.char = this.char.nextChar;
                 this.#updateExpectRoman(oldCharExpectRomanLength, preChar);
                 // console.log("CHAR_COMPLETE", key, this.#completedText);
-                // console.log("CHAR_COMPLETE", key, this.#remainingRoman);
+                console.log("CHAR_COMPLETE", key, this.#remainingRoman);
                 return this.#remainingRoman === "" ? TEXT_COMPLETE : TEXT_INCOMPLETE;
             }
 
@@ -144,7 +144,7 @@ export class TypingText {
                 this.char = result;
                 this.#updateExpectRoman(oldChar);
                 // console.log("default", key, this.#completedText);
-                // console.log("default", key, this.#remainingRoman);
+                console.log("default", key, this.#remainingRoman);
                 return TEXT_INCOMPLETE;
         }
     }
