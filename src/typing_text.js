@@ -80,6 +80,7 @@ export class TypingText {
             case CHAR_INCOMPLETE:
                 this.#completedRoman += key;
                 this.#updateExpectRoman(oldCharExpectRomanLength);
+                console.log("CHAR_INCOMPLETE", key, this.#completedText);
                 // console.log("CHAR_INCOMPLETE", key, this.#remainingRoman);
                 return TEXT_INCOMPLETE;
             
@@ -89,6 +90,7 @@ export class TypingText {
                 const preChar = this.char;
                 this.char = this.char.nextChar;
                 this.#updateExpectRoman(oldCharExpectRomanLength, preChar);
+                console.log("CHAR_PARTIALLY_COMPLETE", key, this.#completedText);
                 // console.log("CHAR_PARTIALLY_COMPLETE", key, this.#remainingRoman);
                 return TEXT_INCOMPLETE;
             }
@@ -115,6 +117,7 @@ export class TypingText {
                 const preChar = this.char;
                 this.char = this.char.nextChar;
                 this.#updateExpectRoman(oldCharExpectRomanLength, preChar);
+                console.log("CHAR_COMPLETE", key, this.#completedText);
                 // console.log("CHAR_COMPLETE", key, this.#remainingRoman);
                 return this.#remainingRoman === "" ? TEXT_COMPLETE : TEXT_INCOMPLETE;
             }
@@ -128,6 +131,10 @@ export class TypingText {
                         }
                     }
                 }
+                else if (this.#wasCharPartiallyComplete) {
+                    this.#wasCharPartiallyComplete = false;
+                    this.#completedText += "っ";
+                }
                 if (result !== this.char.divisionCharChain) {
                     this.#completedText += this.char.name.slice(0, -result.name.length);
                 }
@@ -136,6 +143,7 @@ export class TypingText {
                 const oldChar = this.char;
                 this.char = result;
                 this.#updateExpectRoman(oldChar);
+                console.log("default", key, this.#completedText);
                 return TEXT_INCOMPLETE;
         }
     }
