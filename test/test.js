@@ -376,6 +376,23 @@ test("っちゃ tty", () => {
     strictEqual(typingText.remainingText, "っちゃ");
 });
 
+test("っちゃ ttixya", () => {
+    const typingText = new TypingText("っちゃ");
+
+    for (const key of "ttixy") {
+        strictEqual(typingText.inputKey(key), TEXT_INCOMPLETE);
+    }
+    strictEqual(typingText.inputKey("a"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "ttya");
+    strictEqual(typingText.completedRoman, "ttixya");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "っちゃ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "");
+});
+
 test("しゅっちょう syuttyou", () => {
     const typingText = new TypingText("しゅっちょう");
 
@@ -407,6 +424,25 @@ test("っちゃ ttya", () => {
 
     strictEqual(typingText.text, "っちゃ");
     strictEqual(typingText.completedText, "っちゃ");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("まっちゃ mattya", () => {
+    const typingText = new TypingText("まっちゃ");
+
+    strictEqual(typingText.inputKey("m"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("a"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("y"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("a"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "mattya");
+    strictEqual(typingText.completedRoman, "mattya");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "まっちゃ");
+    strictEqual(typingText.completedText, "まっちゃ");
     strictEqual(typingText.remainingText, "");
 });
 
@@ -497,13 +533,13 @@ test("っぅ xxu", () => {
     strictEqual(typingText.inputKey("x"), TEXT_INCOMPLETE);
     strictEqual(typingText.inputKey("u"), TEXT_COMPLETE);
 
-    // strictEqual(typingText.roman, "xxu");
-    // strictEqual(typingText.completedRoman, "xxu");
-    // strictEqual(typingText.remainingRoman, "");
+    strictEqual(typingText.roman, "xxu");
+    strictEqual(typingText.completedRoman, "xxu");
+    strictEqual(typingText.remainingRoman, "");
 
-    // strictEqual(typingText.text, "っぅ");
-    // strictEqual(typingText.completedText, "っぅ");
-    // strictEqual(typingText.remainingText, "");
+    strictEqual(typingText.text, "っぅ");
+    strictEqual(typingText.completedText, "っぅ");
+    strictEqual(typingText.remainingText, "");
 });
 
 test("った tta", () => {
@@ -549,6 +585,41 @@ test("っった tt", () => {
 
     strictEqual(typingText.text, "っった");
     strictEqual(typingText.completedText, "っった");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("っな xtuna", () => {
+    const typingText = new TypingText("っな");
+
+    strictEqual(typingText.inputKey("x"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("u"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("a"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "xtuna");
+    strictEqual(typingText.completedRoman, "xtuna");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "っな");
+    strictEqual(typingText.completedText, "っな");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("っゃ llya", () => {
+    const typingText = new TypingText("っゃ");
+
+    strictEqual(typingText.inputKey("l"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("l"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("y"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("a"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "xxya");
+    strictEqual(typingText.completedRoman, "llya");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "っゃ");
+    strictEqual(typingText.completedText, "っゃ");
     strictEqual(typingText.remainingText, "");
 });
 
