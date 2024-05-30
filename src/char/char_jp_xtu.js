@@ -41,6 +41,10 @@ export class CharJpXtu extends CharJp {
         if (this.nextChar == null) {
             return CHAR_UNMATCH;
         }
+
+        if (this.nextChar.name === "っ") {
+            return CHAR_UNMATCH;
+        }
         
         if (!this.regex.test(roman)) {
             return CHAR_UNMATCH;

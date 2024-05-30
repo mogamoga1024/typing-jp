@@ -549,13 +549,13 @@ test("った tta", () => {
     strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
     strictEqual(typingText.inputKey("a"), TEXT_COMPLETE);
 
-    // strictEqual(typingText.roman, "tta");
-    // strictEqual(typingText.completedRoman, "tta");
-    // strictEqual(typingText.remainingRoman, "");
+    strictEqual(typingText.roman, "tta");
+    strictEqual(typingText.completedRoman, "tta");
+    strictEqual(typingText.remainingRoman, "");
 
-    // strictEqual(typingText.text, "った");
-    // strictEqual(typingText.completedText, "った");
-    // strictEqual(typingText.remainingText, "");
+    strictEqual(typingText.text, "った");
+    strictEqual(typingText.completedText, "った");
+    strictEqual(typingText.remainingText, "");
 });
 
 test("っつ ttu", () => {
@@ -565,13 +565,13 @@ test("っつ ttu", () => {
     strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
     strictEqual(typingText.inputKey("u"), TEXT_COMPLETE);
 
-    // strictEqual(typingText.roman, "ttu");
-    // strictEqual(typingText.completedRoman, "ttu");
-    // strictEqual(typingText.remainingRoman, "");
+    strictEqual(typingText.roman, "ttu");
+    strictEqual(typingText.completedRoman, "ttu");
+    strictEqual(typingText.remainingRoman, "");
 
-    // strictEqual(typingText.text, "っつ");
-    // strictEqual(typingText.completedText, "っつ");
-    // strictEqual(typingText.remainingText, "");
+    strictEqual(typingText.text, "っつ");
+    strictEqual(typingText.completedText, "っつ");
+    strictEqual(typingText.remainingText, "");
 });
 
 test("っった tt", () => {
@@ -580,12 +580,12 @@ test("っった tt", () => {
     strictEqual(typingText.inputKey("t"), TEXT_UNMATCH);
 
     strictEqual(typingText.roman, "xtutta");
-    strictEqual(typingText.completedRoman, "t");
-    strictEqual(typingText.remainingRoman, "tutta");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "xtutta");
 
     strictEqual(typingText.text, "っった");
-    strictEqual(typingText.completedText, "っった");
-    strictEqual(typingText.remainingText, "");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "っった");
 });
 
 test("っな xtuna", () => {
