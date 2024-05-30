@@ -17,12 +17,7 @@ export class CharJpXtu extends CharJp {
         const nextCharFirstRoman = this.nextChar.expectRoman()[0];
         // MEMO：何故これで正常に動くのか分からん…
         if (nextCharFirstRoman === "x" || nextCharFirstRoman === "l") {
-            if (this.regex.test(nextCharFirstRoman)) {
-                return nextCharFirstRoman;
-            }
-            if (this.nextExpectRomanIndex > 0) {
-                return this.expectRomanArray[0];
-            }
+            return nextCharFirstRoman;
         }
         else {
             if (this.nextExpectRomanIndex > 0) {
