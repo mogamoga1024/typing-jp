@@ -35,10 +35,9 @@ export class CharJpXtu extends CharJp {
         const roman = isCapsLock && this.ignoreCapsLock ? _roman.toLowerCase() : _roman;
         const result = super.inputRoman(roman);
 
-        // todo 「l」
-        const isBadXX = roman === "x" && result === CHAR_UNMATCH
+        const isBadXXorLL = result === CHAR_UNMATCH && (roman === "x" || roman === "l"); 
 
-        if (!isBadXX && this.nextExpectRomanIndex > 0) {
+        if (!isBadXXorLL && this.nextExpectRomanIndex > 0) {
             return result;
         }
 
@@ -63,7 +62,7 @@ export class CharJpXtu extends CharJp {
             return CHAR_UNMATCH;
         }
 
-        if (!isBadXX) {
+        if (!isBadXXorLL) {
             this.nextChar.nextExpectRomanIndex = 0;
         }
         
