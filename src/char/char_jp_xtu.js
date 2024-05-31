@@ -74,7 +74,6 @@ export class CharJpXtu extends CharJp {
         }
 
         if (this.#prevInputRoman === "x" || this.#prevInputRoman === "l") {
-            console.log(roman, this.#prevInputRoman);
             if (roman !== this.#prevInputRoman) {
                 return CHAR_UNMATCH;
             }
