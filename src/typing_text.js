@@ -150,6 +150,8 @@ export class TypingText {
     }
 
     #updateExpectRoman(param, preChar) {
+        // MEMO：複雑すぎる！！！！！！！！！！！
+
         switch (typeof(param)) {
             case "number":
                 const oldCharExpectRomanLength = param;
@@ -158,11 +160,17 @@ export class TypingText {
                 
                 if (oldCharExpectRomanLength === charExpectRoman.length) {
                     if (targetChar.name === "っ" && oldCharExpectRomanLength === 1) {
-                        const oldCharExpectRoman = createChar(this.char.name).expectRoman();
-                        const charExpectRoman = this.char.expectRoman();
-                        if (oldCharExpectRoman[0] !== charExpectRoman[0]) {
-                            this.#remainingRoman = charExpectRoman + this.#remainingRoman.slice(oldCharExpectRoman.length + 1);
+                        if (preChar === undefined && this.char.expectRomanArray[0][0] === "l") {
+                            this.#remainingRoman = "l" + this.#remainingRoman.slice(2);
                             return;
+                        }
+                        else {
+                            const oldCharExpectRoman = createChar(this.char.name).expectRoman();
+                            const charExpectRoman = this.char.expectRoman();
+                            if (oldCharExpectRoman[0] !== charExpectRoman[0]) {
+                                this.#remainingRoman = charExpectRoman + this.#remainingRoman.slice(oldCharExpectRoman.length + 1);
+                                return;
+                            }
                         }
                     }
                     this.#remainingRoman = this.#remainingRoman.slice(1);
