@@ -149,6 +149,8 @@ export class TypingText {
         }
     }
 
+    #isPrevSpecialL = false; // MEMO：うん… まあね… うん… 実装としてはアレだけどね…
+
     #updateExpectRoman(param, preChar) {
         // MEMO：複雑すぎる！！！！！！！！！！！
 
@@ -159,8 +161,9 @@ export class TypingText {
                 const charExpectRoman = targetChar.expectRoman();
                 
                 if (oldCharExpectRomanLength === charExpectRoman.length) {
-                    if (targetChar.name === "っ" && oldCharExpectRomanLength === 1) {
+                    if (targetChar.name === "っ" && oldCharExpectRomanLength === 1 && !this.#isPrevSpecialL) {
                         if (preChar === undefined && this.char.expectRomanArray[0][0] === "l") {
+                            this.#isPrevSpecialL = true;
                             this.#remainingRoman = "l" + this.#remainingRoman.slice(2);
                             return;
                         }
@@ -173,6 +176,7 @@ export class TypingText {
                             }
                         }
                     }
+                    this.#isPrevSpecialL = false;
                     this.#remainingRoman = this.#remainingRoman.slice(1);
                     return;
                 }
