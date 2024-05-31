@@ -2,6 +2,8 @@ import { CharJp } from "./char_jp.js";
 import { CHAR_UNMATCH, CHAR_COMPLETE, CHAR_PARTIALLY_COMPLETE } from "../constants/char_status.js";
 
 export class CharJpXtu extends CharJp {
+    #prevInputRoman = "";
+
     constructor() {
         super("っ", ["xtu", "xtsu", "ltu", "ltsu"]);
         this.regex = /^(?=[a-z])(?!(a|i|u|e|o|n)).$/;
@@ -37,6 +39,7 @@ export class CharJpXtu extends CharJp {
         const isBadXXorLL = result === CHAR_UNMATCH && (roman === "x" || roman === "l"); 
 
         if (!isBadXXorLL && this.nextExpectRomanIndex > 0) {
+            this.#prevInputRoman = roman;
             return result;
         }
 
@@ -68,6 +71,13 @@ export class CharJpXtu extends CharJp {
         if (this.nextChar.divisionCharChain !== null) {
             this.nextChar.divisionCharChain.inputRoman(roman);
             this.nextChar.divisionCharChain.nextExpectRomanIndex = 0;
+        }
+
+        if (this.#prevInputRoman === "x" || this.#prevInputRoman === "l") {
+            console.log(roman, this.#prevInputRoman);
+            if (roman !== this.#prevInputRoman) {
+                return CHAR_UNMATCH;
+            }
         }
 
         return CHAR_PARTIALLY_COMPLETE;

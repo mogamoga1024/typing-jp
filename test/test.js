@@ -671,6 +671,21 @@ test("っゃ lx", () => {
     strictEqual(typingText.remainingText, "っゃ");
 });
 
+test("っゃ xl", () => {
+    const typingText = new TypingText("っゃ");
+
+    strictEqual(typingText.inputKey("x"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("l"), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "xxya");
+    strictEqual(typingText.completedRoman, "x");
+    strictEqual(typingText.remainingRoman, "xya");
+
+    strictEqual(typingText.text, "っゃ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "っゃ");
+});
+
 test("っし cci", () => {
     const typingText = new TypingText("っし");
 
