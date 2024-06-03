@@ -702,3 +702,47 @@ test("っし cci", () => {
     strictEqual(typingText.remainingText, "");
 });
 
+test("っx xx", () => {
+    const typingText = new TypingText("っx");
+
+    strictEqual(typingText.inputKey("x"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("x"), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "xtux");
+    strictEqual(typingText.completedRoman, "x");
+    strictEqual(typingText.remainingRoman, "tux");
+
+    strictEqual(typingText.text, "っx");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "っx");
+});
+
+test("っl ll", () => {
+    const typingText = new TypingText("っx");
+
+    strictEqual(typingText.inputKey("l"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("l"), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "xtux");
+    strictEqual(typingText.completedRoman, "l");
+    strictEqual(typingText.remainingRoman, "tux");
+
+    strictEqual(typingText.text, "っx");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "っx");
+});
+
+test("っー -", () => {
+    const typingText = new TypingText("っー");
+
+    strictEqual(typingText.inputKey("-"), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "xtu-");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "xtu-");
+
+    strictEqual(typingText.text, "っー");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "っー");
+});
+
