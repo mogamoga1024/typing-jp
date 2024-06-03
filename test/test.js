@@ -746,3 +746,104 @@ test("っー -", () => {
     strictEqual(typingText.remainingText, "っー");
 });
 
+test("あっ axtu", () => {
+    const typingText = new TypingText("あっ");
+
+    strictEqual(typingText.inputKey("a"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("x"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("u"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "axtu");
+    strictEqual(typingText.completedRoman, "axtu");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "あっ");
+    strictEqual(typingText.completedText, "あっ");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("んっ nxtu", () => {
+    const typingText = new TypingText("んっ");
+
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("x"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("u"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "nxtu");
+    strictEqual(typingText.completedRoman, "nxtu");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "んっ");
+    strictEqual(typingText.completedText, "んっ");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("んっ nnltu", () => {
+    const typingText = new TypingText("んっ");
+
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("l"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("u"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "nxtu");
+    strictEqual(typingText.completedRoman, "nnltu");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "んっ");
+    strictEqual(typingText.completedText, "んっ");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("んー n-", () => {
+    const typingText = new TypingText("んー");
+
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("-"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "n-");
+    strictEqual(typingText.completedRoman, "n-");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "んー");
+    strictEqual(typingText.completedText, "んー");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("んん nnnn", () => {
+    const typingText = new TypingText("んん");
+
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("n"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "nnnn");
+    strictEqual(typingText.completedRoman, "nnnn");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "んん");
+    strictEqual(typingText.completedText, "んん");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("んにゃぴ nnnyapi", () => {
+    const typingText = new TypingText("んにゃぴ");
+
+    for (const key of "nnnyap") {
+        strictEqual(typingText.inputKey(key), TEXT_INCOMPLETE);
+    }
+    strictEqual(typingText.inputKey("i"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "nnnyapi");
+    strictEqual(typingText.completedRoman, "nnnyapi");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "んにゃぴ");
+    strictEqual(typingText.completedText, "んにゃぴ");
+    strictEqual(typingText.remainingText, "");
+});
+
