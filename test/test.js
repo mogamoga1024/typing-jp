@@ -16,7 +16,7 @@ test("てすとですよん", () => {
     strictEqual(typingText.remainingText, "てすとですよん");
 });
 
-test("てすとですよん tesutodesuyonn", () => {
+test("てすとですよん tes", () => {
     const typingText = new TypingText("てすとですよん");
 
     strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
@@ -49,7 +49,7 @@ test("てすとですよん tesa", () => {
     strictEqual(typingText.remainingText, "すとですよん");
 });
 
-test("てすとですよん tesutodesuyon", () => {
+test("てすとですよん tesutodesuyonn", () => {
     const typingText = new TypingText("てすとですよん");
 
     for (const key of "tesutodesuyon") {
