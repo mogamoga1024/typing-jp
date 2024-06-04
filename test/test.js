@@ -1060,3 +1060,18 @@ test("っゃ xtu", () => {
     strictEqual(typingText.completedText, "っ");
     strictEqual(typingText.remainingText, "ゃ");
 });
+
+test("っl ll", () => {
+    const typingText = new TypingText("っl");
+
+    strictEqual(typingText.inputKey("l"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("l"), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "xtul");
+    strictEqual(typingText.completedRoman, "l");
+    strictEqual(typingText.remainingRoman, "tul");
+
+    strictEqual(typingText.text, "っl");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "っl");
+});
