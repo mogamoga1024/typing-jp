@@ -1013,3 +1013,17 @@ test("っふゃ h", () => {
     strictEqual(typingText.completedText, "");
     strictEqual(typingText.remainingText, "っふゃ");
 });
+
+test("っふゃあ h", () => {
+    const typingText = new TypingText("っふゃあ");
+
+    strictEqual(typingText.inputKey("h"), TEXT_INCOMPLETE);
+
+    strictEqual(typingText.roman, "ffyaa");
+    strictEqual(typingText.completedRoman, "h");
+    strictEqual(typingText.remainingRoman, "hhuxyaa");
+
+    strictEqual(typingText.text, "っふゃあ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "っふゃあ");
+});
