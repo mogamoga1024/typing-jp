@@ -144,7 +144,7 @@ export class TypingText {
                 this.char = result;
                 this.#updateExpectRoman(oldChar);
                 // console.log("default", key, this.#completedText);
-                // console.log("default", key, this.#remainingRoman);
+                console.log("default", key, this.#remainingRoman);
                 return TEXT_INCOMPLETE;
         }
     }
@@ -208,6 +208,11 @@ export class TypingText {
                     oldChar.expectRoman().length - oldChar.nextExpectRomanIndex
                 );
                 let tmpChar = this.char;
+                // window.tmpChar = tmpChar;
+                // throw new Error("debug")
+
+                // todo 入力が完了しているかどうかで分岐 今は完了しているときしかない
+
                 while (true) {
                     tmpRemainExpectRoman1 += tmpChar.expectRoman();
                     if (tmpChar.nextChar === oldChar.nextChar) break;
