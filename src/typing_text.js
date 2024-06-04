@@ -143,7 +143,7 @@ export class TypingText {
                 const oldChar = this.char;
                 this.char = result;
                 this.#updateExpectRoman(oldChar);
-                // console.log("default", key, this.#completedText);
+                console.log("default", key, this.#completedText);
                 // console.log("default", key, this.#remainingRoman);
                 return TEXT_INCOMPLETE;
         }
