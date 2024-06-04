@@ -1,14 +1,15 @@
 
-const domText = document.querySelector("#text");
+const domText1 = document.querySelector("#text1");
+const domText2 = document.querySelector("#text2");
 const domRoman1 = document.querySelector("#roman1");
 const domRoman2 = document.querySelector("#roman2");
 
 let originalText = createRandomOriginalText();
-let typingText = new TypingText(originalText);
+typingText = new TypingText(originalText);
 console.log("----------");
 console.log(originalText);
 
-domText.innerText = originalText;
+domText2.innerText = typingText.remainingText;
 domRoman2.innerText = typingText.remainingRoman;
 
 window.onkeydown = function(e) {
@@ -34,7 +35,9 @@ window.onkeydown = function(e) {
 
         // 一致しているが文章が未完成の場合
         case "incomplete":
-            domRoman1.innerText += e.key;
+            domText1.innerText = typingText.completedText;
+            domText2.innerText = typingText.remainingText;
+            domRoman1.innerText = typingText.completedRoman;
             domRoman2.innerText = typingText.remainingRoman;
             return;
 
@@ -46,7 +49,8 @@ window.onkeydown = function(e) {
             console.log("----------");
             console.log(originalText);
         
-            domText.innerText = originalText;
+            domText1.innerText = "";
+            domText2.innerText = typingText.remainingText;
             domRoman1.innerText = "";
             domRoman2.innerText = typingText.remainingRoman;
 
