@@ -113,7 +113,7 @@ function createRandomOriginalText() {
         charList.push(char);
     }
 
-    if (maxCharCount > 1 && random(1, 18) === 1) {
+    if (maxCharCount > 1 && random(1, 10) === 1) {
         if (random(0, 1) === 0) {
             charList[0] = "っ";
         }
