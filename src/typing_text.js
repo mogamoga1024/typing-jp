@@ -153,7 +153,12 @@ export class TypingText {
     }
 
     #updateExpectRoman() {
-        this.#remainingRoman = this.char.expectRoman().slice(this.char.nextExpectRomanIndex)
+        if (this.char === null) {
+            this.#remainingRoman = "";
+            return;
+        }
+
+        this.#remainingRoman = this.char.expectRoman().slice(this.char.nextExpectRomanIndex);
         let tmpChar = this.char.nextChar;
         while (tmpChar !== null) {
             this.#remainingRoman += tmpChar.expectRoman();
