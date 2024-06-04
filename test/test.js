@@ -1007,7 +1007,7 @@ test("っふゃ h", () => {
 
     strictEqual(typingText.roman, "ffya");
     strictEqual(typingText.completedRoman, "h");
-    strictEqual(typingText.remainingRoman, "hhuxya");
+    strictEqual(typingText.remainingRoman, "huxya");
 
     strictEqual(typingText.text, "っふゃ");
     strictEqual(typingText.completedText, "");
@@ -1021,7 +1021,7 @@ test("っふゃあ h", () => {
 
     strictEqual(typingText.roman, "ffyaa");
     strictEqual(typingText.completedRoman, "h");
-    strictEqual(typingText.remainingRoman, "hhuxyaa");
+    strictEqual(typingText.remainingRoman, "huxyaa");
 
     strictEqual(typingText.text, "っふゃあ");
     strictEqual(typingText.completedText, "");

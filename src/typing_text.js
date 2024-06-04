@@ -87,8 +87,13 @@ export class TypingText {
             case CHAR_PARTIALLY_COMPLETE: {
                 this.#wasCharPartiallyComplete = true;
                 this.#completedRoman += key;
-                const preChar = this.char;
-                this.char = this.char.nextChar;
+                const preChar = this.char; // todo 消す
+                if (this.char.nextChar.expectRomanArray[0][0] === key) {
+                    this.char = this.char.nextChar;
+                }
+                else {
+                    this.char = this.char.nextChar.divisionCharChain;
+                }
                 this.#updateExpectRoman(oldCharExpectRomanLength, preChar);
                 // console.log("CHAR_PARTIALLY_COMPLETE", key, this.#completedText);
                 // console.log("CHAR_PARTIALLY_COMPLETE", key, this.#remainingRoman);
