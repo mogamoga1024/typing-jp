@@ -127,6 +127,9 @@ export class TypingText {
                     for (const expectRoman of this.char.expectRomanArray) {
                         if (key !== expectRoman.at(-1)) {
                             this.#completedText += "ん";
+                            if (this.char.nextChar !== result) {
+                                this.#completedText += this.char.nextChar.name;
+                            }
                             break;
                         }
                     }
