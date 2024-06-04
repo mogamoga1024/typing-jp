@@ -152,9 +152,18 @@ export class TypingText {
         }
     }
 
+    #updateExpectRoman() {
+        this.#remainingRoman = this.char.expectRoman().slice(this.char.nextExpectRomanIndex)
+        let tmpChar = this.char.nextChar;
+        while (tmpChar !== null) {
+            this.#remainingRoman += tmpChar.expectRoman();
+            tmpChar = tmpChar.nextChar;
+        }
+    }
+
     #isPrevSpecialL = false; // MEMO：うん… まあね… うん… 実装としてはアレだけどね…
 
-    #updateExpectRoman(param, preChar) {
+    #updateExpectRoman_deprecated(param, preChar) {
         // MEMO：複雑すぎる！！！！！！！！！！！
 
         switch (typeof(param)) {
