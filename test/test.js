@@ -1054,7 +1054,7 @@ test("っゃ xtu", () => {
 
     strictEqual(typingText.roman, "xxya");
     strictEqual(typingText.completedRoman, "xtu");
-    strictEqual(typingText.remainingRoman, "ya");
+    strictEqual(typingText.remainingRoman, "xya");
 
     strictEqual(typingText.text, "っゃ");
     strictEqual(typingText.completedText, "っ");
