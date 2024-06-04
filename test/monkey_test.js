@@ -3,24 +3,10 @@ const domText = document.querySelector("#text");
 const domRoman1 = document.querySelector("#roman1");
 const domRoman2 = document.querySelector("#roman2");
 
-const originalTextList = [
-    "あのイーハトーヴォのすきとおった風、",
-    "夏でも底に冷たさをもつ青いそら、",
-    "うつくしい森で飾られたモリーオ市、",
-    "郊外のぎらぎらひかる草の波。",
-];
+let originalText = createRandomOriginalText();
+let typingText = new TypingText(originalText);
 
-const typingTextList = [
-    new TypingText("あのイーハトーヴォのすきとおったかぜ、"),
-    new TypingText("なつでもそこにつめたさをもつあおいそら、"),
-    new TypingText("うつくしいもりでかざられたモリーオし、"),
-    new TypingText("こうがいのぎらぎらひかるくさのなみ。"),
-];
-
-let index = 0;
-domText.innerText = originalTextList[index];
-let typingText = typingTextList[index];
-
+domText.innerText = originalText;
 domRoman2.innerText = typingText.remainingRoman;
 
 window.onkeydown = function(e) {
@@ -51,17 +37,10 @@ window.onkeydown = function(e) {
 
         // 文章が完成した場合
         case "complete":
-            // クリアしたか
-            if (++index >= originalTextList.length) {
-                domRoman1.innerText += e.key;
-                domRoman2.innerText = typingText.remainingRoman;
-                window.onkeydown = null;
-                return;
-            }
-
             // 次の文章へ
-            domText.innerText = originalTextList[index];
-            typingText = typingTextList[index];
+            originalText = createRandomOriginalText();
+            domText.innerText = originalText;
+            typingText = new TypingText(originalText);
         
             domRoman1.innerText = "";
             domRoman2.innerText = typingText.remainingRoman;
@@ -69,3 +48,79 @@ window.onkeydown = function(e) {
             return;
     }
 };
+
+function createRandomOriginalText() {
+    const allCharList = [
+        "あ", "い", "う", "え", "お", "いぇ", "うぁ", "うぃ", "うぇ", "うぉ",
+        "ゐ", "ゑ", "ぁ", "ぃ", "ぅ", "ぇ", "ぉ", "か", "き", "く",
+        "け", "こ", "きゃ", "きぃ", "きゅ", "きぇ", "きょ", "くゃ", "くゅ", "くょ",
+        "くぁ", "くぃ", "くぅ", "くぇ", "くぉ", "が", "ぎ", "ぐ", "げ", "ご",
+        "ぎゃ", "ぎぃ", "ぎゅ", "ぎぇ", "ぎょ", "ぐぁ", "ぐぃ", "ぐぅ", "ぐぇ", "ぐぉ",
+        "ゕ", "ゖ", "さ", "し", "す", "せ", "そ", "しゃ", "しぃ", "しゅ",
+        "しぇ", "しょ", "すぁ", "すぃ", "すぅ", "すぇ", "すぉ", "ざ", "じ", "ず",
+        "ぜ", "ぞ", "じゃ", "じぃ", "じゅ", "じぇ", "じょ", "た", "ち", "つ",
+        "て", "と", "ちゃ", "ちぃ", "ちゅ", "ちぇ", "ちょ", "つぁ", "つぃ", "つぇ",
+        "つぉ", "てゃ", "てぃ", "てゅ", "てぇ", "てょ", "とぁ", "とぃ", "とぅ", "とぇ",
+        "とぉ", "だ", "ぢ", "づ", "で", "ど", "ぢゃ", "ぢぃ", "ぢゅ", "ぢぇ",
+        "ぢょ", "でゃ", "でぃ", "でゅ", "でぇ", "でょ", "どぁ", "どぃ", "どぅ", "どぇ",
+        "どぉ", "っ", "な", "に", "ぬ", "ね", "の", "にゃ", "にぃ", "にゅ",
+        "にぇ", "にょ", "は", "ひ", "ふ", "へ", "ほ", "ひゃ", "ひぃ", "ひゅ",
+        "ひぇ", "ひょ", "ふぁ", "ふぃ", "ふぅ", "ふぇ", "ふぉ", "ふゃ", "ふゅ", "ふょ",
+        "ば", "び", "ぶ", "べ", "ぼ", "びゃ", "びぃ", "びゅ", "びぇ", "びょ",
+        "ゔぁ", "ゔぃ", "ゔ" , "ゔぇ", "ゔぉ", "ゔゃ", "ゔゅ", "ゔょ", "ぱ", "ぴ",
+        "ぷ", "ぺ", "ぽ", "ぴゃ", "ぴぃ", "ぴゅ", "ぴぇ", "ぴょ", "ま", "み",
+        "む", "め", "も", "みゃ", "みぃ", "みゅ", "みぇ", "みょ", "や", "ゆ",
+        "よ", "ゃ", "ゅ", "ょ", "ら", "り", "る", "れ", "ろ", "りゃ",
+        "りぃ", "りゅ", "りぇ", "りょ", "わ", "を", "ん", "ゎ", 
+        "a", "ａ", "b", "ｂ", "c", "ｃ", "d", "ｄ", "e", "ｅ",
+        "f", "ｆ", "g", "ｇ", "h", "ｈ", "i", "ｉ", "j", "ｊ",
+        "k", "ｋ", "l", "ｌ", "m", "ｍ", "n", "ｎ", "o", "ｏ",
+        "p", "ｐ", "q", "ｑ", "r", "ｒ", "s", "ｓ", "t", "ｔ",
+        "u", "ｕ", "v", "ｖ", "w", "ｗ", "x", "ｘ", "y", "ｙ",
+        "z", "ｚ", "A", "Ａ", "B", "Ｂ", "C", "Ｃ", "D", "Ｄ",
+        "E", "Ｅ", "F", "Ｆ", "G", "Ｇ", "H", "Ｈ", "I", "Ｉ",
+        "J", "Ｊ", "K", "Ｋ", "L", "Ｌ", "M", "Ｍ", "N", "Ｎ",
+        "O", "Ｏ", "P", "Ｐ", "Q", "Ｑ", "R", "Ｒ", "S", "Ｓ",
+        "T", "Ｔ", "U", "Ｕ", "V", "Ｖ", "W", "Ｗ", "X", "Ｘ",
+        "Y", "Ｙ", "Z", "Ｚ", "0", "０", "1", "１", "2", "２",
+        "3", "３", "4", "４", "5", "５", "6", "６", "7", "７",
+        "8", "８", "9", "９", " ", "　", "!", "！", "\"", "”",
+        "#", "＃", "$", "＄", "%", "％", "&", "＆", "'", "’",
+        "(", "（", ")", "）", "*", "＊", "+", "＋", ",", "、",
+        "-", "ー", ".", "。", "/", "・", ":", "：", ";", "；",
+        "<", "＜", "=", "＝", ">", "＞", "?", "？", "@", "＠",
+        "[", "「", "\\", "￥", "]", "」", "^", "＾", "_", "＿",
+        "`", "‘", "{", "｛", "|", "｜", "}", "｝", "~", "～",
+    ];
+
+    const maxCharCount = random(1, 5);
+    const charList = [];
+
+    for (let charCount = 1; charCount <= maxCharCount; charCount++) {
+        const char = allCharList[random(0, allCharList.length - 1)];
+        charList.push(char);
+    }
+
+    if (maxCharCount > 1 && random(1, 18) === 1) {
+        if (random(0, 1) === 0) {
+            charList[0] = "っ";
+        }
+        else {
+            charList[0] = "ん";
+        }
+    }
+
+    for (let i = 0; i < charList.length; i++) {
+        const j = random(0, charList.length - 1);
+        const tmp = charList[i];
+        charList[i] = charList[j];
+        charList[j] = tmp;
+    }
+
+    return charList.join("");
+}
+
+function random(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
