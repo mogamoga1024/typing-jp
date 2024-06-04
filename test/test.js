@@ -1028,19 +1028,19 @@ test("っふゃあ h", () => {
     strictEqual(typingText.remainingText, "っふゃあ");
 });
 
-test("っゃったっゃった llyattallyatta", () => {
-    const typingText = new TypingText("っゃったっゃった");
+test("っゃったっゃったっゃ llyattallyattallya", () => {
+    const typingText = new TypingText("っゃったっゃったっゃ");
 
-    for (const key of "llyattallyatt") {
+    for (const key of "llyattallyattally") {
         strictEqual(typingText.inputKey(key), TEXT_INCOMPLETE);
     }
     strictEqual(typingText.inputKey("a"), TEXT_COMPLETE);
 
-    strictEqual(typingText.roman, "xxyattaxxyatta");
-    strictEqual(typingText.completedRoman, "llyattallyatta");
+    strictEqual(typingText.roman, "xxyattaxxyattaxxya");
+    strictEqual(typingText.completedRoman, "llyattallyattallya");
     strictEqual(typingText.remainingRoman, "");
 
-    strictEqual(typingText.text, "っゃったっゃった");
-    strictEqual(typingText.completedText, "っゃったっゃった");
+    strictEqual(typingText.text, "っゃったっゃったっゃ");
+    strictEqual(typingText.completedText, "っゃったっゃったっゃ");
     strictEqual(typingText.remainingText, "");
 });
