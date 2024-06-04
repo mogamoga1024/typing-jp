@@ -8,6 +8,13 @@
     * {
       font-variant-ligatures: none;
     }
+    #main {
+      margin-top: 30px;
+    }
+    #main > div {
+      width: fit-content;
+      margin: 0 auto;
+    } 
     #text1, #text2 {
       font-size: 2rem;
     }
@@ -20,11 +27,13 @@
   </style>
 </head>
 <body>
-  <div>
-    <span id="text1"></span><span id="text2"></span>
-  </div>
-  <div>
-    <span id="roman1"></span><span id="roman2"></span>
+  <div id="main">
+    <div>
+      <span id="text1"></span><span id="text2"></span>
+    </div>
+    <div>
+      <span id="roman1"></span><span id="roman2"></span>
+    </div>
   </div>
   
   <script src="../dist/cdn/typing-jp.js"></script>
