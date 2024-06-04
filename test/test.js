@@ -1000,3 +1000,16 @@ test("びゃ bei", () => {
     strictEqual(typingText.remainingText, "ゃ");
 });
 
+test("っふゃ h", () => {
+    const typingText = new TypingText("っふゃ");
+
+    strictEqual(typingText.inputKey("h"), TEXT_INCOMPLETE);
+
+    strictEqual(typingText.roman, "ffya");
+    strictEqual(typingText.completedRoman, "h");
+    strictEqual(typingText.remainingRoman, "hhuxya");
+
+    strictEqual(typingText.text, "っふゃ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "っふゃ");
+});

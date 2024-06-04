@@ -5,8 +5,8 @@ const domRoman1 = document.querySelector("#roman1");
 const domRoman2 = document.querySelector("#roman2");
 const domCharRoman = document.querySelector("#char-roman");
 
-let originalText = createRandomOriginalText();
-// let originalText = "びゃ";
+// let originalText = createRandomOriginalText();
+let originalText = "っふゃ";
 typingText = new TypingText(originalText);
 console.log("----------");
 console.log(originalText);
