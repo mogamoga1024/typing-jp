@@ -984,4 +984,19 @@ test("ん^ぼ n^", () => {
     strictEqual(typingText.remainingText, "ぼ");
 });
 
+test("びゃ bei", () => {
+    const typingText = new TypingText("びゃ");
+
+    strictEqual(typingText.inputKey("b"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("e"), TEXT_UNMATCH);
+    strictEqual(typingText.inputKey("i"), TEXT_INCOMPLETE);
+
+    strictEqual(typingText.roman, "bya");
+    strictEqual(typingText.completedRoman, "bi");
+    strictEqual(typingText.remainingRoman, "xya");
+
+    strictEqual(typingText.text, "びゃ");
+    strictEqual(typingText.completedText, "び");
+    strictEqual(typingText.remainingText, "ゃ");
+});
 
