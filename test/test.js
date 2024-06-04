@@ -847,3 +847,32 @@ test("んにゃぴ nnnyapi", () => {
     strictEqual(typingText.remainingText, "");
 });
 
+test("くゃ qya", () => {
+    const typingText = new TypingText("くゃ");
+
+    strictEqual(typingText.inputKey("q"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("y"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("a"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "qya");
+    strictEqual(typingText.completedRoman, "qya");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "くゃ");
+    strictEqual(typingText.completedText, "くゃ");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("くゃ k", () => {
+    const typingText = new TypingText("くゃ");
+
+    strictEqual(typingText.inputKey("k"), TEXT_INCOMPLETE);
+
+    strictEqual(typingText.roman, "qya");
+    strictEqual(typingText.completedRoman, "k");
+    strictEqual(typingText.remainingRoman, "uxya");
+
+    strictEqual(typingText.text, "くゃ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "くゃ");
+});
