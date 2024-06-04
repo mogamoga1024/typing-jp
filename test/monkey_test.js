@@ -50,7 +50,7 @@ window.onkeydown = function(e) {
 };
 
 function createRandomOriginalText() {
-    const allCharList = [
+    const allCharList1 = [
         "あ", "い", "う", "え", "お", "いぇ", "うぁ", "うぃ", "うぇ", "うぉ",
         "ゐ", "ゑ", "ぁ", "ぃ", "ぅ", "ぇ", "ぉ", "か", "き", "く",
         "け", "こ", "きゃ", "きぃ", "きゅ", "きぇ", "きょ", "くゃ", "くゅ", "くょ",
@@ -71,7 +71,9 @@ function createRandomOriginalText() {
         "ぷ", "ぺ", "ぽ", "ぴゃ", "ぴぃ", "ぴゅ", "ぴぇ", "ぴょ", "ま", "み",
         "む", "め", "も", "みゃ", "みぃ", "みゅ", "みぇ", "みょ", "や", "ゆ",
         "よ", "ゃ", "ゅ", "ょ", "ら", "り", "る", "れ", "ろ", "りゃ",
-        "りぃ", "りゅ", "りぇ", "りょ", "わ", "を", "ん", "ゎ", 
+        "りぃ", "りゅ", "りぇ", "りょ", "わ", "を", "ん", "ゎ",
+    ];
+    const allCharList2 = [
         "a", "ａ", "b", "ｂ", "c", "ｃ", "d", "ｄ", "e", "ｅ",
         "f", "ｆ", "g", "ｇ", "h", "ｈ", "i", "ｉ", "j", "ｊ",
         "k", "ｋ", "l", "ｌ", "m", "ｍ", "n", "ｎ", "o", "ｏ",
@@ -97,6 +99,7 @@ function createRandomOriginalText() {
     const charList = [];
 
     for (let charCount = 1; charCount <= maxCharCount; charCount++) {
+        const allCharList = random(1, 10) === 1 ? allCharList2 : allCharList1;
         const char = allCharList[random(0, allCharList.length - 1)];
         charList.push(char);
     }
