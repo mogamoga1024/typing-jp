@@ -890,3 +890,35 @@ test("くゃ k", () => {
     strictEqual(typingText.completedText, "");
     strictEqual(typingText.remainingText, "くゃ");
 });
+
+test("ん^ n^", () => {
+    const typingText = new TypingText("ん^");
+
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("^"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "n^");
+    strictEqual(typingText.completedRoman, "n^");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "ん^");
+    strictEqual(typingText.completedText, "ん^");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("ん^ぼ n^", () => {
+    const typingText = new TypingText("ん^ぼ");
+
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("^"), TEXT_INCOMPLETE);
+
+    strictEqual(typingText.roman, "n^bo");
+    strictEqual(typingText.completedRoman, "n^");
+    strictEqual(typingText.remainingRoman, "bo");
+
+    strictEqual(typingText.text, "ん^ぼ");
+    strictEqual(typingText.completedText, "ん^");
+    strictEqual(typingText.remainingText, "ぼ");
+});
+
+
