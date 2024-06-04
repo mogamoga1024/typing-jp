@@ -135,7 +135,7 @@ export class TypingText {
                     this.#wasCharPartiallyComplete = false;
                     this.#completedText += "っ";
                 }
-                if (result !== this.char.divisionCharChain) {
+                if (this.char.divisionCharChain && result !== this.char.divisionCharChain) {
                     this.#completedText += this.char.name.slice(0, -result.name.length);
                 }
                 
