@@ -3,6 +3,7 @@ const domText1 = document.querySelector("#text1");
 const domText2 = document.querySelector("#text2");
 const domRoman1 = document.querySelector("#roman1");
 const domRoman2 = document.querySelector("#roman2");
+const domCharRoman = document.querySelector("#char-roman");
 
 let originalText = createRandomOriginalText();
 typingText = new TypingText(originalText);
@@ -11,6 +12,7 @@ console.log(originalText);
 
 domText2.innerText = typingText.remainingText;
 domRoman2.innerText = typingText.remainingRoman;
+domCharRoman.innerText = typingText.char.expectRomanArray;
 
 window.onkeydown = function(e) {
     if (e.repeat) {
@@ -39,6 +41,7 @@ window.onkeydown = function(e) {
             domText2.innerText = typingText.remainingText;
             domRoman1.innerText = typingText.completedRoman;
             domRoman2.innerText = typingText.remainingRoman;
+            domCharRoman.innerText = typingText.char.expectRomanArray;
             return;
 
         // 文章が完成した場合
@@ -53,6 +56,7 @@ window.onkeydown = function(e) {
             domText2.innerText = typingText.remainingText;
             domRoman1.innerText = "";
             domRoman2.innerText = typingText.remainingRoman;
+            domCharRoman.innerText = typingText.char.expectRomanArray;
 
             return;
     }
