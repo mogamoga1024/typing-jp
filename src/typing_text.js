@@ -91,7 +91,7 @@ export class TypingText {
                 this.char = this.char.nextChar;
                 this.#updateExpectRoman(oldCharExpectRomanLength, preChar);
                 // console.log("CHAR_PARTIALLY_COMPLETE", key, this.#completedText);
-                // console.log("CHAR_PARTIALLY_COMPLETE", key, this.#remainingRoman);
+                console.log("CHAR_PARTIALLY_COMPLETE", key, this.#remainingRoman);
                 return TEXT_INCOMPLETE;
             }
 
@@ -180,6 +180,9 @@ export class TypingText {
                         }
                     }
                     this.#isPrevSpecialL = false;
+
+                    // todo
+
                     this.#remainingRoman = this.#remainingRoman.slice(1);
                     return;
                 }
