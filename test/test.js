@@ -261,6 +261,38 @@ test("しゃ sixya", () => {
     strictEqual(typingText.remainingText, "");
 });
 
+test("しゃち sixya", () => {
+    const typingText = new TypingText("しゃち");
+
+    for (const key of "sixya") {
+        strictEqual(typingText.inputKey(key), TEXT_INCOMPLETE);
+    }
+
+    strictEqual(typingText.roman, "syati");
+    strictEqual(typingText.completedRoman, "sixya");
+    strictEqual(typingText.remainingRoman, "ti");
+
+    strictEqual(typingText.text, "しゃち");
+    strictEqual(typingText.completedText, "しゃ");
+    strictEqual(typingText.remainingText, "ち");
+});
+
+test("しゃち sixy", () => {
+    const typingText = new TypingText("しゃち");
+
+    for (const key of "sixy") {
+        strictEqual(typingText.inputKey(key), TEXT_INCOMPLETE);
+    }
+
+    strictEqual(typingText.roman, "syati");
+    strictEqual(typingText.completedRoman, "sixy");
+    strictEqual(typingText.remainingRoman, "ati");
+
+    strictEqual(typingText.text, "しゃち");
+    strictEqual(typingText.completedText, "し");
+    strictEqual(typingText.remainingText, "ゃち");
+});
+
 test("しゃ cixya", () => {
     const typingText = new TypingText("しゃ");
 
