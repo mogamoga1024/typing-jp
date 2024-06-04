@@ -5,6 +5,8 @@ const domRoman2 = document.querySelector("#roman2");
 
 let originalText = createRandomOriginalText();
 let typingText = new TypingText(originalText);
+console.log("----------");
+console.log(originalText);
 
 domText.innerText = originalText;
 domRoman2.innerText = typingText.remainingRoman;
@@ -23,7 +25,8 @@ window.onkeydown = function(e) {
 
     // キー入力の更新
     const result = typingText.inputKey(e.key, isCapsLock);
-    
+    console.log(e.key, result);
+
     switch (result) {
         // 不一致の場合
         case "unmatch":
@@ -39,9 +42,11 @@ window.onkeydown = function(e) {
         case "complete":
             // 次の文章へ
             originalText = createRandomOriginalText();
-            domText.innerText = originalText;
             typingText = new TypingText(originalText);
+            console.log("----------");
+            console.log(originalText);
         
+            domText.innerText = originalText;
             domRoman1.innerText = "";
             domRoman2.innerText = typingText.remainingRoman;
 
