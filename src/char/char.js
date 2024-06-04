@@ -64,6 +64,7 @@ export class Char {
     
         const result = char.inputRoman(roman);
         if (result === CHAR_UNMATCH) {
+            char.nextExpectRomanIndex = 0;
             return CHAR_UNMATCH;
         }
         
