@@ -168,6 +168,7 @@ export class TypingText {
         let tmpChar = this.char.nextChar;
         while (tmpChar !== null) {
             this.#remainingRoman += tmpChar.expectRoman(roman);
+            roman = "";
             tmpChar = tmpChar.nextChar;
         }
     }
