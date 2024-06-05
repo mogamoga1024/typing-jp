@@ -1,6 +1,6 @@
 {
   "name": "@mogamoga1024/typing-jp",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "タイピングゲームのローマ字入力を判定するライブラリ",
   "main": "main.js",
   "repository": {
