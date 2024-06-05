@@ -9,6 +9,7 @@ const domCharRoman = document.querySelector("#char-roman");
 // var originalText = "っふゃ";
 var originalText = "っゃったっゃったっゃ";
 var originalText = "あっゃ";
+var originalText = "っゃ";
 typingText = new TypingText(originalText);
 console.log("----------");
 console.log(originalText);
