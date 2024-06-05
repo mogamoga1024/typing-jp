@@ -159,12 +159,17 @@ export class TypingText {
             return;
         }
 
+        console.log(isCharComplete, this.char.name, this.char.isSpecial);
+
         let roman = "";
         if (!isCharComplete && this.char.name === "っ" && this.char.isSpecial) {
             roman = key;
+            this.#remainingRoman = this.char.expectRoman(roman).slice(this.char.nextExpectRomanIndex);
+        }
+        else {
+            this.#remainingRoman = this.char.expectRoman().slice(this.char.nextExpectRomanIndex);
         }
 
-        this.#remainingRoman = this.char.expectRoman().slice(this.char.nextExpectRomanIndex);
         let tmpChar = this.char.nextChar;
         while (tmpChar !== null) {
             this.#remainingRoman += tmpChar.expectRoman(roman);
