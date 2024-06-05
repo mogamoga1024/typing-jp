@@ -71,7 +71,6 @@ export class TypingText {
             throw new NoRemainingInputError();
         }
 
-        const oldCharExpectRomanLength = this.char.expectRoman().length;
         const result = this.char.inputRoman(key, isCapsLock);
 
         switch (result) {
@@ -87,7 +86,6 @@ export class TypingText {
             case CHAR_PARTIALLY_COMPLETE: {
                 this.#wasCharPartiallyComplete = true;
                 this.#completedRoman += key;
-                const preChar = this.char; // todo 消す
                 if (this.char.nextChar.expectRomanArray[0][0] === key) {
                     this.char = this.char.nextChar;
                 }
@@ -119,7 +117,6 @@ export class TypingText {
                     this.#completedText += this.char.name;
                 }
                 this.#completedRoman += key;
-                const preChar = this.char;
                 this.char = this.char.nextChar;
                 this.#updateExpectRoman(key);
                 // console.log("CHAR_COMPLETE", key, this.#completedText);
@@ -148,7 +145,6 @@ export class TypingText {
                 }
                 
                 this.#completedRoman += key;
-                const oldChar = this.char;
                 this.char = result;
                 this.#updateExpectRoman(key);
                 // console.log("default", key, this.#completedText);
@@ -173,88 +169,6 @@ export class TypingText {
         while (tmpChar !== null) {
             this.#remainingRoman += tmpChar.expectRoman(roman);
             tmpChar = tmpChar.nextChar;
-        }
-    }
-
-    #isPrevSpecialL = false; // MEMO：うん… まあね… うん… 実装としてはアレだけどね…
-
-    #updateExpectRoman_deprecated(param, preChar) {
-        // MEMO：複雑すぎる！！！！！！！！！！！
-
-        switch (typeof(param)) {
-            case "number":
-                const oldCharExpectRomanLength = param;
-                const targetChar = preChar === undefined ? this.char : preChar;
-                const charExpectRoman = targetChar.expectRoman();
-                
-                if (oldCharExpectRomanLength === charExpectRoman.length) {
-                    if (targetChar.name === "っ" && oldCharExpectRomanLength === 1 && !this.#isPrevSpecialL) {
-                        if (preChar === undefined && this.char.expectRomanArray[0][0] === "l") {
-                            this.#isPrevSpecialL = true;
-                            this.#remainingRoman = "l" + this.#remainingRoman.slice(2);
-                            return;
-                        }
-                        else {
-                            const oldCharExpectRoman = createChar(this.char.name).expectRoman();
-                            const charExpectRoman = this.char.expectRoman();
-                            if (oldCharExpectRoman[0] !== charExpectRoman[0]) {
-                                this.#remainingRoman = charExpectRoman + this.#remainingRoman.slice(oldCharExpectRoman.length + 1);
-                                return;
-                            }
-                        }
-                    }
-                    this.#isPrevSpecialL = false;
-
-                    // todo
-
-                    this.#remainingRoman = this.#remainingRoman.slice(1);
-                    return;
-                }
-    
-                const removeRomanCount = oldCharExpectRomanLength - targetChar.nextExpectRomanIndex + 1;
-                const tmpRemainExpectRoman = preChar === undefined ? charExpectRoman.slice(this.char.nextExpectRomanIndex) : "";
-    
-                this.#remainingRoman = tmpRemainExpectRoman + this.#remainingRoman.slice(removeRomanCount);
-                return;
-    
-            case "object":
-                const oldChar = param;
-    
-                if (oldChar.name === "ん") {
-                    if (oldChar.nextChar !== this.char) {
-                        this.#remainingRoman = this.#remainingRoman.slice(1);
-                    }
-                    else {
-                        const char = createChar(this.char.name);
-                        const tmpRemainExpectRoman1 = this.char.expectRoman().slice(1);
-                        const tmpRemainExpectRoman2 = this.#remainingRoman.slice(char.expectRoman().length);
-                        this.#remainingRoman = tmpRemainExpectRoman1 + tmpRemainExpectRoman2;
-                    }
-                    return;
-                }
-    
-                let tmpRemainExpectRoman1 = "";
-                const tmpRemainExpectRoman2 = this.#remainingRoman.slice(
-                    oldChar.expectRoman().length - oldChar.nextExpectRomanIndex
-                );
-                let tmpChar = this.char;
-                if (tmpChar.nextExpectRomanIndex > 0) {
-                    tmpRemainExpectRoman1 += tmpChar.expectRoman().slice(tmpChar.nextExpectRomanIndex);
-                    while (tmpChar.nextChar !== oldChar.nextChar) {
-                        tmpChar = tmpChar.nextChar;
-                        tmpRemainExpectRoman1 += tmpChar.expectRoman();
-                    }
-                }
-                else {
-                    while (true) {
-                        tmpRemainExpectRoman1 += tmpChar.expectRoman();
-                        if (tmpChar.nextChar === oldChar.nextChar) break;
-                        tmpChar = tmpChar.nextChar;
-                        if (tmpChar.nextChar === oldChar.nextChar) break;
-                    }
-                }
-                this.#remainingRoman = tmpRemainExpectRoman1 + tmpRemainExpectRoman2;
-                return;
         }
     }
 }
