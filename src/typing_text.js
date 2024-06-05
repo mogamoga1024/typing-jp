@@ -159,8 +159,6 @@ export class TypingText {
             return;
         }
 
-        console.log(isCharComplete, this.char.name, this.char.isSpecial);
-
         let roman = "";
         if (!isCharComplete && this.char.name === "っ") {
             roman = key;

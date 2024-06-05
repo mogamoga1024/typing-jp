@@ -10,7 +10,7 @@ export class CharJpXtu extends CharJp {
         this.isSpecial = false;
     }
 
-    expectRoman(roman) {
+    expectRoman(roman = "") {
         this.isSpecial = false;
 
         if (this.nextChar === null || this.nextChar.name === "っ") {
@@ -19,7 +19,22 @@ export class CharJpXtu extends CharJp {
         if (/^[a-zA-Z]$/.test(this.nextChar.name)) {
             return super.expectRoman();
         }
-        const nextCharFirstRoman = this.nextChar.expectRoman()[0];
+        let nextCharFirstRoman = "";
+        if (roman === "x" || roman === "l") {
+            const nextCharExpectRomanArray = this.nextChar.expectRomanArray.filter(
+                expectRoman => expectRoman[0] === roman
+            );
+            if (nextCharExpectRomanArray.length > 0) {
+                nextCharFirstRoman = nextCharExpectRomanArray[0];
+            }
+            else {
+                nextCharFirstRoman = this.nextChar.expectRoman()[0];
+            }
+        }
+        else {
+            nextCharFirstRoman = this.nextChar.expectRoman()[0];
+        }
+        console.log(123, roman, nextCharFirstRoman);
         if (roman === "x" && nextCharFirstRoman === "x" || roman === "l" && nextCharFirstRoman === "l") {
             this.isSpecial = true;
             return nextCharFirstRoman;
