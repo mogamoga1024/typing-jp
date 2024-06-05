@@ -15,9 +15,16 @@ export class Char {
         }
     }
 
-    expectRoman() {
+    expectRoman(roman = "") {
         if (this.expectRomanArray.length > 0) {
-            return this.expectRomanArray[0];
+            if (roman === "") {
+                return this.expectRomanArray[0];
+            }
+            else {
+                return this.expectRomanArray.filter(
+                    expectRoman => expectRoman[0] === roman
+                )[0];
+            }
         }
         return "";
     }

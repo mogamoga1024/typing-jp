@@ -79,7 +79,7 @@ export class TypingText {
 
             case CHAR_INCOMPLETE:
                 this.#completedRoman += key;
-                this.#updateExpectRoman(oldCharExpectRomanLength);
+                this.#updateExpectRoman(key);
                 // console.log("CHAR_INCOMPLETE", key, this.#completedText);
                 // console.log("CHAR_INCOMPLETE", key, this.#remainingRoman);
                 return TEXT_INCOMPLETE;
@@ -94,7 +94,7 @@ export class TypingText {
                 else {
                     this.char = this.char.nextChar.divisionCharChain;
                 }
-                this.#updateExpectRoman(oldCharExpectRomanLength, preChar);
+                this.#updateExpectRoman(key);
                 // console.log("CHAR_PARTIALLY_COMPLETE", key, this.#completedText);
                 // console.log("CHAR_PARTIALLY_COMPLETE", key, this.#remainingRoman);
                 return TEXT_INCOMPLETE;
@@ -121,7 +121,7 @@ export class TypingText {
                 this.#completedRoman += key;
                 const preChar = this.char;
                 this.char = this.char.nextChar;
-                this.#updateExpectRoman(oldCharExpectRomanLength, preChar);
+                this.#updateExpectRoman(key);
                 // console.log("CHAR_COMPLETE", key, this.#completedText);
                 // console.log("CHAR_COMPLETE", key, this.#remainingRoman);
                 return this.#remainingRoman === "" ? TEXT_COMPLETE : TEXT_INCOMPLETE;
@@ -150,23 +150,28 @@ export class TypingText {
                 this.#completedRoman += key;
                 const oldChar = this.char;
                 this.char = result;
-                this.#updateExpectRoman(oldChar);
+                this.#updateExpectRoman(key);
                 // console.log("default", key, this.#completedText);
                 // console.log("default", key, this.#remainingRoman);
                 return TEXT_INCOMPLETE;
         }
     }
 
-    #updateExpectRoman() {
+    #updateExpectRoman(key) {
         if (this.char === null) {
             this.#remainingRoman = "";
             return;
         }
 
+        let roman = "";
+        if (this.char.name === "っ" && this.char.isSpecial) {
+            roman = key;
+        }
+
         this.#remainingRoman = this.char.expectRoman().slice(this.char.nextExpectRomanIndex);
         let tmpChar = this.char.nextChar;
         while (tmpChar !== null) {
-            this.#remainingRoman += tmpChar.expectRoman();
+            this.#remainingRoman += tmpChar.expectRoman(roman);
             tmpChar = tmpChar.nextChar;
         }
     }

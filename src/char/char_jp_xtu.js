@@ -7,6 +7,7 @@ export class CharJpXtu extends CharJp {
     constructor() {
         super("っ", ["xtu", "xtsu", "ltu", "ltsu"]);
         this.regex = /^(?=[a-z])(?!(a|i|u|e|o|n)).$/;
+        this.isSpecial = false;
     }
 
     expectRoman() {
@@ -18,6 +19,7 @@ export class CharJpXtu extends CharJp {
         }
         const nextCharFirstRoman = this.nextChar.expectRoman()[0];
         if (nextCharFirstRoman === "x" || nextCharFirstRoman === "l") {
+            this.isSpecial = true;
             return nextCharFirstRoman;
         }
         else {
@@ -25,6 +27,7 @@ export class CharJpXtu extends CharJp {
                 return this.expectRomanArray[0];
             }
             if (this.regex.test(nextCharFirstRoman)) {
+                this.isSpecial = true;
                 return nextCharFirstRoman;
             }
         }
