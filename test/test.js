@@ -1104,4 +1104,18 @@ test("っゃあ x", () => {
     strictEqual(typingText.remainingText, "っゃあ");
 });
 
+test("あっゃ a", () => {
+    const typingText = new TypingText("あっゃ");
+
+    strictEqual(typingText.inputKey("a"), TEXT_INCOMPLETE);
+
+    strictEqual(typingText.roman, "axxya");
+    strictEqual(typingText.completedRoman, "a");
+    strictEqual(typingText.remainingRoman, "xxya");
+
+    strictEqual(typingText.text, "あっゃ");
+    strictEqual(typingText.completedText, "あ");
+    strictEqual(typingText.remainingText, "っゃ");
+});
+
 
