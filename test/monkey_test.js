@@ -5,10 +5,10 @@ const domRoman1 = document.querySelector("#roman1");
 const domRoman2 = document.querySelector("#roman2");
 const domCharRoman = document.querySelector("#char-roman");
 
-// let originalText = createRandomOriginalText();
-// let originalText = "っふゃ";
-// let originalText = "っゃったっゃったっゃ";
-let originalText = "った";
+// var originalText = createRandomOriginalText();
+// var originalText = "っふゃ";
+// var originalText = "っゃったっゃったっゃ";
+var originalText = "っゃあ";
 typingText = new TypingText(originalText);
 console.log("----------");
 console.log(originalText);
@@ -120,7 +120,7 @@ function createRandomOriginalText() {
         charList.push(char);
     }
 
-    if (maxCharCount > 1 && random(1, 10) === 1) {
+    if (maxCharCount > 1 && random(1, 5) === 1) {
         if (random(0, 1) === 0) {
             charList[0] = "っ";
         }
