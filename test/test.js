@@ -1075,3 +1075,17 @@ test("っl ll", () => {
     strictEqual(typingText.completedText, "");
     strictEqual(typingText.remainingText, "っl");
 });
+
+test("った x", () => {
+    const typingText = new TypingText("った");
+
+    strictEqual(typingText.inputKey("x"), TEXT_INCOMPLETE);
+
+    strictEqual(typingText.roman, "tta");
+    strictEqual(typingText.completedRoman, "x");
+    strictEqual(typingText.remainingRoman, "tuta");
+
+    strictEqual(typingText.text, "った");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "った");
+});
