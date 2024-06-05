@@ -162,9 +162,12 @@ export class TypingText {
         console.log(isCharComplete, this.char.name, this.char.isSpecial);
 
         let roman = "";
-        if (!isCharComplete && this.char.name === "っ" && this.char.isSpecial) {
+        if (!isCharComplete && this.char.name === "っ") {
             roman = key;
             this.#remainingRoman = this.char.expectRoman(roman).slice(this.char.nextExpectRomanIndex);
+            if (!this.char.isSpecial) {
+                roman = "";
+            }
         }
         else {
             this.#remainingRoman = this.char.expectRoman().slice(this.char.nextExpectRomanIndex);

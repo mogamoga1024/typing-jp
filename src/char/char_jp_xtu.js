@@ -11,6 +11,8 @@ export class CharJpXtu extends CharJp {
     }
 
     expectRoman(roman) {
+        this.isSpecial = false;
+
         if (this.nextChar === null || this.nextChar.name === "っ") {
             return super.expectRoman();
         }
@@ -18,12 +20,8 @@ export class CharJpXtu extends CharJp {
             return super.expectRoman();
         }
         const nextCharFirstRoman = this.nextChar.expectRoman()[0];
-        if (!this.isSpecial) {
-            if (nextCharFirstRoman === "x" || nextCharFirstRoman === "l") {
-                this.isSpecial = true;
-            }
-        }
         if (roman === "x" && nextCharFirstRoman === "x" || roman === "l" && nextCharFirstRoman === "l") {
+            this.isSpecial = true;
             return nextCharFirstRoman;
         }
         else {
