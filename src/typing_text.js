@@ -118,7 +118,7 @@ export class TypingText {
                 }
                 this.#completedRoman += key;
                 this.char = this.char.nextChar;
-                this.#updateExpectRoman(key);
+                this.#updateExpectRoman(key, true);
                 // console.log("CHAR_COMPLETE", key, this.#completedText);
                 // console.log("CHAR_COMPLETE", key, this.#remainingRoman);
                 return this.#remainingRoman === "" ? TEXT_COMPLETE : TEXT_INCOMPLETE;
@@ -153,14 +153,14 @@ export class TypingText {
         }
     }
 
-    #updateExpectRoman(key) {
+    #updateExpectRoman(key, isCharComplete = false) {
         if (this.char === null) {
             this.#remainingRoman = "";
             return;
         }
 
         let roman = "";
-        if (this.char.name === "っ" && this.char.isSpecial) {
+        if (!isCharComplete && this.char.name === "っ" && this.char.isSpecial) {
             roman = key;
         }
 
