@@ -25,7 +25,7 @@ export class CharJpXtu extends CharJp {
                 expectRoman => expectRoman[0] === roman
             );
             if (nextCharExpectRomanArray.length > 0) {
-                nextCharFirstRoman = nextCharExpectRomanArray[0];
+                nextCharFirstRoman = nextCharExpectRomanArray[0][0];
             }
             else {
                 nextCharFirstRoman = this.nextChar.expectRoman()[0];
@@ -34,7 +34,6 @@ export class CharJpXtu extends CharJp {
         else {
             nextCharFirstRoman = this.nextChar.expectRoman()[0];
         }
-        console.log(123, roman, nextCharFirstRoman);
         if (roman === "x" && nextCharFirstRoman === "x" || roman === "l" && nextCharFirstRoman === "l") {
             this.isSpecial = true;
             return nextCharFirstRoman;
