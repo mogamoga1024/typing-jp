@@ -6,13 +6,13 @@ export class CharJpN extends CharJp {
         super("ん", ["nn", "n'", "xn"]);
     }
 
-    expectRoman() {
+    expectRoman(roman = "") {
         if (this.nextChar === null) {
-            return super.expectRoman();
+            return super.expectRoman(roman);
         }
-        const nextCharFirstRoman = this.nextChar.expectRoman()[0];
+        const nextCharFirstRoman = this.nextChar.expectRoman(roman)[0];
         if (/^(n|'|a|i|u|e|o|y)$/.test(nextCharFirstRoman)) {
-            return super.expectRoman();
+            return super.expectRoman(roman);
         }
         if (
             this.nextExpectRomanIndex > 1 ||
