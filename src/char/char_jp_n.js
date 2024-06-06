@@ -10,7 +10,7 @@ export class CharJpN extends CharJp {
         if (this.nextChar === null) {
             return super.expectRoman(roman);
         }
-        const nextCharFirstRoman = this.nextChar.expectRoman(roman)[0];
+        const nextCharFirstRoman = this.nextChar.expectRoman()[0];
         if (/^(n|'|a|i|u|e|o|y)$/.test(nextCharFirstRoman)) {
             return super.expectRoman(roman);
         }
