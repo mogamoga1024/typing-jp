@@ -168,10 +168,16 @@ export class TypingText {
         }
 
         let prevExpectRoman = "";
-        if (!isCharComplete && this.char.name === "っ") {
-            this.#remainingRoman = this.char.expectRoman(key).slice(this.char.nextExpectRomanIndex);
-            if (this.char.isSpecial) {
-                prevExpectRoman = key;
+        if (this.char.name === "っ") {
+            if (isCharComplete) {
+                this.#remainingRoman = this.char.expectRoman().slice(this.char.nextExpectRomanIndex);
+                prevExpectRoman = this.#remainingRoman;
+            }
+            else {
+                this.#remainingRoman = this.char.expectRoman(key).slice(this.char.nextExpectRomanIndex);
+                if (this.char.isSpecial) {
+                    prevExpectRoman = key;
+                }
             }
         }
         else {
@@ -180,6 +186,7 @@ export class TypingText {
 
         let tmpChar = this.char.nextChar;
         while (tmpChar !== null) {
+            console.log(tmpChar.name, prevExpectRoman);
             const expectRoman = tmpChar.expectRoman(prevExpectRoman);
             if (tmpChar.name === "っ" && tmpChar.isSpecial) {
                 prevExpectRoman = expectRoman;
