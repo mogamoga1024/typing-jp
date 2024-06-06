@@ -28,11 +28,11 @@ export class CharJpXtu extends CharJp {
                 nextCharFirstRoman = nextCharExpectRomanArray[0][0];
             }
             else {
-                nextCharFirstRoman = this.nextChar.expectRoman()[0];
+                nextCharFirstRoman = this.#getNextCharFirstRoman();
             }
         }
         else {
-            nextCharFirstRoman = this.nextChar.expectRoman()[0];
+            nextCharFirstRoman = this.#getNextCharFirstRoman();
         }
         if (roman === "x" && nextCharFirstRoman === "x" || roman === "l" && nextCharFirstRoman === "l") {
             this.isSpecial = true;
@@ -42,12 +42,24 @@ export class CharJpXtu extends CharJp {
             if (this.nextExpectRomanIndex > 0) {
                 return this.expectRomanArray[0];
             }
-            if (this.regex.test(nextCharFirstRoman)) {
+            if (nextCharFirstRoman !== "") {
                 return nextCharFirstRoman;
             }
         }
         
         return super.expectRoman();
+    }
+
+    #getNextCharFirstRoman() {
+        const nextCharExpectRomanArray = this.nextChar.expectRomanArray.filter(
+            expectRoman => this.regex.test(expectRoman[0])
+        );
+        if (nextCharExpectRomanArray.length > 0) {
+            return nextCharExpectRomanArray[0];
+        }
+        else {
+            return "";
+        }
     }
     
     inputRoman(_roman, isCapsLock = false) {
