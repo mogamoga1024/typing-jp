@@ -168,12 +168,11 @@ export class TypingText {
             return;
         }
 
-        let roman = "";
+        let prevExpectRoman = "";
         if (!isCharComplete && this.char.name === "っ") {
-            roman = key;
-            this.#remainingRoman = this.char.expectRoman(roman).slice(this.char.nextExpectRomanIndex);
-            if (!this.char.isSpecial) {
-                roman = "";
+            this.#remainingRoman = this.char.expectRoman(key).slice(this.char.nextExpectRomanIndex);
+            if (this.char.isSpecial) {
+                prevExpectRoman = key;
             }
         }
         else {
@@ -182,8 +181,8 @@ export class TypingText {
 
         let tmpChar = this.char.nextChar;
         while (tmpChar !== null) {
-            this.#remainingRoman += tmpChar.expectRoman(roman);
-            roman = "";
+            this.#remainingRoman += tmpChar.expectRoman(prevExpectRoman);
+            prevExpectRoman = "";
             tmpChar = tmpChar.nextChar;
         }
     }
