@@ -532,7 +532,7 @@ test("っん xtuxn", () => {
     strictEqual(typingText.inputKey("x"), TEXT_INCOMPLETE);
     strictEqual(typingText.inputKey("n"), TEXT_COMPLETE);
 
-    strictEqual(typingText.roman, "xtunn");
+    strictEqual(typingText.roman, "xxn");
     strictEqual(typingText.completedRoman, "xtuxn");
     strictEqual(typingText.remainingRoman, "");
 
@@ -546,9 +546,9 @@ test("っん n", () => {
 
     strictEqual(typingText.inputKey("n"), TEXT_UNMATCH);
 
-    strictEqual(typingText.roman, "xtunn");
+    strictEqual(typingText.roman, "xxn");
     strictEqual(typingText.completedRoman, "");
-    strictEqual(typingText.remainingRoman, "xtunn");
+    strictEqual(typingText.remainingRoman, "xxn");
 
     strictEqual(typingText.text, "っん");
     strictEqual(typingText.completedText, "");
