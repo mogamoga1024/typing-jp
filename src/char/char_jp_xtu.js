@@ -55,7 +55,7 @@ export class CharJpXtu extends CharJp {
             expectRoman => this.regex.test(expectRoman[0])
         );
         if (nextCharExpectRomanArray.length > 0) {
-            return nextCharExpectRomanArray[0];
+            return nextCharExpectRomanArray[0][0];
         }
         else {
             return "";
