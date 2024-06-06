@@ -43,6 +43,7 @@ export class CharJpXtu extends CharJp {
                 return this.expectRomanArray[0];
             }
             if (nextCharFirstRoman !== "") {
+                this.isSpecial = true;
                 return nextCharFirstRoman;
             }
         }

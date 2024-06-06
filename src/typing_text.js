@@ -56,7 +56,7 @@ export class TypingText {
         let prevExpectRoman = "";
         while (tmpChar !== null) {
             const expectRoman = tmpChar.expectRoman(prevExpectRoman);
-            if (tmpChar.name === "っ" && expectRoman.length === 1) {
+            if (tmpChar.name === "っ" && tmpChar.isSpecial) {
                 prevExpectRoman = expectRoman;
             }
             else {
