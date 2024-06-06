@@ -1207,7 +1207,7 @@ test("あっんあ a", () => {
     strictEqual(typingText.remainingText, "っんあ");
 });
 
-test("かっんあ a", () => {
+test("かっんあ k", () => {
     const typingText = new TypingText("かっんあ");
 
     strictEqual(typingText.inputKey("k"), TEXT_INCOMPLETE);

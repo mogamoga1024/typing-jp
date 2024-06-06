@@ -181,7 +181,12 @@ export class TypingText {
         let tmpChar = this.char.nextChar;
         while (tmpChar !== null) {
             const expectRoman = tmpChar.expectRoman(prevExpectRoman);
-            prevExpectRoman = "";
+            if (tmpChar.name === "っ" && tmpChar.isSpecial) {
+                prevExpectRoman = expectRoman;
+            }
+            else {
+                prevExpectRoman = "";
+            }
             this.#remainingRoman += expectRoman;
             tmpChar = tmpChar.nextChar;
         }
