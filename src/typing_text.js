@@ -53,9 +53,18 @@ export class TypingText {
         this.#remainingRoman = "";
 
         let tmpChar = this.char;
+        let prevExpectRoman = "";
         while (tmpChar !== null) {
-            this.#remainingRoman += tmpChar.expectRoman();
+            const expectRoman = tmpChar.expectRoman(prevExpectRoman);
+            if (tmpChar.name === "っ" && expectRoman.length === 1) {
+                prevExpectRoman = expectRoman;
+            }
+            else {
+                prevExpectRoman = "";
+            }
+            this.#remainingRoman += expectRoman;
             tmpChar = tmpChar.nextChar;
+            
         }
         this.#roman = this.#remainingRoman;
     }
