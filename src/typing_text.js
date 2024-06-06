@@ -64,7 +64,6 @@ export class TypingText {
             }
             this.#remainingRoman += expectRoman;
             tmpChar = tmpChar.nextChar;
-            
         }
         this.#roman = this.#remainingRoman;
     }
