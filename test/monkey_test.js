@@ -10,6 +10,7 @@ var originalText = createRandomOriginalText();
 // var originalText = "っゃったっゃったっゃ";
 // var originalText = "あっゃ";
 // var originalText = "っゃ";
+var originalText = "あっんあ";
 typingText = new TypingText(originalText);
 console.log("----------");
 console.log(originalText);

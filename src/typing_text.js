@@ -108,7 +108,12 @@ export class TypingText {
             }
 
             case CHAR_COMPLETE: {
-                if (this.char.name === "ん") {
+                if (this.#wasCharPartiallyComplete) {
+                    this.#wasCharPartiallyComplete = false;
+                    this.#completedText += "っ";
+                    this.#completedText += this.char.name;
+                }
+                else if (this.char.name === "ん") {
                     this.#completedText += "ん";
                     for (const expectRoman of this.char.expectRomanArray) {
                         if (key !== expectRoman.at(-1)) {
@@ -116,11 +121,6 @@ export class TypingText {
                             break;
                         }
                     }
-                }
-                else if (this.#wasCharPartiallyComplete) {
-                    this.#wasCharPartiallyComplete = false;
-                    this.#completedText += "っ";
-                    this.#completedText += this.char.name;
                 }
                 else {
                     this.#completedText += this.char.name;
