@@ -47,8 +47,6 @@ export class TypingText {
         // カタカタをひらがなに変換する
         this.#text = moji(tmpText).convert("HK", "ZK").convert("KK", "HG").toString();
         
-        // console.log(this.#text);
-
         this.char = createCharChain(this.#text);
         this.#remainingRoman = "";
 
@@ -186,7 +184,6 @@ export class TypingText {
 
         let tmpChar = this.char.nextChar;
         while (tmpChar !== null) {
-            console.log(tmpChar.name, prevExpectRoman);
             const expectRoman = tmpChar.expectRoman(prevExpectRoman);
             if (tmpChar.name === "っ" && tmpChar.isSpecial) {
                 prevExpectRoman = expectRoman;
