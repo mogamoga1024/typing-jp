@@ -180,8 +180,9 @@ export class TypingText {
 
         let tmpChar = this.char.nextChar;
         while (tmpChar !== null) {
-            this.#remainingRoman += tmpChar.expectRoman(prevExpectRoman);
+            const expectRoman = tmpChar.expectRoman(prevExpectRoman);
             prevExpectRoman = "";
+            this.#remainingRoman += expectRoman;
             tmpChar = tmpChar.nextChar;
         }
     }
