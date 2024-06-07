@@ -1256,7 +1256,7 @@ test("ん^ぼ nn^", () => {
 });
 
 test("ん＾ n^", () => {
-    const typingText = new TypingText("ん^");
+    const typingText = new TypingText("ん＾");
 
     strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
     strictEqual(typingText.inputKey("^"), TEXT_COMPLETE);
@@ -1274,7 +1274,7 @@ test("ん＾ぼ n^", () => {
     const typingText = new TypingText("ん＾ぼ");
 
     strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
-    strictEqual(typingText.inputKey("＾"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("^"), TEXT_INCOMPLETE);
 
     strictEqual(typingText.roman, "n^bo");
     strictEqual(typingText.completedRoman, "n^");
