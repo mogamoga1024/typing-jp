@@ -14,6 +14,7 @@ var originalText = createRandomOriginalText();
 // var originalText = "かっんあ";
 // var originalText = "あっあ";
 // var originalText = "ぁかXしぃつ";
+// var originalText = "んU";
 typingText = new TypingText(originalText);
 console.log("----------");
 console.log(originalText);
