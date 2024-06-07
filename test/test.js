@@ -421,6 +421,52 @@ test("んｘ nnx", () => {
     strictEqual(typingText.remainingText, "");
 });
 
+test("ん！ n!", () => {
+    const typingText = new TypingText("ん！");
+
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("!"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "n!");
+    strictEqual(typingText.completedRoman, "n!");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "ん！");
+    strictEqual(typingText.completedText, "ん！");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("ん! n!", () => {
+    const typingText = new TypingText("ん!");
+
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("!"), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "nn!");
+    strictEqual(typingText.completedRoman, "n");
+    strictEqual(typingText.remainingRoman, "n!");
+
+    strictEqual(typingText.text, "ん!");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "ん!");
+});
+
+test("ん! nn!", () => {
+    const typingText = new TypingText("ん!");
+
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("!"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "nn!");
+    strictEqual(typingText.completedRoman, "nn!");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "ん!");
+    strictEqual(typingText.completedText, "ん!");
+    strictEqual(typingText.remainingText, "");
+});
+
 test("あんこ anko", () => {
     const typingText = new TypingText("あんこ");
 
