@@ -16,6 +16,18 @@ test("てすとですよん", () => {
     strictEqual(typingText.remainingText, "てすとですよん");
 });
 
+test("ｔｅｓｔＴＥＳＴ１２３４", () => {
+    const typingText = new TypingText("ｔｅｓｔＴＥＳＴ１２３４");
+
+    strictEqual(typingText.roman, "testTEST1234");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "testTEST1234");
+
+    strictEqual(typingText.text, "testTEST1234");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "testTEST1234");
+});
+
 test("てすとですよん tes", () => {
     const typingText = new TypingText("てすとですよん");
 
@@ -382,14 +394,30 @@ test("んｘ nx", () => {
     const typingText = new TypingText("んｘ");
 
     strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("x"), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "nnx");
+    strictEqual(typingText.completedRoman, "n");
+    strictEqual(typingText.remainingRoman, "nx");
+
+    strictEqual(typingText.text, "んx");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "んx");
+});
+
+test("んｘ nnx", () => {
+    const typingText = new TypingText("んｘ");
+
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
     strictEqual(typingText.inputKey("x"), TEXT_COMPLETE);
 
-    strictEqual(typingText.roman, "nx");
-    strictEqual(typingText.completedRoman, "nx");
+    strictEqual(typingText.roman, "nnx");
+    strictEqual(typingText.completedRoman, "nnx");
     strictEqual(typingText.remainingRoman, "");
 
-    strictEqual(typingText.text, "んｘ");
-    strictEqual(typingText.completedText, "んｘ");
+    strictEqual(typingText.text, "んx");
+    strictEqual(typingText.completedText, "んx");
     strictEqual(typingText.remainingText, "");
 });
 
