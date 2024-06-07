@@ -1226,9 +1226,9 @@ test("あっあ a", () => {
 
     strictEqual(typingText.inputKey("a"), TEXT_INCOMPLETE);
 
-    strictEqual(typingText.roman, "axxtua");
+    strictEqual(typingText.roman, "axtua");
     strictEqual(typingText.completedRoman, "a");
-    strictEqual(typingText.remainingRoman, "xxtua");
+    strictEqual(typingText.remainingRoman, "xtua");
 
     strictEqual(typingText.text, "あっあ");
     strictEqual(typingText.completedText, "あ");
