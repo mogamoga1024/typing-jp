@@ -12,7 +12,8 @@ var originalText = createRandomOriginalText();
 // var originalText = "っゃ";
 // var originalText = "あっんあ";
 // var originalText = "かっんあ";
-var originalText = "あっあ";
+// var originalText = "あっあ";
+var originalText = "ぁかXしぃつ";
 typingText = new TypingText(originalText);
 console.log("----------");
 console.log(originalText);
@@ -55,9 +56,9 @@ window.onkeydown = function(e) {
         case "complete":
             // 次の文章へ
             originalText = createRandomOriginalText();
-            typingText = new TypingText(originalText);
             console.log("----------");
             console.log(originalText);
+            typingText = new TypingText(originalText);
         
             domText1.innerText = "";
             domText2.innerText = typingText.remainingText;
