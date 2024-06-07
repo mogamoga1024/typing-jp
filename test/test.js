@@ -90,6 +90,74 @@ test("ﾃｽﾄﾃﾞｽﾖﾝ", () => {
     strictEqual(typingText.remainingText, "てすとですよん");
 });
 
+test("' ' 半スペ 無視しない", () => {
+    const typingText = new TypingText(" ", false);
+
+    strictEqual(typingText.roman, " ");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, " ");
+
+    strictEqual(typingText.text, " ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, " ");
+});
+
+test("'　' 全スペ 無視しない", () => {
+    const typingText = new TypingText("　", false);
+
+    strictEqual(typingText.roman, " ");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, " ");
+
+    strictEqual(typingText.text, "　");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "　");
+});
+
+test("' ' ' ' 半スペ 無視しない", () => {
+    const typingText = new TypingText(" ", false);
+
+    strictEqual(typingText.inputKey(" "), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, " ");
+    strictEqual(typingText.completedRoman, " ");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, " ");
+    strictEqual(typingText.completedText, " ");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("'　' '　' 全スペ 無視しない", () => {
+    const typingText = new TypingText("　", false);
+
+    strictEqual(typingText.inputKey(" "), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, " ");
+    strictEqual(typingText.completedRoman, " ");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "　");
+    strictEqual(typingText.completedText, "　");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("' ' ' ' 半スペ 無視する", () => {
+    throws(() => {
+            new TypingText(" ");
+        },
+        EmptyTextError
+    );
+});
+
+test("'　' '　' 全スペ 無視する", () => {
+    throws(() => {
+            new TypingText("　");
+        },
+        EmptyTextError
+    );
+});
+
 test("て すとですよん 'tes' 半スペ", () => {
     const typingText = new TypingText("て すとですよん", false);
 
