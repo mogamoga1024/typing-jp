@@ -1197,10 +1197,41 @@ test("ん^ n^", () => {
     const typingText = new TypingText("ん^");
 
     strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("^"), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "nn^");
+    strictEqual(typingText.completedRoman, "n");
+    strictEqual(typingText.remainingRoman, "n^");
+
+    strictEqual(typingText.text, "ん^");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "ん^");
+});
+
+test("ん^ぼ n^", () => {
+    const typingText = new TypingText("ん^ぼ");
+
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("^"), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "nn^bo");
+    strictEqual(typingText.completedRoman, "n");
+    strictEqual(typingText.remainingRoman, "n^bo");
+
+    strictEqual(typingText.text, "ん^ぼ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "ん^ぼ");
+});
+
+test("ん^ nn^", () => {
+    const typingText = new TypingText("ん^");
+
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
     strictEqual(typingText.inputKey("^"), TEXT_COMPLETE);
 
-    strictEqual(typingText.roman, "n^");
-    strictEqual(typingText.completedRoman, "n^");
+    strictEqual(typingText.roman, "nn^");
+    strictEqual(typingText.completedRoman, "nn^");
     strictEqual(typingText.remainingRoman, "");
 
     strictEqual(typingText.text, "ん^");
@@ -1208,18 +1239,49 @@ test("ん^ n^", () => {
     strictEqual(typingText.remainingText, "");
 });
 
-test("ん^ぼ n^", () => {
+test("ん^ぼ nn^", () => {
     const typingText = new TypingText("ん^ぼ");
 
     strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
     strictEqual(typingText.inputKey("^"), TEXT_INCOMPLETE);
+
+    strictEqual(typingText.roman, "nn^bo");
+    strictEqual(typingText.completedRoman, "nn^");
+    strictEqual(typingText.remainingRoman, "bo");
+
+    strictEqual(typingText.text, "ん^ぼ");
+    strictEqual(typingText.completedText, "ん^");
+    strictEqual(typingText.remainingText, "ぼ");
+});
+
+test("ん＾ n^", () => {
+    const typingText = new TypingText("ん^");
+
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("^"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "n^");
+    strictEqual(typingText.completedRoman, "n^");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "ん＾");
+    strictEqual(typingText.completedText, "ん＾");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("ん＾ぼ n^", () => {
+    const typingText = new TypingText("ん＾ぼ");
+
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("＾"), TEXT_INCOMPLETE);
 
     strictEqual(typingText.roman, "n^bo");
     strictEqual(typingText.completedRoman, "n^");
     strictEqual(typingText.remainingRoman, "bo");
 
-    strictEqual(typingText.text, "ん^ぼ");
-    strictEqual(typingText.completedText, "ん^");
+    strictEqual(typingText.text, "ん＾ぼ");
+    strictEqual(typingText.completedText, "ん＾");
     strictEqual(typingText.remainingText, "ぼ");
 });
 
