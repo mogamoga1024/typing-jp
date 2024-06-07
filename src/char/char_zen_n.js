@@ -34,7 +34,10 @@ export class CharZenN extends CharZen {
             return result;
         }
     
-        if (/^(a|i|u|e|o|y)$/.test(this.nextChar.expectRoman()[0])) {
+        if (!(this.nextChar instanceof CharZen)) {
+            return CHAR_UNMATCH;
+        }
+        if (/^(a|i|u|e|o|y| )$/.test(this.nextChar.expectRoman()[0])) {
             return CHAR_UNMATCH;
         }
     
