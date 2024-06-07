@@ -1,3 +1,4 @@
+import moji from "moji";
 import { Char } from "./char.js";
 import { CharJp } from "./char_jp.js";
 import { CharJpXtu } from "./char_jp_xtu.js";
@@ -5,7 +6,7 @@ import { CharJpN } from "./char_jp_n.js";
 import { CharCreationError } from "../error/char_creation_error.js";
 
 export function createChar(name) {
-    switch (name) {
+    switch (moji(name).convert("KK", "HG").toString()) {
         // あ行 
         case "あ": return new CharJp(name, ["a"]);
         case "い": return new CharJp(name, ["i", "yi"]);

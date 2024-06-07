@@ -1,6 +1,4 @@
-import moji from "moji";
 import { createCharChain } from "./char/char_chain.js";
-import { createChar } from "./char/char_factory.js";
 import { EmptyTextError } from "./error/empty_text_error.js";
 import { NoRemainingInputError } from "./error/no_remaining_input_error.js";
 import { CHAR_UNMATCH, CHAR_INCOMPLETE, CHAR_COMPLETE, CHAR_PARTIALLY_COMPLETE } from "./constants/char_status.js";
