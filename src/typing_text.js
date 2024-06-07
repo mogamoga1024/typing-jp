@@ -168,7 +168,9 @@ export class TypingText {
         if (this.char.name === "っ") {
             if (isCharComplete) {
                 this.#remainingRoman = this.char.expectRoman().slice(this.char.nextExpectRomanIndex);
-                prevExpectRoman = this.#remainingRoman;
+                if (this.char.isSpecial) {
+                    prevExpectRoman = this.#remainingRoman;
+                }
             }
             else {
                 this.#remainingRoman = this.char.expectRoman(key).slice(this.char.nextExpectRomanIndex);
