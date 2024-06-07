@@ -467,6 +467,30 @@ test("ん! nn!", () => {
     strictEqual(typingText.remainingText, "");
 });
 
+test("'ん ' 半スペ", () => {
+    const typingText = new TypingText("ん ", false);
+
+    strictEqual(typingText.roman, "nn ");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "nn ");
+
+    strictEqual(typingText.text, "ん ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "ん ");
+});
+
+test("'ん　' 全スペ", () => {
+    const typingText = new TypingText("ん　", false);
+
+    strictEqual(typingText.roman, "nn ");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "nn ");
+
+    strictEqual(typingText.text, "ん　");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "ん　");
+});
+
 test("あんこ anko", () => {
     const typingText = new TypingText("あんこ");
 
