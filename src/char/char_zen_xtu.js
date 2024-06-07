@@ -1,7 +1,7 @@
-import { CharJp } from "./char_jp.js";
+import { CharZen } from "./char_zen.js";
 import { CHAR_UNMATCH, CHAR_COMPLETE, CHAR_PARTIALLY_COMPLETE } from "../constants/char_status.js";
 
-export class CharJpXtu extends CharJp {
+export class CharZenXtu extends CharZen {
     #prevInputRoman = "";
 
     constructor() {
