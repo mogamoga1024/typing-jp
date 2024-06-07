@@ -479,12 +479,42 @@ test("'ん ' 半スペ", () => {
     strictEqual(typingText.remainingText, "ん ");
 });
 
+test("'ん ' 'n ' 半スペ", () => {
+    const typingText = new TypingText("ん ", false);
+
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey(" "), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "nn ");
+    strictEqual(typingText.completedRoman, "n");
+    strictEqual(typingText.remainingRoman, "n ");
+
+    strictEqual(typingText.text, "ん ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "ん ");
+});
+
 test("'ん　' 全スペ", () => {
     const typingText = new TypingText("ん　", false);
 
     strictEqual(typingText.roman, "nn ");
     strictEqual(typingText.completedRoman, "");
     strictEqual(typingText.remainingRoman, "nn ");
+
+    strictEqual(typingText.text, "ん　");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "ん　");
+});
+
+test("'ん　' 'n ' 全スペ", () => {
+    const typingText = new TypingText("ん　", false);
+
+    strictEqual(typingText.inputKey("n"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey(" "), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "nn ");
+    strictEqual(typingText.completedRoman, "n");
+    strictEqual(typingText.remainingRoman, "n ");
 
     strictEqual(typingText.text, "ん　");
     strictEqual(typingText.completedText, "");
