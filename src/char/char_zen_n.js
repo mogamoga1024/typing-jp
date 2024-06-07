@@ -10,8 +10,11 @@ export class CharZenN extends CharZen {
         if (this.nextChar === null) {
             return super.expectRoman(roman);
         }
+        if (!(this.nextChar instanceof CharZen)) {
+            return super.expectRoman(roman);
+        }
         const nextCharFirstRoman = this.nextChar.expectRoman()[0];
-        if (/^(n|'|a|i|u|e|o|y)$/.test(nextCharFirstRoman)) {
+        if (/^(n|'|a|i|u|e|o|y| )$/.test(nextCharFirstRoman)) {
             return super.expectRoman(roman);
         }
         if (
