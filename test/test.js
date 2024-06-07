@@ -128,7 +128,7 @@ test("' ' ' ' 半スペ 無視しない", () => {
     strictEqual(typingText.remainingText, "");
 });
 
-test("'　' '　' 全スペ 無視しない", () => {
+test("'　' ' ' 全スペ 無視しない", () => {
     const typingText = new TypingText("　", false);
 
     strictEqual(typingText.inputKey(" "), TEXT_COMPLETE);
