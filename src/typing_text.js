@@ -44,8 +44,9 @@ export class TypingText {
             throw new EmptyTextError();
         }
 
-        // カタカタをひらがなに変換する
-        this.#text = moji(tmpText).convert("HK", "ZK").convert("KK", "HG").toString();
+        // 半角カタカナを全角カタカナにする
+        // 全角英数字を半角英数字にする
+        this.#text = tmpText.normalize("NFKC");
         
         this.char = createCharChain(this.#text);
         this.#remainingRoman = "";
