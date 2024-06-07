@@ -38,13 +38,25 @@ export class TypingText {
     #wasCharPartiallyComplete = false;
 
     constructor(_text, ignoreSpace = true) {
-        const tmpText = ignoreSpace ? _text.replace(/\s|　/g, "") : _text.replace(/\t\f\r\n/g, "");
+        let tmpText = ignoreSpace ? _text.replace(/\s|　/g, "") : _text.replace(/\t\f\r\n/g, "");
         if (tmpText === "") {
             throw new EmptyTextError();
         }
 
+        const zenkakuAlphanumeric = "ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ０１２３４５６７８９";
+        const hankakuAlphanumeric = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        for (const char of tmpText) {
+            const index = zenkakuAlphanumeric.indexOf(char);
+            if (index !== -1) {
+                this.#text += hankakuAlphanumeric[index];
+            }
+            else {
+                this.#text += char;
+            }
+        }
+
         // カタカタをひらがなに変換する
-        this.#text = moji(tmpText).convert("HK", "ZK").convert("KK", "HG").toString();
+        this.#text = moji(this.#text).convert("HK", "ZK").convert("KK", "HG").toString();
         
         this.char = createCharChain(this.#text);
         this.#remainingRoman = "";
