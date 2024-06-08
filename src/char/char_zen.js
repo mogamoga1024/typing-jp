@@ -5,7 +5,7 @@ export class CharZen extends Char {
         return true;
     }
 
-    constructor(name, expectRomanArray) {
-        super(name, expectRomanArray);
+    constructor(name, expectRomanArray, priority) {
+        super(name, expectRomanArray, priority);
     }
 }

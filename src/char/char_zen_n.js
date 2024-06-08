@@ -2,8 +2,8 @@ import { CharZen } from "./char_zen.js";
 import { CHAR_UNMATCH, CHAR_INCOMPLETE, CHAR_COMPLETE } from "../constants/char_status.js";
 
 export class CharZenN extends CharZen {
-    constructor(name, expectRomanArray) {
-        super(name, expectRomanArray);
+    constructor(name, expectRomanArray, priority) {
+        super(name, expectRomanArray, priority);
     }
 
     expectRoman(roman = "") {

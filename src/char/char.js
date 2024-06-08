@@ -6,15 +6,29 @@ export class Char {
         return false;
     }
 
-    constructor(name, expectRomanArray) {
+    constructor(name, expectRomanArray, priority) {
         this.name = name;
         this.nextChar = null;
         this.expectRomanArray = expectRomanArray;
         this.nextExpectRomanIndex = 0;
         this.divisionCharChain = null;
+
+        const priorityRomanList = priority[name];
+        if (Array.isArray(priorityRomanList)) {
+            this.expectRomanArray.sort((a, b) => {
+                for (const roman of priorityRomanList) {
+                    const resultA = a.startsWith(roman);
+                    const resultB = b.startsWith(roman);
+                    if (resultA && !resultB) return -1;
+                    else if (!resultA && resultB) return 1;
+                    else continue;
+                }
+                return 0;
+            });
+        }
     
         if (this.name.length > 1) {
-            this.divisionCharChain = createDivisionCharChain(this.name);
+            this.divisionCharChain = createDivisionCharChain(this.name, priority);
         }
     }
 

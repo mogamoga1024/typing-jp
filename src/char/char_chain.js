@@ -2,7 +2,7 @@ import { createChar } from "./char_factory.js";
 
 export function createCharChain(text, priority) {
     if (text.length === 1) {
-        return createChar(text[0]);
+        return createChar(text[0], priority);
     }
 
     let firstChar = null;
@@ -20,15 +20,15 @@ export function createCharChain(text, priority) {
         }
 
         if (tmpName === null) {
-            char = createChar(name);
+            char = createChar(name, priority);
         }
         else {
             try {
-                char = createChar(tmpName);
+                char = createChar(tmpName, priority);
                 i++;
             }
             catch (e) {
-                char = createChar(name);
+                char = createChar(name, priority);
             }
         }
 
@@ -44,11 +44,11 @@ export function createCharChain(text, priority) {
     return firstChar;
 };
 
-export function createDivisionCharChain(text) {
+export function createDivisionCharChain(text, priority) {
     let firstChar = null;
     let preChar = null;
     for (let i = 0; i < text.length; i++) {
-        const char = createChar(text[i]);
+        const char = createChar(text[i], priority);
         if (i === 0) {
             firstChar = char;
         }
