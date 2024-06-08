@@ -9,16 +9,18 @@ QUnit.module("優先度");
 test("ぃ", () => {
     const priority = {
         "ぃ": ["l", "x"]
-    }
+    };
 
     const typingText = new TypingText("ぃ", priority);
 
-    strictEqual(typingText.roman, "tesutodesuyonn");
-    strictEqual(typingText.completedRoman, "");
-    strictEqual(typingText.remainingRoman, "tesutodesuyonn");
+    deepEqual(typingText.char.expectRomanArray, ["li", "lyi", "xi", "xyi"]);
 
-    strictEqual(typingText.text, "てすとですよん");
+    strictEqual(typingText.roman, "li");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "li");
+
+    strictEqual(typingText.text, "ぃ");
     strictEqual(typingText.completedText, "");
-    strictEqual(typingText.remainingText, "てすとですよん");
+    strictEqual(typingText.remainingText, "ぃ");
 });
 
