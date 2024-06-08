@@ -2,10 +2,13 @@ const path = require('path');
 
 module.exports = {
   mode: 'production',
-  entry: './test/test.js',
+  entry: {
+    test1: './test/test1.js',
+    test2: './test/test2.js',
+  },
   output: {
     publicPath: '/dist/',
-    filename: 'test/test.js'
+    filename: 'test/[name].js'
   },
   devServer: {
     static: {

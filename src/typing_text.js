@@ -37,7 +37,28 @@ export class TypingText {
 
     #wasCharPartiallyComplete = false;
 
-    constructor(_text, ignoreSpace = true, priority = {}) {
+    constructor(...args) {
+        const length = args.length;
+        if (length === 1) {
+            this.#init(args[0]);
+        }
+        else if (length === 2) {
+            if (args[1] === true || args[1] === false) {
+                this.#init(args[0], args[1], {});
+            }
+            else {
+                this.#init(args[0], true, args[1]);
+            }
+        }
+        else if (length === 3) {
+            this.#init(args[0], args[1], args[2]);
+        }
+        else {
+            this.#init(); // エラーになるが別にいい。
+        }
+    }
+
+    #init(_text, ignoreSpace = true, priority = {}) {
         let tmpText = ignoreSpace ? _text.replace(/\s|　/g, "") : _text.replace(/\t\f\r\n/g, "");
         if (tmpText === "") {
             throw new EmptyTextError();

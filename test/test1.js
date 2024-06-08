@@ -4,6 +4,8 @@ import { NoRemainingInputError } from "../src/error/no_remaining_input_error.js"
 import { CharCreationError } from "../src/error/char_creation_error.js";
 import { TEXT_UNMATCH, TEXT_INCOMPLETE, TEXT_COMPLETE } from "../src/constants/text_status.js";
 
+QUnit.module("基本");
+
 test("てすとですよん", () => {
     const typingText = new TypingText("てすとですよん");
 
