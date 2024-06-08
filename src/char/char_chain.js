@@ -1,6 +1,6 @@
 import { createChar } from "./char_factory.js";
 
-export function createCharChain(text) {
+export function createCharChain(text, priority) {
     if (text.length === 1) {
         return createChar(text[0]);
     }

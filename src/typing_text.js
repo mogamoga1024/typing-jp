@@ -37,7 +37,7 @@ export class TypingText {
 
     #wasCharPartiallyComplete = false;
 
-    constructor(_text, ignoreSpace = true) {
+    constructor(_text, ignoreSpace = true, priority = {}) {
         let tmpText = ignoreSpace ? _text.replace(/\s|　/g, "") : _text.replace(/\t\f\r\n/g, "");
         if (tmpText === "") {
             throw new EmptyTextError();
@@ -58,7 +58,7 @@ export class TypingText {
         // カタカタをひらがなに変換する
         this.#text = moji(this.#text).convert("HK", "ZK").convert("KK", "HG").toString();
         
-        this.char = createCharChain(this.#text);
+        this.char = createCharChain(this.#text, priority);
         this.#remainingRoman = "";
 
         let tmpChar = this.char;
