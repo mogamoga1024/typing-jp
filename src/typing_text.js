@@ -54,7 +54,7 @@ export class TypingText {
             this.#init(args[0], args[1], args[2]);
         }
         else {
-            this.#init(); // エラーになるが別にいい。
+            this.#init(); // エラーになるが別にいい。不正な入力なので。
         }
     }
 
