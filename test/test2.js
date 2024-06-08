@@ -6,7 +6,7 @@ import { TEXT_UNMATCH, TEXT_INCOMPLETE, TEXT_COMPLETE } from "../src/constants/t
 
 QUnit.module("優先度");
 
-test("ぃ", () => {
+test("ぃ l x", () => {
     const priority = {
         "ぃ": ["l", "x"]
     };
@@ -23,4 +23,41 @@ test("ぃ", () => {
     strictEqual(typingText.completedText, "");
     strictEqual(typingText.remainingText, "ぃ");
 });
+
+test("ぃ lyi xyi", () => {
+    const priority = {
+        "ぃ": ["lyi", "xyi"]
+    };
+
+    const typingText = new TypingText("ぃ", priority);
+
+    deepEqual(typingText.char.expectRomanArray, ["lyi", "xyi", "xi", "li"]);
+
+    strictEqual(typingText.roman, "lyi");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "lyi");
+
+    strictEqual(typingText.text, "ぃ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "ぃ");
+});
+
+test("じ j", () => {
+    const priority = {
+        "じ": ["j"]
+    };
+
+    const typingText = new TypingText("じ", priority);
+
+    deepEqual(typingText.char.expectRomanArray, ["ji", "zi"]);
+
+    strictEqual(typingText.roman, "ji");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "ji");
+
+    strictEqual(typingText.text, "じ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "じ");
+});
+
 
