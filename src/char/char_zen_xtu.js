@@ -4,8 +4,8 @@ import { CHAR_UNMATCH, CHAR_COMPLETE, CHAR_PARTIALLY_COMPLETE } from "../constan
 export class CharZenXtu extends CharZen {
     #prevInputRoman = "";
 
-    constructor() {
-        super("っ", ["xtu", "xtsu", "ltu", "ltsu"]);
+    constructor(name, expectRomanArray) {
+        super(name, expectRomanArray);
         this.regex = /^(?=[a-z])(?!(a|i|u|e|o|n)).$/;
         this.isSpecial = false;
     }

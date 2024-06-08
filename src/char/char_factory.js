@@ -158,7 +158,7 @@ export function createChar(name) {
         case "どぇ": return new CharZen(name, ["dwe"]);
         case "どぉ": return new CharZen(name, ["dwo"]);
 
-        case "っ": return new CharZenXtu();
+        case "っ": return new CharZenXtu(name, ["xtu", "xtsu", "ltu", "ltsu"]);
 
         // な行 
         case "な": return new CharZen(name, ["na"]);
@@ -268,7 +268,7 @@ export function createChar(name) {
         // わ行 
         case "わ": return new CharZen(name, ["wa"]);
         case "を": return new CharZen(name, ["wo"]);
-        case "ん": return new CharZenN();
+        case "ん": return new CharZenN(name, ["nn", "n'", "xn"]);
 
         case "ゎ": return new CharZen(name, ["xwa", "lwa"]);
 
