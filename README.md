@@ -97,7 +97,17 @@ if (TypingText.isValidInputKey(keyboardEvent.key) === false) {
 
 この眠くなるようなリファレンスを読むよりも[サンプルのプログラム](https://github.com/mogamoga1024/typing-jp/blob/main/sample/sample.js)を読んだ方が速く理解できると思います。
 
-### TypingText(text[, ignoreSpace])
+- [TypingText(text[, ignoreSpace, priority])](#typingtexttext-ignorespace-priority)
+- [static isValidInputKey(key)](#static-isvalidinputkeykey)
+- [inputKey(key[, isCapsLock])](#inputkeykey-iscapslock)
+- [text](#text)
+- [completedText](#completedText)
+- [remainingText](#remainingText)
+- [roman](#roman)
+- [completedRoman](#completedRoman)
+- [remainingRoman](#remainingRoman)
+
+### TypingText(text[, ignoreSpace, priority])
 
 コンストラクタ
 
@@ -105,11 +115,32 @@ if (TypingText.isValidInputKey(keyboardEvent.key) === false) {
 |-|-|-|
 |text|string|タイピング対象のテキスト<br>「ひらがな、カタカナ、数字、英語、ASCIIで使われている記号」のみが使われている必要があります。(半角・全角は区別しない)|
 |ignoreSpace|boolean(省略可)|falseの場合、textから半角スペース、全角スペースが排除されます。trueの場合は何もしません。デフォルトはtrueです。|
+|priority|object(省略可)|textをローマ字に変換する時の優先順位を指定するオブジェクトです。詳しくは備考を参照してください。|
 
-#### 備考
+#### 備考1
 
 * textが空と見なされた場合、EmptyTextErrorが投げられます。
 * textがローマ字で表現できない場合、CharCreationErrorが投げられます。
+* 第2引数がobjectの場合、priorityと解釈されます。
+
+#### 備考2：priorityってなんやねん
+
+こういうことです。
+
+```js
+console.log((new TypingText("じしん")).roman); // zisinn
+
+const priority = {
+    "じ": ["j"],
+    "し": ["c"],
+    "ん": ["x"],
+};
+
+console.log((new TypingText("じしん", priority)).roman); // jicixn
+```
+
+priorityのkeyは[char_factory.js](https://github.com/mogamoga1024/typing-jp/blob/main/src/char/char_factory.js)内のswitchのcase句で定義されている文字列である必要があります。
+詳しくは[char_factory.js](https://github.com/mogamoga1024/typing-jp/blob/main/src/char/char_factory.js)を参照してください。
 
 ### static isValidInputKey(key)
 
