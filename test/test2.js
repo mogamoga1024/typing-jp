@@ -182,3 +182,22 @@ test("っゃ ゃ l", () => {
     strictEqual(typingText.remainingText, "っゃ");
 });
 
+test("じ あ i", () => {
+    const priority = {
+        "あ": ["i"]
+    };
+
+    const typingText = new TypingText("じ", priority);
+
+    deepEqual(typingText.char.expectRomanArray, ["zi", "ji"]);
+
+    strictEqual(typingText.roman, "zi");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "zi");
+
+    strictEqual(typingText.text, "じ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "じ");
+});
+
+
