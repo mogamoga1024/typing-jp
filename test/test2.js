@@ -200,4 +200,34 @@ test("じ あ i", () => {
     strictEqual(typingText.remainingText, "じ");
 });
 
+test("'あ じ　あ' じ j ignoreSpace true", () => {
+    const priority = {
+        "じ": ["j"]
+    };
 
+    const typingText = new TypingText("あ じ　あ", true, priority);
+
+    strictEqual(typingText.roman, "ajia");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "ajia");
+
+    strictEqual(typingText.text, "あじあ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "あじあ");
+});
+
+test("'あ じ　あ' じ j ignoreSpace false", () => {
+    const priority = {
+        "じ": ["j"]
+    };
+
+    const typingText = new TypingText("あ じ　あ", false, priority);
+
+    strictEqual(typingText.roman, "a ji a");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "a ji a");
+
+    strictEqual(typingText.text, "あ じ　あ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "あ じ　あ");
+});
