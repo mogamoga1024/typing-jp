@@ -1,26 +1,29 @@
 
 const domText = document.querySelector("#text");
+const domHiraText1 = document.querySelector("#hira-text1");
+const domHiraText2 = document.querySelector("#hira-text2");
 const domRoman1 = document.querySelector("#roman1");
 const domRoman2 = document.querySelector("#roman2");
 
-const originalTextList = [
+const textList = [
     "あのイーハトーヴォのすきとおった風、",
     "夏でも底に冷たさをもつ青いそら、",
     "うつくしい森で飾られたモリーオ市、",
     "郊外のぎらぎらひかる草の波。",
 ];
 
-const typingTextList = [
-    new TypingText("あのイーハトーヴォのすきとおったかぜ、"),
-    new TypingText("なつでもそこにつめたさをもつあおいそら、"),
-    new TypingText("うつくしいもりでかざられたモリーオし、"),
-    new TypingText("こうがいのぎらぎらひかるくさのなみ。"),
+const hiraTextList = [
+    "あのイーハトーヴォのすきとおったかぜ、",
+    "なつでもそこにつめたさをもつあおいそら、",
+    "うつくしいもりでかざられたモリーオし、",
+    "こうがいのぎらぎらひかるくさのなみ。",
 ];
 
 let index = 0;
-domText.innerText = originalTextList[index];
-let typingText = typingTextList[index];
+let typingText = new TypingText(hiraTextList[index]);
 
+domText.innerText = textList[index];
+domHiraText2.innerText = typingText.remainingText;
 domRoman2.innerText = typingText.remainingRoman;
 
 window.onkeydown = function(e) {
@@ -45,27 +48,20 @@ window.onkeydown = function(e) {
 
         // 一致しているが文章が未完成の場合
         case "incomplete":
-            domRoman1.innerText += e.key;
-            domRoman2.innerText = typingText.remainingRoman;
-            return;
+            break;
 
         // 文章が完成した場合
         case "complete":
-            // クリアしたか
-            if (++index >= originalTextList.length) {
-                domRoman1.innerText += e.key;
-                domRoman2.innerText = typingText.remainingRoman;
-                window.onkeydown = null;
-                return;
-            }
-
             // 次の文章へ
-            domText.innerText = originalTextList[index];
-            typingText = typingTextList[index];
-        
-            domRoman1.innerText = "";
-            domRoman2.innerText = typingText.remainingRoman;
-
-            return;
+            index = (index + 1) % textList.length;
+            domText.innerText = textList[index];
+            typingText = new TypingText(hiraTextList[index]);
+            break;
     }
+
+    // UI更新
+    domHiraText1.innerText = typingText.completedText;
+    domHiraText2.innerText = typingText.remainingText;
+    domRoman1.innerText = typingText.completedRoman;
+    domRoman2.innerText = typingText.remainingRoman;
 };
