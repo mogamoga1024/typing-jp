@@ -1509,3 +1509,30 @@ test("あっあ a", () => {
     strictEqual(typingText.completedText, "あ");
     strictEqual(typingText.remainingText, "っあ");
 });
+
+test("っな xtuna", () => {
+    const typingText = new TypingText("っな");
+
+    strictEqual(typingText.roman, "xtuna");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "xtuna");
+
+    strictEqual(typingText.text, "っな");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "っな");
+});
+
+test("っな n", () => {
+    const typingText = new TypingText("っな");
+
+    strictEqual(typingText.inputKey("n"), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "xtuna");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "xtuna");
+
+    strictEqual(typingText.text, "っな");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "っな");
+});
+
