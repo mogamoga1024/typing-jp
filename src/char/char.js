@@ -21,7 +21,6 @@ export class Char {
                     const resultB = b.startsWith(roman);
                     if (resultA && !resultB) return -1;
                     else if (!resultA && resultB) return 1;
-                    else continue;
                 }
                 return 0;
             });
