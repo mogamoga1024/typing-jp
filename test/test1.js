@@ -1005,7 +1005,7 @@ test("っx xx", () => {
     strictEqual(typingText.remainingText, "っx");
 });
 
-test("っl ll", () => {
+test("っx ll", () => {
     const typingText = new TypingText("っx");
 
     strictEqual(typingText.inputKey("l"), TEXT_INCOMPLETE);
