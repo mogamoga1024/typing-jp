@@ -5,6 +5,7 @@ module.exports = {
   entry: {
     test1: './test/test1.js',
     test2: './test/test2.js',
+    test3: './test/test3.js',
   },
   output: {
     publicPath: '/dist/',

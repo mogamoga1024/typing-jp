@@ -191,6 +191,10 @@ export class TypingText {
         }
     }
 
+    undo() {
+        // todo
+    }
+
     #updateExpectRoman(key, isCharComplete = false) {
         if (this.char === null) {
             this.#remainingRoman = "";
