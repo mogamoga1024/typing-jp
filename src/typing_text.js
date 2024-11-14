@@ -6,6 +6,8 @@ import { CHAR_UNMATCH, CHAR_INCOMPLETE, CHAR_COMPLETE, CHAR_PARTIALLY_COMPLETE }
 import { TEXT_UNMATCH, TEXT_INCOMPLETE, TEXT_COMPLETE } from "./constants/text_status.js";
 
 export class TypingText {
+    #priority = null;
+
     #text = "";
     get text() {
         return this.#text;
@@ -40,25 +42,31 @@ export class TypingText {
     constructor(...args) {
         const length = args.length;
         if (length === 1) {
-            this.#init(args[0]);
+            this.#initText(args[0]);
+            this.#initRoman();
         }
         else if (length === 2) {
             if (args[1] === true || args[1] === false) {
-                this.#init(args[0], args[1], {});
+                this.#initText(args[0], args[1]);
+                this.#initRoman();
             }
             else {
-                this.#init(args[0], true, args[1]);
+                this.#initText(args[0], true);
+                this.#initRoman(args[1]);
             }
         }
         else if (length === 3) {
-            this.#init(args[0], args[1], args[2]);
+            this.#initText(args[0], args[1]);
+            this.#initRoman(args[2]);
         }
         else {
-            this.#init(); // エラーになるが別にいい。不正な入力なので。
+            // エラーになるが別にいい。不正な入力なので。
+            this.#initText();
+            this.#initRoman();
         }
     }
 
-    #init(_text, ignoreSpace = true, priority = {}) {
+    #initText(_text, ignoreSpace = true) {
         let tmpText = ignoreSpace ? _text.replace(/\s|　/g, "") : _text.replace(/\t\f\r\n/g, "");
         if (tmpText === "") {
             throw new EmptyTextError();
@@ -78,7 +86,10 @@ export class TypingText {
 
         // カタカタをひらがなに変換する
         this.#text = moji(this.#text).convert("HK", "ZK").convert("KK", "HG").toString();
-        
+    }
+
+    #initRoman(priority = {}) {
+        this.#priority = priority;
         this.char = createCharChain(this.#text, priority);
         this.#remainingRoman = "";
 
@@ -192,7 +203,19 @@ export class TypingText {
     }
 
     undo() {
-        // todo
+        // 再生成しているだけなため、あまり賢い方法ではない。
+        // ただし、一文字消しても整合性が保たれ、かつ問題なく動くコードを書くことは
+        // 非常に面倒くさいため現状はこれ。
+
+        const completedRoman = this.#completedRoman.slice(0, -1);
+        this.#completedText = "";
+        this.#completedRoman = "";
+
+        this.#initRoman(this.#priority);
+
+        for (const key of completedRoman) {
+            this.inputKey(key, true);
+        }
     }
 
     #updateExpectRoman(key, isCharComplete = false) {

@@ -65,4 +65,5 @@ test("てうと teu bk", () => {
 // todo 最後の文字 a
 // todo っ
 // todo ん
-
+// todo しゃ si bs
+// todo しゃ sya bs コンプリテキスト 空
