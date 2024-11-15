@@ -61,9 +61,54 @@ test("てうと teu bk", () => {
     strictEqual(typingText.remainingText, "うと");
 });
 
-// todo 最後の文字
-// todo 最後の文字 a
+test("てすと tesuto bk", () => {
+    const typingText = new TypingText("てすと");
+
+    typingText.inputKey("t");
+    typingText.inputKey("e");
+    typingText.inputKey("s");
+    typingText.inputKey("u");
+    typingText.inputKey("t");
+    typingText.inputKey("o");
+
+    typingText.undo();
+
+    strictEqual(typingText.roman, "tesuto");
+    strictEqual(typingText.completedRoman, "tesut");
+    strictEqual(typingText.remainingRoman, "o");
+
+    strictEqual(typingText.text, "てすと");
+    strictEqual(typingText.completedText, "てす");
+    strictEqual(typingText.remainingText, "と");
+});
+
+test("てすとあ tesutoa bk", () => {
+    const typingText = new TypingText("てすとあ");
+
+    typingText.inputKey("t");
+    typingText.inputKey("e");
+    typingText.inputKey("s");
+    typingText.inputKey("u");
+    typingText.inputKey("t");
+    typingText.inputKey("o");
+    typingText.inputKey("a");
+
+    typingText.undo();
+
+    strictEqual(typingText.roman, "tesutoa");
+    strictEqual(typingText.completedRoman, "tesuto");
+    strictEqual(typingText.remainingRoman, "a");
+
+    strictEqual(typingText.text, "てすとあ");
+    strictEqual(typingText.completedText, "てすと");
+    strictEqual(typingText.remainingText, "あ");
+});
+
+
+
 // todo っ
 // todo ん
 // todo しゃ si bs
 // todo しゃ sya bs コンプリテキスト 空
+// undo undo undo undo ...
+
