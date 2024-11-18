@@ -104,10 +104,65 @@ test("てすとあ tesutoa bk", () => {
     strictEqual(typingText.remainingText, "あ");
 });
 
+test("あっつ attu bk", () => {
+    const typingText = new TypingText("あっつ");
+
+    typingText.inputKey("a");
+    typingText.inputKey("t");
+    typingText.inputKey("t");
+    typingText.inputKey("u");
+
+    typingText.undo();
+
+    strictEqual(typingText.roman, "attu");
+    strictEqual(typingText.completedRoman, "att");
+    strictEqual(typingText.remainingRoman, "u");
+
+    strictEqual(typingText.text, "あっつ");
+    strictEqual(typingText.completedText, "あ");
+    strictEqual(typingText.remainingText, "っつ");
+});
+
+test("あっつ！ attu bk", () => {
+    const typingText = new TypingText("あっつ！");
+
+    typingText.inputKey("a");
+    typingText.inputKey("t");
+    typingText.inputKey("t");
+    typingText.inputKey("u");
+
+    typingText.undo();
+
+    strictEqual(typingText.roman, "attu!");
+    strictEqual(typingText.completedRoman, "att");
+    strictEqual(typingText.remainingRoman, "u!");
+
+    strictEqual(typingText.text, "あっつ！");
+    strictEqual(typingText.completedText, "あ");
+    strictEqual(typingText.remainingText, "っつ！");
+});
+
+test("わんだほい wand bk", () => {
+    const typingText = new TypingText("わんだほい");
+
+    typingText.inputKey("w");
+    typingText.inputKey("a");
+    typingText.inputKey("n");
+    typingText.inputKey("d");
+
+    typingText.undo();
+
+    strictEqual(typingText.roman, "wandahoi");
+    strictEqual(typingText.completedRoman, "wan");
+    strictEqual(typingText.remainingRoman, "dahoi");
+
+    strictEqual(typingText.text, "わんだほい");
+    strictEqual(typingText.completedText, "わ");
+    strictEqual(typingText.remainingText, "んだほい");
+});
 
 
-// todo っ
-// todo ん
+
 // todo しゃ si bs
 // todo しゃ sya bs コンプリテキスト 空
 // undo undo undo undo ...
