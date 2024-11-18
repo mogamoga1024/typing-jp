@@ -6,6 +6,24 @@ import { TEXT_UNMATCH, TEXT_INCOMPLETE, TEXT_COMPLETE } from "../src/constants/t
 
 QUnit.module("undo");
 
+test("まっちゃ mal bk", () => {
+    const typingText = new TypingText("まっちゃ");
+
+    typingText.inputKey("m");
+    typingText.inputKey("a");
+    typingText.inputKey("l");
+
+    typingText.undo();
+
+    strictEqual(typingText.roman, "mattya");
+    strictEqual(typingText.completedRoman, "ma");
+    strictEqual(typingText.remainingRoman, "ttya");
+
+    strictEqual(typingText.text, "まっちゃ");
+    strictEqual(typingText.completedText, "ま");
+    strictEqual(typingText.remainingText, "っちゃ");
+});
+
 test("てすと tesu bk", () => {
     const typingText = new TypingText("てすと");
 
@@ -196,5 +214,52 @@ test("にゃ nya bk", () => {
     strictEqual(typingText.remainingText, "にゃ");
 });
 
-// undo undo undo undo ...
+test("ほげ hog bk bk bk bk bk bk", () => {
+    const typingText = new TypingText("ほげ");
+
+    typingText.inputKey("h");
+    typingText.inputKey("o");
+    typingText.inputKey("g");
+
+    typingText.undo();
+    typingText.undo();
+    typingText.undo();
+    typingText.undo();
+    typingText.undo();
+    typingText.undo();
+
+    strictEqual(typingText.roman, "hoge");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "hoge");
+
+    strictEqual(typingText.text, "ほげ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "ほげ");
+});
+
+test("ほげ bk bk bk bk bk bk", () => {
+    const typingText = new TypingText("ほげ");
+
+    typingText.undo();
+    typingText.undo();
+    typingText.undo();
+    typingText.undo();
+    typingText.undo();
+    typingText.undo();
+
+    strictEqual(typingText.roman, "hoge");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "hoge");
+
+    strictEqual(typingText.text, "ほげ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "ほげ");
+});
+
+
+
+// todo isCapsLock true
+// todo space
+// todo space ignoe
+// todo 優先度
 
