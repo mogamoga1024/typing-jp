@@ -178,6 +178,23 @@ test("にゃぴ ni bk", () => {
     strictEqual(typingText.remainingText, "にゃぴ");
 });
 
-// todo しゃ sya bs コンプリテキスト 空
+test("にゃ nya bk", () => {
+    const typingText = new TypingText("にゃ");
+
+    typingText.inputKey("n");
+    typingText.inputKey("y");
+    typingText.inputKey("a");
+
+    typingText.undo();
+
+    strictEqual(typingText.roman, "nya");
+    strictEqual(typingText.completedRoman, "ny");
+    strictEqual(typingText.remainingRoman, "a");
+
+    strictEqual(typingText.text, "にゃ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "にゃ");
+});
+
 // undo undo undo undo ...
 

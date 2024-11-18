@@ -284,6 +284,23 @@ test("わんだほーい！ WANDAHO-I! CapsLock", () => {
     strictEqual(typingText.remainingText, "");
 });
 
+test("わんだほーい！ WANdAho-I! CapsLock", () => {
+    const typingText = new TypingText("わんだほーい！");
+
+    for (const key of "WANdAho-I") {
+        strictEqual(typingText.inputKey(key, true), TEXT_INCOMPLETE);
+    }
+    strictEqual(typingText.inputKey("!", true), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "wandaho-i!");
+    strictEqual(typingText.completedRoman, "WANdAho-I!");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "わんだほーい！");
+    strictEqual(typingText.completedText, "わんだほーい！");
+    strictEqual(typingText.remainingText, "");
+});
+
 test("EmptyTextError ignoreSpace=false", () => {
     throws(() => {
             new TypingText("");
