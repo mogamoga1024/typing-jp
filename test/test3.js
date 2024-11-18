@@ -161,9 +161,23 @@ test("わんだほい wand bk", () => {
     strictEqual(typingText.remainingText, "んだほい");
 });
 
+test("にゃぴ ni bk", () => {
+    const typingText = new TypingText("にゃぴ");
 
+    typingText.inputKey("n");
+    typingText.inputKey("i");
 
-// todo しゃ si bs
+    typingText.undo();
+
+    strictEqual(typingText.roman, "nyapi");
+    strictEqual(typingText.completedRoman, "n");
+    strictEqual(typingText.remainingRoman, "yapi");
+
+    strictEqual(typingText.text, "にゃぴ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "にゃぴ");
+});
+
 // todo しゃ sya bs コンプリテキスト 空
 // undo undo undo undo ...
 
