@@ -274,10 +274,43 @@ test("わんだほーい！ WANdAho-I CapsLock bk", () => {
     strictEqual(typingText.remainingText, "い！");
 });
 
+test("ち ゃ ti x ignoreSpace=false bk", () => {
+    const typingText = new TypingText("ち ゃ", false);
+
+    typingText.inputKey("t");
+    typingText.inputKey("i");
+    typingText.inputKey(" ");
+    typingText.inputKey("x");
+
+    typingText.undo();
+
+    strictEqual(typingText.roman, "ti xya");
+    strictEqual(typingText.completedRoman, "ti ");
+    strictEqual(typingText.remainingRoman, "xya");
+
+    strictEqual(typingText.text, "ち ゃ");
+    strictEqual(typingText.completedText, "ち ");
+    strictEqual(typingText.remainingText, "ゃ");
+});
+
+test("ち ゃ 'ti ' ignoreSpace=false bk", () => {
+    const typingText = new TypingText("ち ゃ", false);
+
+    typingText.inputKey("t");
+    typingText.inputKey("i");
+    typingText.inputKey(" ");
+
+    typingText.undo();
+
+    strictEqual(typingText.roman, "ti xya");
+    strictEqual(typingText.completedRoman, "ti");
+    strictEqual(typingText.remainingRoman, " xya");
+
+    strictEqual(typingText.text, "ち ゃ");
+    strictEqual(typingText.completedText, "ち");
+    strictEqual(typingText.remainingText, " ゃ");
+});
 
 
-
-// todo space
-// todo space ignoe
 // todo 優先度
 

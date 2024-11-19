@@ -116,6 +116,109 @@ test("' ' 半スペ 無視しない", () => {
     strictEqual(typingText.remainingText, " ");
 });
 
+test("ち ゃ tya ignoreSpace=true", () => {
+    const typingText = new TypingText("ち ゃ", true);
+
+    strictEqual(typingText.roman, "tya");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "tya");
+
+    strictEqual(typingText.text, "ちゃ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "ちゃ");
+});
+
+test("ち ゃ ignoreSpace=false", () => {
+    const typingText = new TypingText("ち ゃ", false);
+
+    strictEqual(typingText.roman, "ti xya");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "ti xya");
+
+    strictEqual(typingText.text, "ち ゃ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "ち ゃ");
+});
+
+test("ち ゃ ti xya ignoreSpace=false", () => {
+    const typingText = new TypingText("ち ゃ", false);
+
+    strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("i"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey(" "), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("x"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("y"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("a"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "ti xya");
+    strictEqual(typingText.completedRoman, "ti xya");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "ち ゃ");
+    strictEqual(typingText.completedText, "ち ゃ");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("ち ゃ ty ignoreSpace=false", () => {
+    const typingText = new TypingText("ち ゃ", false);
+
+    strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("y"), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "ti xya");
+    strictEqual(typingText.completedRoman, "t");
+    strictEqual(typingText.remainingRoman, "i xya");
+
+    strictEqual(typingText.text, "ち ゃ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "ち ゃ");
+});
+
+test("ち   ゃ tya ignoreSpace=true", () => {
+    const typingText = new TypingText("ち   ゃ", true);
+
+    strictEqual(typingText.roman, "tya");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "tya");
+
+    strictEqual(typingText.text, "ちゃ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "ちゃ");
+});
+
+test("ち   ゃ ignoreSpace=false", () => {
+    const typingText = new TypingText("ち   ゃ", false);
+
+    strictEqual(typingText.roman, "ti   xya");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "ti   xya");
+
+    strictEqual(typingText.text, "ち   ゃ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "ち   ゃ");
+});
+
+test("ち   ゃ ti   xya ignoreSpace=false", () => {
+    const typingText = new TypingText("ち   ゃ", false);
+
+    strictEqual(typingText.inputKey("t"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("i"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey(" "), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey(" "), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey(" "), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("x"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("y"), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("a"), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "ti   xya");
+    strictEqual(typingText.completedRoman, "ti   xya");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "ち   ゃ");
+    strictEqual(typingText.completedText, "ち   ゃ");
+    strictEqual(typingText.remainingText, "");
+});
+
 test("'　' 全スペ 無視しない", () => {
     const typingText = new TypingText("　", false);
 
