@@ -256,9 +256,27 @@ test("ほげ bk bk bk bk bk bk", () => {
     strictEqual(typingText.remainingText, "ほげ");
 });
 
+test("わんだほーい！ WANdAho-I CapsLock bk", () => {
+    const typingText = new TypingText("わんだほーい！");
+
+    for (const key of "WANdAho-I") {
+        typingText.inputKey(key, true);
+    }
+
+    typingText.undo();
+
+    strictEqual(typingText.roman, "wandaho-i!");
+    strictEqual(typingText.completedRoman, "WANdAho-");
+    strictEqual(typingText.remainingRoman, "i!");
+
+    strictEqual(typingText.text, "わんだほーい！");
+    strictEqual(typingText.completedText, "わんだほー");
+    strictEqual(typingText.remainingText, "い！");
+});
 
 
-// todo isCapsLock true
+
+
 // todo space
 // todo space ignoe
 // todo 優先度
