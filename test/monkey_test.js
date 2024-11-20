@@ -23,8 +23,28 @@ domText2.innerText = typingText.remainingText;
 domRoman2.innerText = typingText.remainingRoman;
 domCharRoman.innerText = typingText.char.expectRomanArray;
 
+let shouldGoNext = false;
+
 window.onkeydown = function(e) {
     if (e.repeat) {
+        return;
+    }
+    
+    if (shouldGoNext && e.key === "Enter") {
+        // 次の文章へ
+        shouldGoNext = false;
+
+        originalText = createRandomOriginalText();
+        console.log("----------");
+        console.log(originalText);
+        typingText = new TypingText(originalText, false);
+        updateUI();
+        return;
+    }
+    else if (e.key === "Backspace") {
+        typingText.undo();
+        console.log("UNDO");
+        updateUI();
         return;
     }
 
@@ -46,30 +66,30 @@ window.onkeydown = function(e) {
 
         // 一致しているが文章が未完成の場合
         case "incomplete":
-            domText1.innerText = typingText.completedText;
-            domText2.innerText = typingText.remainingText;
-            domRoman1.innerText = typingText.completedRoman;
-            domRoman2.innerText = typingText.remainingRoman;
-            domCharRoman.innerText = typingText.char.expectRomanArray;
-            return;
+            break;
 
         // 文章が完成した場合
         case "complete":
-            // 次の文章へ
-            originalText = createRandomOriginalText();
-            console.log("----------");
-            console.log(originalText);
-            typingText = new TypingText(originalText, false);
-        
-            domText1.innerText = "";
-            domText2.innerText = typingText.remainingText;
-            domRoman1.innerText = "";
-            domRoman2.innerText = typingText.remainingRoman;
-            domCharRoman.innerText = typingText.char.expectRomanArray;
-
-            return;
+            // 次の文章へ行ける状態にする
+            shouldGoNext = true;
+            break;
     }
+
+    updateUI();
 };
+
+function updateUI() {
+    if (typingText.char === null) {
+        domCharRoman.innerText = "Enter";
+    }
+    else {
+        domCharRoman.innerText = typingText.char.expectRomanArray;
+    }
+    domText1.innerText = typingText.completedText;
+    domText2.innerText = typingText.remainingText;
+    domRoman1.innerText = typingText.completedRoman;
+    domRoman2.innerText = typingText.remainingRoman;
+}
 
 function createRandomOriginalText() {
     const allCharList1 = [
