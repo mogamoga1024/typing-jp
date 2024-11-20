@@ -261,3 +261,19 @@ test("じしん j c x", () => {
     strictEqual(typingText.completedText, "");
     strictEqual(typingText.remainingText, "じしん");
 });
+
+test("ちゃ ち c", () => {
+    const priority = {
+        "ち": ["c"]
+    };
+
+    const typingText = new TypingText("ちゃ", priority);
+
+    strictEqual(typingText.roman, "cya");
+    strictEqual(typingText.completedRoman, "");
+    strictEqual(typingText.remainingRoman, "cya");
+
+    strictEqual(typingText.text, "ちゃ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "ちゃ");
+});
