@@ -5,7 +5,7 @@ const domRoman1 = document.querySelector("#roman1");
 const domRoman2 = document.querySelector("#roman2");
 const domCharRoman = document.querySelector("#char-roman");
 
-var originalText = createRandomOriginalText();
+// var originalText = createRandomOriginalText();
 // var originalText = "っふゃ";
 // var originalText = "っゃったっゃったっゃ";
 // var originalText = "あっゃ";
@@ -15,6 +15,7 @@ var originalText = createRandomOriginalText();
 // var originalText = "あっあ";
 // var originalText = "ぁかXしぃつ";
 // var originalText = "んU";
+var originalText = '：びぇ"';
 typingText = new TypingText(originalText);
 console.log("----------");
 console.log(originalText);

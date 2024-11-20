@@ -341,7 +341,7 @@ export function createChar(name, priority) {
         // 記号 ASCII順 半角
         case " ": return new Char(name, [" "], priority);
         case "!": return new Char(name, ["!"], priority);
-        case '"': return new Char(name, ['"']);
+        case '"': return new Char(name, ['"'], priority);
         case "#": return new Char(name, ["#"], priority);
         case "$": return new Char(name, ["$"], priority);
         case "%": return new Char(name, ["%"], priority);
@@ -376,7 +376,7 @@ export function createChar(name, priority) {
         // 記号 ASCII順 全角
         case "　": return new CharZen(name, [" "], priority);
         case "！": return new CharZen(name, ["!"], priority);
-        case "”": return new CharZen(name, ['"']);
+        case "”": return new CharZen(name, ['"'], priority);
         case "＃": return new CharZen(name, ["#"], priority);
         case "＄": return new CharZen(name, ["$"], priority);
         case "％": return new CharZen(name, ["%"], priority);
