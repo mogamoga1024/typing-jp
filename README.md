@@ -100,6 +100,7 @@ if (TypingText.isValidInputKey(keyboardEvent.key) === false) {
 - [TypingText(text[, ignoreSpace, priority])](#typingtexttext-ignorespace-priority)
 - [static isValidInputKey(key)](#static-isvalidinputkeykey)
 - [inputKey(key[, isCapsLock])](#inputkeykey-iscapslock)
+- [undo()](#undo)
 - [text](#text)
 - [completedText](#completedText)
 - [remainingText](#remainingText)
