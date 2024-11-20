@@ -350,5 +350,27 @@ test("わんだほーい！ CapsLock bk ごちゃまぜ完走", () => {
     strictEqual(typingText.remainingText, "");
 });
 
-// todo 優先度
+test("じしん zis bk priority", () => {
+    const priority = {
+        "じ": ["j"],
+        "し": ["c"],
+        "ん": ["x"],
+    };
+
+    const typingText = new TypingText("じしん", priority);
+
+    typingText.inputKey("z", true);
+    typingText.inputKey("i", true);
+    typingText.inputKey("s", true);
+
+    typingText.undo();
+
+    strictEqual(typingText.roman, "jicixn");
+    strictEqual(typingText.completedRoman, "zi");
+    strictEqual(typingText.remainingRoman, "cixn");
+
+    strictEqual(typingText.text, "じしん");
+    strictEqual(typingText.completedText, "じ");
+    strictEqual(typingText.remainingText, "しん");
+});
 
