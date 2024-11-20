@@ -404,6 +404,22 @@ test("わんだほーい！ WANdAho-I! CapsLock", () => {
     strictEqual(typingText.remainingText, "");
 });
 
+test("にゃ nYA CapsLock", () => {
+    const typingText = new TypingText("にゃ");
+
+    strictEqual(typingText.inputKey("n", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("Y", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("A", true), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "nya");
+    strictEqual(typingText.completedRoman, "nYA");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "にゃ");
+    strictEqual(typingText.completedText, "にゃ");
+    strictEqual(typingText.remainingText, "");
+});
+
 test("EmptyTextError ignoreSpace=false", () => {
     throws(() => {
             new TypingText("");
