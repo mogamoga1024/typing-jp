@@ -311,6 +311,44 @@ test("ち ゃ 'ti ' ignoreSpace=false bk", () => {
     strictEqual(typingText.remainingText, " ゃ");
 });
 
+test("わんだほーい！ CapsLock bk ごちゃまぜ完走", () => {
+    const typingText = new TypingText("わんだほーい！");
+
+    typingText.inputKey("W", true);
+    typingText.inputKey("a", true);
+    typingText.inputKey("n", true);
+    typingText.inputKey("n", true);
+
+    typingText.undo();
+    typingText.undo();
+
+    typingText.inputKey("N", true);
+    typingText.inputKey("d", true);
+    typingText.inputKey("d", true);
+
+    typingText.undo();
+
+    typingText.inputKey("D", true);
+    typingText.inputKey("a", true);
+
+    typingText.inputKey("h", true);
+    typingText.inputKey("o", true);
+    typingText.inputKey("-", true);
+
+    typingText.undo();
+    
+    typingText.inputKey("-", true);
+    typingText.inputKey("I", true);
+    typingText.inputKey("!", true);
+
+    strictEqual(typingText.roman, "wandaho-i!");
+    strictEqual(typingText.completedRoman, "WaNDaho-I!");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "わんだほーい！");
+    strictEqual(typingText.completedText, "わんだほーい！");
+    strictEqual(typingText.remainingText, "");
+});
 
 // todo 優先度
 
