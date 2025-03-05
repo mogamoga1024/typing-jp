@@ -148,3 +148,95 @@ test("にゃ nY CapsLock:false", () => {
     strictEqual(typingText.completedText, "");
     strictEqual(typingText.remainingText, "にゃ");
 });
+
+test("っ XTU CapsLock:true", () => {
+    const typingText = new TypingText("っ");
+
+    strictEqual(typingText.inputKey("X", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("T", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("U", true), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "xtu");
+    strictEqual(typingText.completedRoman, "XTU");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "っ");
+    strictEqual(typingText.completedText, "っ");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("っ Xt CapsLock:true", () => {
+    const typingText = new TypingText("っ");
+
+    strictEqual(typingText.inputKey("X", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("t", true), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "xtu");
+    strictEqual(typingText.completedRoman, "X");
+    strictEqual(typingText.remainingRoman, "tu");
+
+    strictEqual(typingText.text, "っ");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "っ");
+});
+
+test("った TTA CapsLock:true", () => {
+    const typingText = new TypingText("った");
+
+    strictEqual(typingText.inputKey("T", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("T", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("A", true), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "tta");
+    strictEqual(typingText.completedRoman, "TTA");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "った");
+    strictEqual(typingText.completedText, "った");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("った Tt CapsLock:true", () => {
+    const typingText = new TypingText("った");
+
+    strictEqual(typingText.inputKey("T", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("t", true), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "tta");
+    strictEqual(typingText.completedRoman, "T");
+    strictEqual(typingText.remainingRoman, "ta");
+
+    strictEqual(typingText.text, "った");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "った");
+});
+
+test("ん NN CapsLock:true", () => {
+    const typingText = new TypingText("ん");
+
+    strictEqual(typingText.inputKey("N", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("N", true), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "nn");
+    strictEqual(typingText.completedRoman, "NN");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "ん");
+    strictEqual(typingText.completedText, "ん");
+    strictEqual(typingText.remainingText, "");
+});
+
+test("ん Nn CapsLock:true", () => {
+    const typingText = new TypingText("ん");
+
+    strictEqual(typingText.inputKey("N", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("n", true), TEXT_UNMATCH);
+
+    strictEqual(typingText.roman, "nn");
+    strictEqual(typingText.completedRoman, "N");
+    strictEqual(typingText.remainingRoman, "n");
+
+    strictEqual(typingText.text, "ん");
+    strictEqual(typingText.completedText, "");
+    strictEqual(typingText.remainingText, "ん");
+});
