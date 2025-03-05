@@ -359,14 +359,38 @@ test("じしん zis bk priority", () => {
 
     const typingText = new TypingText("じしん", priority);
 
-    typingText.inputKey("z", true);
-    typingText.inputKey("i", true);
-    typingText.inputKey("s", true);
+    typingText.inputKey("z", false);
+    typingText.inputKey("i", false);
+    typingText.inputKey("s", false);
 
     typingText.undo();
 
     strictEqual(typingText.roman, "jicixn");
     strictEqual(typingText.completedRoman, "zi");
+    strictEqual(typingText.remainingRoman, "cixn");
+
+    strictEqual(typingText.text, "じしん");
+    strictEqual(typingText.completedText, "じ");
+    strictEqual(typingText.remainingText, "しん");
+});
+
+test("じしん ZIS bk priority CapsLock", () => {
+    const priority = {
+        "じ": ["j"],
+        "し": ["c"],
+        "ん": ["x"],
+    };
+
+    const typingText = new TypingText("じしん", priority);
+
+    typingText.inputKey("Z", true);
+    typingText.inputKey("I", true);
+    typingText.inputKey("S", true);
+
+    typingText.undo();
+
+    strictEqual(typingText.roman, "jicixn");
+    strictEqual(typingText.completedRoman, "ZI");
     strictEqual(typingText.remainingRoman, "cixn");
 
     strictEqual(typingText.text, "じしん");
