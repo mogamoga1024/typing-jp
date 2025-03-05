@@ -120,7 +120,14 @@ export class TypingText {
             throw new NoRemainingInputError();
         }
 
-        const result = this.char.inputRoman(key, isCapsLock);
+        let result = CHAR_UNMATCH;
+        // CapsLockを無視しない かつ CapsLockがON かつ 小文字のアルファベットは駄目
+        if (!this.char.ignoreCapsLock && isCapsLock && /^[a-z]+$/.test(key)) {
+            // noop
+        }
+        else {
+            result = this.char.inputRoman(key, isCapsLock);
+        }
 
         switch (result) {
             case CHAR_UNMATCH: return TEXT_UNMATCH;

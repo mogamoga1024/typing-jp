@@ -27,7 +27,7 @@ export class CharZenN extends CharZen {
     }
 
     inputRoman(_roman, isCapsLock = false) {
-        const roman = isCapsLock && this.ignoreCapsLock ? _roman.toLowerCase() : _roman;
+        const roman = isCapsLock && !this.ignoreCapsLock ? _roman.toLowerCase() : _roman;
         const result = super.inputRoman(roman);
     
         if (result !== CHAR_UNMATCH || this.nextExpectRomanIndex === 0 || this.nextChar === null) {

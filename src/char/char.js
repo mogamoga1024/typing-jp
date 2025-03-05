@@ -3,7 +3,7 @@ import { CHAR_UNMATCH, CHAR_INCOMPLETE, CHAR_COMPLETE } from "../constants/char_
 
 export class Char {
     get ignoreCapsLock() {
-        return false;
+        return true;
     }
 
     constructor(name, expectRomanArray, priority) {
@@ -46,7 +46,7 @@ export class Char {
     }
 
     inputRoman(_roman, isCapsLock = false) {
-        const roman = isCapsLock && this.ignoreCapsLock ? _roman.toLowerCase() : _roman;
+        const roman = isCapsLock && !this.ignoreCapsLock ? _roman.toLowerCase() : _roman;
         const result = this.inputThisCharRoman(roman);
     
         if (result === CHAR_UNMATCH && this.divisionCharChain !== null) {

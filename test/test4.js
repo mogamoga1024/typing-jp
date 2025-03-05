@@ -133,8 +133,8 @@ test("にゃ Ny CapsLock:true", () => {
 test("にゃ nY CapsLock:false", () => {
     const typingText = new TypingText("にゃ");
 
-    strictEqual(typingText.inputKey("n", true), TEXT_INCOMPLETE);
-    strictEqual(typingText.inputKey("Y", true), TEXT_UNMATCH);
+    strictEqual(typingText.inputKey("n", false), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("Y", false), TEXT_UNMATCH);
 
     strictEqual(typingText.roman, "nya");
     strictEqual(typingText.completedRoman, "n");

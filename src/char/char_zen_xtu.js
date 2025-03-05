@@ -64,7 +64,7 @@ export class CharZenXtu extends CharZen {
     }
     
     inputRoman(_roman, isCapsLock = false) {
-        const roman = isCapsLock && this.ignoreCapsLock ? _roman.toLowerCase() : _roman;
+        const roman = isCapsLock && !this.ignoreCapsLock ? _roman.toLowerCase() : _roman;
         const result = super.inputRoman(roman);
 
         const isBadXXorLL = result === CHAR_UNMATCH && (roman === "x" || roman === "l"); 

@@ -2,7 +2,7 @@ import { Char } from "./char.js";
 
 export class CharZen extends Char {
     get ignoreCapsLock() {
-        return true;
+        return false;
     }
 
     constructor(name, expectRomanArray, priority) {
