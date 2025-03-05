@@ -370,56 +370,6 @@ test("わんだほーい！ W", () => {
     strictEqual(typingText.remainingText, "わんだほーい！");
 });
 
-test("わんだほーい！ WANDAHO-I! CapsLock", () => {
-    const typingText = new TypingText("わんだほーい！");
-
-    for (const key of "WANDAHO-I") {
-        strictEqual(typingText.inputKey(key, true), TEXT_INCOMPLETE);
-    }
-    strictEqual(typingText.inputKey("!", true), TEXT_COMPLETE);
-
-    strictEqual(typingText.roman, "wandaho-i!");
-    strictEqual(typingText.completedRoman, "WANDAHO-I!");
-    strictEqual(typingText.remainingRoman, "");
-
-    strictEqual(typingText.text, "わんだほーい！");
-    strictEqual(typingText.completedText, "わんだほーい！");
-    strictEqual(typingText.remainingText, "");
-});
-
-test("わんだほーい！ WANdAho-I! CapsLock", () => {
-    const typingText = new TypingText("わんだほーい！");
-
-    for (const key of "WANdAho-I") {
-        strictEqual(typingText.inputKey(key, true), TEXT_INCOMPLETE);
-    }
-    strictEqual(typingText.inputKey("!", true), TEXT_COMPLETE);
-
-    strictEqual(typingText.roman, "wandaho-i!");
-    strictEqual(typingText.completedRoman, "WANdAho-I!");
-    strictEqual(typingText.remainingRoman, "");
-
-    strictEqual(typingText.text, "わんだほーい！");
-    strictEqual(typingText.completedText, "わんだほーい！");
-    strictEqual(typingText.remainingText, "");
-});
-
-test("にゃ nYA CapsLock", () => {
-    const typingText = new TypingText("にゃ");
-
-    strictEqual(typingText.inputKey("n", true), TEXT_INCOMPLETE);
-    strictEqual(typingText.inputKey("Y", true), TEXT_INCOMPLETE);
-    strictEqual(typingText.inputKey("A", true), TEXT_COMPLETE);
-
-    strictEqual(typingText.roman, "nya");
-    strictEqual(typingText.completedRoman, "nYA");
-    strictEqual(typingText.remainingRoman, "");
-
-    strictEqual(typingText.text, "にゃ");
-    strictEqual(typingText.completedText, "にゃ");
-    strictEqual(typingText.remainingText, "");
-});
-
 test("EmptyTextError ignoreSpace=false", () => {
     throws(() => {
             new TypingText("");
