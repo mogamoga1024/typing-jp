@@ -2,16 +2,13 @@ import { createDivisionCharChain } from "./char_chain.js";
 import { CHAR_UNMATCH, CHAR_INCOMPLETE, CHAR_COMPLETE } from "../constants/char_status.js";
 
 export class Char {
-    get ignoreCapsLock() {
-        return true;
-    }
-
-    constructor(name, expectRomanArray, priority) {
+    constructor(name, expectRomanArray, priority, ignoreCapsLock = true) {
         this.name = name;
         this.nextChar = null;
         this.expectRomanArray = expectRomanArray;
         this.nextExpectRomanIndex = 0;
         this.divisionCharChain = null;
+        this.ignoreCapsLock = ignoreCapsLock;
 
         const priorityRomanList = priority[name];
         if (Array.isArray(priorityRomanList)) {
