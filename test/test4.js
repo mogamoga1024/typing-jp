@@ -6,7 +6,6 @@ import { TEXT_UNMATCH, TEXT_INCOMPLETE, TEXT_COMPLETE } from "../src/constants/t
 
 QUnit.module("CapsLock");
 
-// todo 見直し
 test("わんだほーい！ WANDAHO-I! CapsLock", () => {
     const typingText = new TypingText("わんだほーい！");
 
@@ -24,13 +23,18 @@ test("わんだほーい！ WANDAHO-I! CapsLock", () => {
     strictEqual(typingText.remainingText, "");
 });
 
-// todo 見直し
 test("わんだほーい！ WANdAho-I! CapsLock", () => {
     const typingText = new TypingText("わんだほーい！");
-
-    for (const key of "WANdAho-I") {
-        strictEqual(typingText.inputKey(key, true), TEXT_INCOMPLETE);
-    }
+    
+    strictEqual(typingText.inputKey("W", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("A", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("N", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("d", false), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("A", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("h", false), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("o", false), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("-", false), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("I", true), TEXT_INCOMPLETE);
     strictEqual(typingText.inputKey("!", true), TEXT_COMPLETE);
 
     strictEqual(typingText.roman, "wandaho-i!");

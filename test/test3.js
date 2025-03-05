@@ -259,9 +259,15 @@ test("ほげ bk bk bk bk bk bk", () => {
 test("わんだほーい！ WANdAho-I CapsLock bk", () => {
     const typingText = new TypingText("わんだほーい！");
 
-    for (const key of "WANdAho-I") {
-        typingText.inputKey(key, true);
-    }
+    typingText.inputKey("W", true);
+    typingText.inputKey("A", true);
+    typingText.inputKey("N", true);
+    typingText.inputKey("d", false);
+    typingText.inputKey("A", true);
+    typingText.inputKey("h", false);
+    typingText.inputKey("o", false);
+    typingText.inputKey("-", false);
+    typingText.inputKey("I", true);
 
     typingText.undo();
 
@@ -315,31 +321,31 @@ test("わんだほーい！ CapsLock bk ごちゃまぜ完走", () => {
     const typingText = new TypingText("わんだほーい！");
 
     typingText.inputKey("W", true);
-    typingText.inputKey("a", true);
-    typingText.inputKey("n", true);
-    typingText.inputKey("n", true);
+    typingText.inputKey("a", false);
+    typingText.inputKey("n", false);
+    typingText.inputKey("n", false);
 
     typingText.undo();
     typingText.undo();
 
     typingText.inputKey("N", true);
-    typingText.inputKey("d", true);
-    typingText.inputKey("d", true);
+    typingText.inputKey("d", false);
+    typingText.inputKey("d", false);
 
     typingText.undo();
 
     typingText.inputKey("D", true);
-    typingText.inputKey("a", true);
+    typingText.inputKey("a", false);
 
-    typingText.inputKey("h", true);
-    typingText.inputKey("o", true);
-    typingText.inputKey("-", true);
+    typingText.inputKey("h", false);
+    typingText.inputKey("o", false);
+    typingText.inputKey("-", false);
 
     typingText.undo();
     
-    typingText.inputKey("-", true);
+    typingText.inputKey("-", false);
     typingText.inputKey("I", true);
-    typingText.inputKey("!", true);
+    typingText.inputKey("!", false);
 
     strictEqual(typingText.roman, "wandaho-i!");
     strictEqual(typingText.completedRoman, "WaNDaho-I!");
