@@ -27,6 +27,7 @@ export class TypingText {
         return this.#roman;
     }
 
+    #capsLockLog = [];
     #completedRoman = "";
     get completedRoman() {
         return this.#completedRoman;
@@ -133,7 +134,7 @@ export class TypingText {
             case CHAR_UNMATCH: return TEXT_UNMATCH;
 
             case CHAR_INCOMPLETE:
-                this.#completedRoman += key;
+                this.#completedRoman += key; this.#capsLockLog.push(isCapsLock);
                 this.#updateExpectRoman(key);
                 // console.log("CHAR_INCOMPLETE", key, this.#completedText);
                 // console.log("CHAR_INCOMPLETE", key, this.#remainingRoman);
@@ -141,7 +142,7 @@ export class TypingText {
             
             case CHAR_PARTIALLY_COMPLETE: {
                 this.#wasCharPartiallyComplete = true;
-                this.#completedRoman += key;
+                this.#completedRoman += key; this.#capsLockLog.push(isCapsLock);
                 if (this.char.nextChar.expectRomanArray[0][0] === key) {
                     this.char = this.char.nextChar;
                 }
@@ -172,7 +173,7 @@ export class TypingText {
                 else {
                     this.#completedText += this.char.name;
                 }
-                this.#completedRoman += key;
+                this.#completedRoman += key; this.#capsLockLog.push(isCapsLock);
                 this.char = this.char.nextChar;
                 this.#updateExpectRoman(key, true);
                 // console.log("CHAR_COMPLETE", key, this.#completedText);
@@ -200,7 +201,7 @@ export class TypingText {
                     this.#completedText += this.char.name.slice(0, -result.name.length);
                 }
                 
-                this.#completedRoman += key;
+                this.#completedRoman += key; this.#capsLockLog.push(isCapsLock);
                 this.char = result;
                 this.#updateExpectRoman(key);
                 // console.log("default", key, this.#completedText);
@@ -216,14 +217,16 @@ export class TypingText {
         非常に面倒くさいため現状はこれ。
         */
 
+        const capsLockLog = this.#capsLockLog.slice(0, -1);
         const completedRoman = this.#completedRoman.slice(0, -1);
+        this.#capsLockLog = [];
         this.#completedText = "";
         this.#completedRoman = "";
 
         this.#initRoman(this.#priority);
 
-        for (const key of completedRoman) {
-            this.inputKey(key, true);
+        for (let i = 0; i < completedRoman.length; i++) {
+            this.inputKey(completedRoman[i], capsLockLog[i]);
         }
     }
 
