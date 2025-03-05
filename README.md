@@ -192,9 +192,10 @@ priorityのkeyは[char_factory.js](https://github.com/mogamoga1024/typing-jp/blo
 isCapsLockがtrueの場合  
 「あいうえお(aiueo)」というテキストに「AIUEO」と入力しても問題ないと見なします。  
 isCapsLockがfalseの場合  
-「あいうえお(aiueo)」というテキストに「AIUEO」と入力した場合、ローマ字として不適と見なします。(実際のキーボードの挙動に合わせている。)
+「あいうえお(aiueo)」というテキストに「AIUEO」と入力した場合、ローマ字として不適と見なします。  
+(実際のキーボードの挙動に合わせている。)
 
-意味わかんねーよ。的な方はfalse(デフォルト値)にしておけば何ら問題ありません。
+意味が分からない方はfalse(デフォルト値)にしておけば何ら問題ありません。
 
 ### undo()
 
