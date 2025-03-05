@@ -9,9 +9,15 @@ QUnit.module("CapsLock");
 test("わんだほーい！ WANDAHO-I! CapsLock", () => {
     const typingText = new TypingText("わんだほーい！");
 
-    for (const key of "WANDAHO-I") {
-        strictEqual(typingText.inputKey(key, true), TEXT_INCOMPLETE);
-    }
+    strictEqual(typingText.inputKey("W", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("A", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("N", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("D", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("A", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("H", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("O", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("-", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("I", true), TEXT_INCOMPLETE);
     strictEqual(typingText.inputKey("!", true), TEXT_COMPLETE);
 
     strictEqual(typingText.roman, "wandaho-i!");
@@ -239,4 +245,19 @@ test("ん Nn CapsLock:true", () => {
     strictEqual(typingText.text, "ん");
     strictEqual(typingText.completedText, "");
     strictEqual(typingText.remainingText, "ん");
+});
+
+test("＠＠ CapsLock", () => {
+    const typingText = new TypingText("＠＠");
+
+    strictEqual(typingText.inputKey("@", true), TEXT_INCOMPLETE);
+    strictEqual(typingText.inputKey("@", false), TEXT_COMPLETE);
+
+    strictEqual(typingText.roman, "@@");
+    strictEqual(typingText.completedRoman, "@@");
+    strictEqual(typingText.remainingRoman, "");
+
+    strictEqual(typingText.text, "＠＠");
+    strictEqual(typingText.completedText, "＠＠");
+    strictEqual(typingText.remainingText, "");
 });

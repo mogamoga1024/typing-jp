@@ -121,9 +121,11 @@ export class TypingText {
             throw new NoRemainingInputError();
         }
 
+        const lowerKey = key.toLowerCase();
+
         let result = CHAR_UNMATCH;
         // CapsLockを無視しない かつ CapsLockがON かつ 小文字のアルファベットは駄目
-        if (!this.char.ignoreCapsLock && isCapsLock && /^[a-z]+$/.test(key)) {
+        if (!this.char.ignoreCapsLock && isCapsLock && key === lowerKey) {
             // noop
         }
         else {
@@ -135,23 +137,19 @@ export class TypingText {
 
             case CHAR_INCOMPLETE:
                 this.#completedRoman += key; this.#capsLockLog.push(isCapsLock);
-                this.#updateExpectRoman(key);
-                // console.log("CHAR_INCOMPLETE", key, this.#completedText);
-                // console.log("CHAR_INCOMPLETE", key, this.#remainingRoman);
+                this.#updateExpectRoman(lowerKey);
                 return TEXT_INCOMPLETE;
             
             case CHAR_PARTIALLY_COMPLETE: {
                 this.#wasCharPartiallyComplete = true;
                 this.#completedRoman += key; this.#capsLockLog.push(isCapsLock);
-                if (this.char.nextChar.expectRomanArray[0][0] === key) {
+                if (this.char.nextChar.expectRomanArray[0][0] === lowerKey) {
                     this.char = this.char.nextChar;
                 }
                 else {
                     this.char = this.char.nextChar.divisionCharChain;
                 }
-                this.#updateExpectRoman(key);
-                // console.log("CHAR_PARTIALLY_COMPLETE", key, this.#completedText);
-                // console.log("CHAR_PARTIALLY_COMPLETE", key, this.#remainingRoman);
+                this.#updateExpectRoman(lowerKey);
                 return TEXT_INCOMPLETE;
             }
 
@@ -164,7 +162,7 @@ export class TypingText {
                 else if (this.char.name === "ん") {
                     this.#completedText += "ん";
                     for (const expectRoman of this.char.expectRomanArray) {
-                        if (key !== expectRoman.at(-1)) {
+                        if (lowerKey !== expectRoman.at(-1)) {
                             this.#completedText += this.char.nextChar.name;
                             break;
                         }
@@ -175,16 +173,14 @@ export class TypingText {
                 }
                 this.#completedRoman += key; this.#capsLockLog.push(isCapsLock);
                 this.char = this.char.nextChar;
-                this.#updateExpectRoman(key, true);
-                // console.log("CHAR_COMPLETE", key, this.#completedText);
-                // console.log("CHAR_COMPLETE", key, this.#remainingRoman);
+                this.#updateExpectRoman(lowerKey, true);
                 return this.#remainingRoman === "" ? TEXT_COMPLETE : TEXT_INCOMPLETE;
             }
 
             default:
                 if (this.char.name === "ん") {
                     for (const expectRoman of this.char.expectRomanArray) {
-                        if (key !== expectRoman.at(-1)) {
+                        if (lowerKey !== expectRoman.at(-1)) {
                             this.#completedText += "ん";
                             if (this.char.nextChar !== result) {
                                 this.#completedText += this.char.nextChar.name;
@@ -203,9 +199,7 @@ export class TypingText {
                 
                 this.#completedRoman += key; this.#capsLockLog.push(isCapsLock);
                 this.char = result;
-                this.#updateExpectRoman(key);
-                // console.log("default", key, this.#completedText);
-                // console.log("default", key, this.#remainingRoman);
+                this.#updateExpectRoman(lowerKey);
                 return TEXT_INCOMPLETE;
         }
     }
