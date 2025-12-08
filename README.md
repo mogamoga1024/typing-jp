@@ -243,4 +243,4 @@ https://github.com/mogamoga1024/Typing
 
 ## license
 
-MIT or WTFPL or くいなちゃんライセンス
+MIT or WTFPL
